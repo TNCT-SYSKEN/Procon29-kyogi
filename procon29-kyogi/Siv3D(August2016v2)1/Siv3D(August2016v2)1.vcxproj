@@ -163,6 +163,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SystemManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
@@ -275,6 +276,9 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="Example\YomogiFont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SystemManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
