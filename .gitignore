@@ -6,6 +6,13 @@
 *.vcxproj.filters
 *.vcxproj
 *.html
+*.suo
+*.db
+*.exe
+*.exp
+*.ilk
+*.lib
+*.pdb
 
 # User-specific files
 *.suo
