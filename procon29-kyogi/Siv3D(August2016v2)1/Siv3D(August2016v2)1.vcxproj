@@ -162,10 +162,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="SystemManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +274,22 @@
     <Font Include="Example\YomogiFont.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Algorithm\AddEvaluation.cpp" />
+    <ClCompile Include="Algorithm\AlgorithmManager.cpp" />
+    <ClCompile Include="Algorithm\BruteForce.cpp" />
+    <ClCompile Include="Algorithm\Judgment.cpp" />
+    <ClCompile Include="Algorithm\JudgmentEncircle.cpp" />
+    <ClCompile Include="Algorithm\Prefetching.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SystemManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Algorithm\AddEvaluation.h" />
+    <ClInclude Include="Algorithm\AlgorithmManager.h" />
+    <ClInclude Include="Algorithm\BruteForce.h" />
+    <ClInclude Include="Algorithm\Judgment.h" />
+    <ClInclude Include="Algorithm\JudgmentEncircle.h" />
+    <ClInclude Include="Algorithm\Prefetching.h" />
     <ClInclude Include="SystemManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
