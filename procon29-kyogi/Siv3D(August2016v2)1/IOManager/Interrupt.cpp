@@ -1,5 +1,17 @@
-#include "Interrupt.h"
+#include "Input.h"
 
-void Interrupt::interrupt(void)
+void Input::inputManager(void)
+{
+}
+
+void Input::backTurn(void)
+{
+}
+
+void Input::prefetchingInfo(void)
+{
+}
+
+void Input::Research(void)
 {
 }
