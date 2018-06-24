@@ -1,4 +1,7 @@
 #pragma once
+#include "Algorithm/AlgorithmManager.h"
+#include "IOManager/InputOutputManager.h"
+
 class SystemManager {
 public:
 private:

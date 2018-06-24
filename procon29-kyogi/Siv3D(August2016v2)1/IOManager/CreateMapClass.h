@@ -1,4 +1,6 @@
 #pragma once
+#include "ReadQR.h"
+
 class CreateMapClass {
 public:
 	void createMapClass(void);

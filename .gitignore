@@ -13,6 +13,7 @@
 *.ilk
 *.lib
 *.pdb
+*Debug/
 
 # User-specific files
 *.suo
