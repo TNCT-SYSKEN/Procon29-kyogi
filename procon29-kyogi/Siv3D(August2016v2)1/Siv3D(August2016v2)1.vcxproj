@@ -296,12 +296,17 @@
     <ClInclude Include="Algorithm\Judgment.h" />
     <ClInclude Include="Algorithm\JudgmentEncircle.h" />
     <ClInclude Include="Algorithm\Prefetching.h" />
+    <ClInclude Include="gneral.h" />
     <ClInclude Include="IOManager\CreateMapClass.h" />
     <ClInclude Include="IOManager\DrawMap.h" />
     <ClInclude Include="IOManager\InputOutputManager.h" />
     <ClInclude Include="IOManager\Interrupt.h" />
     <ClInclude Include="IOManager\ReadQR.h" />
     <ClInclude Include="IOManager\UpdateTurnInfo.h" />
+    <ClInclude Include="MapClass\Agent.h" />
+    <ClInclude Include="MapClass\Evaluation.h" />
+    <ClInclude Include="MapClass\Map.h" />
+    <ClInclude Include="MapClass\Masu.h" />
     <ClInclude Include="SystemManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

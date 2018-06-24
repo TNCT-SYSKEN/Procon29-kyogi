@@ -88,6 +88,9 @@
     <Filter Include="ヘッダー ファイル\IOManager">
       <UniqueIdentifier>{f4652b4e-030d-4f54-b292-dd776b6c97fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Data">
+      <UniqueIdentifier>{7cef0f12-1c26-4d82-b0c9-b7b34a1097ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
@@ -484,6 +487,21 @@
     </ClInclude>
     <ClInclude Include="IOManager\UpdateTurnInfo.h">
       <Filter>ヘッダー ファイル\IOManager</Filter>
+    </ClInclude>
+    <ClInclude Include="gneral.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="MapClass\Agent.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MapClass\Evaluation.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MapClass\Map.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MapClass\Masu.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

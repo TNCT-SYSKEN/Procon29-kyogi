@@ -10,6 +10,10 @@ void Interrupt::backTurn(void)
 	//ターンを管理している変数の値を減らす・・？
 }
 
+void Interrupt::goTurn(void)
+{
+}
+
 void Interrupt::prefetchingInfo(void)
 {
 	//どこまで先読むかの数を読み込み
