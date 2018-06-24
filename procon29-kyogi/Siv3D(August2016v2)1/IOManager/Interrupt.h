@@ -1,5 +1,5 @@
 #pragma once
-class Input {
+class Interrupt {
 public:
 	void inputManager(void);
 private:
