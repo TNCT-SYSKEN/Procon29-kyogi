@@ -4,6 +4,5 @@
 class Evaluation {
 public:
 	int SumScore[TurnNumber];
-	//int 
 private:
 };
