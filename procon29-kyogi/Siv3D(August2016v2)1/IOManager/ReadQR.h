@@ -4,7 +4,7 @@
 
 class ReadQR {
 public:
-	void readQR(void);
+	char readQR(void);
 private:
 	char MapData[Heghit][Width];
 	int TilePoint[Heghit][Width];

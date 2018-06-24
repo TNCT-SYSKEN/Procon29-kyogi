@@ -1,7 +1,7 @@
 #pragma once
 class Interrupt {
 public:
-	void inputManager(void);
+	void interruptManager(void);
 private:
 	void backTurn(void);
 	void goTurn(void);

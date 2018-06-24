@@ -76,6 +76,18 @@
     <Filter Include="リソース ファイル\Example\Well">
       <UniqueIdentifier>{eb86b9be-05b8-45c6-89c8-f91a5437157c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Algorithm">
+      <UniqueIdentifier>{0d807c65-0a9b-4d30-918a-646222de00dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\IOManager">
+      <UniqueIdentifier>{72d87cc1-390a-4afe-9cb9-fb4bb0691802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Algorithm">
+      <UniqueIdentifier>{b67c8ad6-e342-43ff-bb58-6f4dc3d6aeb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\IOManager">
+      <UniqueIdentifier>{f4652b4e-030d-4f54-b292-dd776b6c97fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
@@ -390,52 +402,88 @@
     </Font>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Algorithm\Prefetching.cpp">
+      <Filter>ソース ファイル\Algorithm</Filter>
+    </ClCompile>
     <ClCompile Include="Algorithm\AddEvaluation.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Algorithm</Filter>
     </ClCompile>
     <ClCompile Include="Algorithm\AlgorithmManager.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Algorithm</Filter>
     </ClCompile>
     <ClCompile Include="Algorithm\BruteForce.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Algorithm</Filter>
     </ClCompile>
     <ClCompile Include="Algorithm\Judgment.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Algorithm</Filter>
     </ClCompile>
     <ClCompile Include="Algorithm\JudgmentEncircle.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Algorithm</Filter>
     </ClCompile>
-    <ClCompile Include="Algorithm\Prefetching.cpp">
+    <ClCompile Include="IOManager\CreateMapClass.cpp">
+      <Filter>ソース ファイル\IOManager</Filter>
+    </ClCompile>
+    <ClCompile Include="IOManager\DrawMap.cpp">
+      <Filter>ソース ファイル\IOManager</Filter>
+    </ClCompile>
+    <ClCompile Include="IOManager\InputOutputManager.cpp">
+      <Filter>ソース ファイル\IOManager</Filter>
+    </ClCompile>
+    <ClCompile Include="IOManager\Interrupt.cpp">
+      <Filter>ソース ファイル\IOManager</Filter>
+    </ClCompile>
+    <ClCompile Include="IOManager\ReadQR.cpp">
+      <Filter>ソース ファイル\IOManager</Filter>
+    </ClCompile>
+    <ClCompile Include="IOManager\UpdateTurnInfo.cpp">
+      <Filter>ソース ファイル\IOManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SystemManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Algorithm\AddEvaluation.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Algorithm\AlgorithmManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Algorithm\BruteForce.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Algorithm\Judgment.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Algorithm\JudgmentEncircle.h">
+    <ClInclude Include="SystemManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Algorithm\Prefetching.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Algorithm</Filter>
     </ClInclude>
-    <ClInclude Include="SystemManager.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Algorithm\AddEvaluation.h">
+      <Filter>ヘッダー ファイル\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\AlgorithmManager.h">
+      <Filter>ヘッダー ファイル\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\BruteForce.h">
+      <Filter>ヘッダー ファイル\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\Judgment.h">
+      <Filter>ヘッダー ファイル\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\JudgmentEncircle.h">
+      <Filter>ヘッダー ファイル\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="IOManager\CreateMapClass.h">
+      <Filter>ヘッダー ファイル\IOManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IOManager\DrawMap.h">
+      <Filter>ヘッダー ファイル\IOManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IOManager\InputOutputManager.h">
+      <Filter>ヘッダー ファイル\IOManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IOManager\Interrupt.h">
+      <Filter>ヘッダー ファイル\IOManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IOManager\ReadQR.h">
+      <Filter>ヘッダー ファイル\IOManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IOManager\UpdateTurnInfo.h">
+      <Filter>ヘッダー ファイル\IOManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
