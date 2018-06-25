@@ -503,5 +503,8 @@
     <ClInclude Include="MapClass\Masu.h">
       <Filter>ヘッダー ファイル\Data</Filter>
     </ClInclude>
+    <ClInclude Include="TurnManager.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

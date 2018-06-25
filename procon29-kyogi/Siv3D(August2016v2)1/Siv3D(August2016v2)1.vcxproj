@@ -297,6 +297,7 @@
     <ClInclude Include="Algorithm\JudgmentEncircle.h" />
     <ClInclude Include="Algorithm\Prefetching.h" />
     <ClInclude Include="gneral.h" />
+    <ClInclude Include="TurnManager.h" />
     <ClInclude Include="IOManager\CreateMapClass.h" />
     <ClInclude Include="IOManager\DrawMap.h" />
     <ClInclude Include="IOManager\InputOutputManager.h" />

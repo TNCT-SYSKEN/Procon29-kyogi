@@ -1,8 +1,11 @@
 #pragma once
-#define TurnNumber 120
+#define AroundEight 8
 
 class Evaluation {
 public:
-	int SumScore[TurnNumber];
+	//‡Œv“_‚É‚æ‚é•]‰¿“_
+	int SumScore[AroundEight];
+	int TileScore[AroundEight];
+	int Movable[AroundEight];
 private:
 };
