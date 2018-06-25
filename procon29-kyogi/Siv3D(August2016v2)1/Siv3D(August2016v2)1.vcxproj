@@ -162,9 +162,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -275,6 +272,43 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="Example\YomogiFont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Algorithm\AddEvaluation.cpp" />
+    <ClCompile Include="Algorithm\AlgorithmManager.cpp" />
+    <ClCompile Include="Algorithm\BruteForce.cpp" />
+    <ClCompile Include="Algorithm\Judgment.cpp" />
+    <ClCompile Include="Algorithm\JudgmentEncircle.cpp" />
+    <ClCompile Include="Algorithm\Prefetching.cpp" />
+    <ClCompile Include="IOManager\CreateMapClass.cpp" />
+    <ClCompile Include="IOManager\DrawMap.cpp" />
+    <ClCompile Include="IOManager\InputOutputManager.cpp" />
+    <ClCompile Include="IOManager\Interrupt.cpp" />
+    <ClCompile Include="IOManager\ReadQR.cpp" />
+    <ClCompile Include="IOManager\UpdateTurnInfo.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SystemManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Algorithm\AddEvaluation.h" />
+    <ClInclude Include="Algorithm\AlgorithmManager.h" />
+    <ClInclude Include="Algorithm\BruteForce.h" />
+    <ClInclude Include="Algorithm\Judgment.h" />
+    <ClInclude Include="Algorithm\JudgmentEncircle.h" />
+    <ClInclude Include="Algorithm\Prefetching.h" />
+    <ClInclude Include="gneral.h" />
+    <ClInclude Include="TurnManager.h" />
+    <ClInclude Include="IOManager\CreateMapClass.h" />
+    <ClInclude Include="IOManager\DrawMap.h" />
+    <ClInclude Include="IOManager\InputOutputManager.h" />
+    <ClInclude Include="IOManager\Interrupt.h" />
+    <ClInclude Include="IOManager\ReadQR.h" />
+    <ClInclude Include="IOManager\UpdateTurnInfo.h" />
+    <ClInclude Include="MapClass\Agent.h" />
+    <ClInclude Include="MapClass\Evaluation.h" />
+    <ClInclude Include="MapClass\Map.h" />
+    <ClInclude Include="MapClass\Masu.h" />
+    <ClInclude Include="SystemManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
