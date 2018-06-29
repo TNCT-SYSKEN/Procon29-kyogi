@@ -1,11 +1,11 @@
 #pragma once
-#define Heghit 20
-#define Width 20
+#define VERTICAL 20
+#define WIDTH 20
 
 class ReadQR {
 public:
 	char readQR(void);
 private:
-	char MapData[Heghit][Width];
-	int TilePoint[Heghit][Width];
+	char MapData[VERTICAL][WIDTH];
+	int TilePoint[VERTICAL][WIDTH];
 };
