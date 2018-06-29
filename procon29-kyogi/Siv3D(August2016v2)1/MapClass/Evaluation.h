@@ -1,7 +1,7 @@
 #pragma once
 #define AroundEight 8
 
-class Evaluation {
+class  Evaluation{
 public:
 	//‡Œv“_‚É‚æ‚é•]‰¿“_
 	int SumScore[AroundEight];
