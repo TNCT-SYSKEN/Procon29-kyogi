@@ -17,6 +17,6 @@ public:
 	//ƒ^[ƒ“”
 	int Turn;
 	//Masu‚ğ“ñŸŒ³”z—ñ‚Å‚Á‚Ä‚¢‚é
-	Masu Map[VERTICAL][WIDTH];
+	Masu map[VERTICAL][WIDTH];
 private:
 };
