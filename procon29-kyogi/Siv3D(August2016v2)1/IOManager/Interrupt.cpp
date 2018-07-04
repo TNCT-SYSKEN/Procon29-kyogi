@@ -2,7 +2,6 @@
 
 void Interrupt::interruptManager(void)
 {
-	eva.SumScore;
 	backTurn();
 	goTurn();
 	prefetchingInfo();
@@ -17,7 +16,8 @@ void Interrupt::backTurn(void)
 
 void Interrupt::goTurn(void)
 {
-	
+	//1ƒ^[ƒ“i‚Ş
+
 }
 
 void Interrupt::prefetchingInfo(void)

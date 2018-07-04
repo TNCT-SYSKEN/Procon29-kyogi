@@ -447,6 +447,9 @@
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SystemManager.h">
@@ -504,6 +507,9 @@
       <Filter>ヘッダー ファイル\Data</Filter>
     </ClInclude>
     <ClInclude Include="TurnManager.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
       <Filter>ヘッダー ファイル\Data</Filter>
     </ClInclude>
   </ItemGroup>

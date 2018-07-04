@@ -287,6 +287,7 @@
     <ClCompile Include="IOManager\ReadQR.cpp" />
     <ClCompile Include="IOManager\UpdateTurnInfo.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="SystemManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -297,6 +298,7 @@
     <ClInclude Include="Algorithm\JudgmentEncircle.h" />
     <ClInclude Include="Algorithm\Prefetching.h" />
     <ClInclude Include="gneral.h" />
+    <ClInclude Include="Singleton.h" />
     <ClInclude Include="TurnManager.h" />
     <ClInclude Include="IOManager\CreateMapClass.h" />
     <ClInclude Include="IOManager\DrawMap.h" />
