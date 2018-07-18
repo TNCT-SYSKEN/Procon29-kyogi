@@ -1,5 +1,4 @@
 #include "SystemManager.h"
-#include "Algorithm/AlgorithmManager.h"
 
 void SystemManager::startSolver(void)
 {

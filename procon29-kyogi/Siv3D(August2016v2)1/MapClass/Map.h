@@ -1,13 +1,15 @@
 #pragma
 #include "Masu.h"
+#include "Agent.h"
 
 #define TurnNumber 120
 #define ValueOfAgent 2 
-#define VERTICAL 12
+#define VERTICAL 12 
 #define WIDTH 12
 
 class Map {
 public:
+	static Map* getMap();
 	//c
 	int Vertical;
 	//‰¡
@@ -19,4 +21,5 @@ public:
 	//Masu‚ğ“ñŸŒ³”z—ñ‚Å‚Á‚Ä‚¢‚é
 	Masu map[VERTICAL][WIDTH];
 private:
+	static Map* InsMap;
 };
