@@ -291,6 +291,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Masu.cpp" />
     <ClCompile Include="Evaluaiton.cpp" />
+    <ClCompile Include="Setting.cpp" />
     <ClCompile Include="SystemManager.cpp" />
     <ClCompile Include="TurnManager.cpp" />
   </ItemGroup>
@@ -302,6 +303,7 @@
     <ClInclude Include="Algorithm\JudgmentEncircle.h" />
     <ClInclude Include="Algorithm\Prefetching.h" />
     <ClInclude Include="gneral.h" />
+    <ClInclude Include="Setting.h" />
     <ClInclude Include="TurnManager.h" />
     <ClInclude Include="IOManager\CreateMapClass.h" />
     <ClInclude Include="IOManager\DrawMap.h" />
