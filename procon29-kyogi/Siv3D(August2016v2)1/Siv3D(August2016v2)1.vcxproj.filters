@@ -465,6 +465,9 @@
     <ClCompile Include="TurnManager.cpp">
       <Filter>ソース ファイル\Data</Filter>
     </ClCompile>
+    <ClCompile Include="Setting.cpp">
+      <Filter>ソース ファイル\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm\Prefetching.h">
@@ -523,6 +526,9 @@
     </ClInclude>
     <ClInclude Include="SystemManager.h">
       <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Setting.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
