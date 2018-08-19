@@ -3,7 +3,6 @@
 void SystemManager::startSolver(void)
 {
 	//システムを開始する
-
 }
 
 void SystemManager::endSolver(void)

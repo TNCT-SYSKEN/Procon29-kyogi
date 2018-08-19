@@ -1,7 +1,6 @@
 #pragma
 #include "Masu.h"
 #include "Agent.h"
-
 #define TurnNumber 120
 #define ValueOfAgent 2 
 #define VERTICAL 12 
@@ -19,7 +18,7 @@ public:
 	//ƒ^[ƒ“”
 	int Turn;
 	//Masu‚ğ“ñŸŒ³”z—ñ‚Å‚Á‚Ä‚¢‚é
-	Masu map[VERTICAL][WIDTH];
+	Masu board[VERTICAL][WIDTH];
 private:
 	static Map* InsMap;
 };

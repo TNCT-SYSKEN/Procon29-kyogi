@@ -1,4 +1,5 @@
 ﻿# include <Siv3D.hpp>
+# include "SystemManager.h"
 
 void Main()
 {
