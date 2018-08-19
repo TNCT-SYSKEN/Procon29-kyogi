@@ -5,5 +5,4 @@
 class AlgorithmManager {
 public:
 	void algorithmManager(void);
-private:
 };
