@@ -1,4 +1,7 @@
 #pragma once
+//#include "../MapClass/Map.h"
+#include "../MapClass/Evaluation.h"
+
 class Interrupt {
 public:
 	void interruptManager(void);

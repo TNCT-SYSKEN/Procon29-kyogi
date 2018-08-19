@@ -1,10 +1,9 @@
-﻿
-# include <Siv3D.hpp>
+﻿# include <Siv3D.hpp>
+# include "SystemManager.h"
 
 void Main()
 {
 	const Font font(30);
-
 	while (System::Update())
 	{
 		font(L"ようこそ、Siv3D の世界へ！").draw();

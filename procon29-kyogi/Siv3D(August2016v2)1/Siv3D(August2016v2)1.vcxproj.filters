@@ -91,6 +91,9 @@
     <Filter Include="ヘッダー ファイル\Data">
       <UniqueIdentifier>{7cef0f12-1c26-4d82-b0c9-b7b34a1097ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Data">
+      <UniqueIdentifier>{b3123f38-1bbc-4903-8f44-be9ae0f25d31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
@@ -447,11 +450,23 @@
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>ソース ファイル\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Agent.cpp">
+      <Filter>ソース ファイル\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Masu.cpp">
+      <Filter>ソース ファイル\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Evaluaiton.cpp">
+      <Filter>ソース ファイル\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnManager.cpp">
+      <Filter>ソース ファイル\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SystemManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Algorithm\Prefetching.h">
       <Filter>ヘッダー ファイル\Algorithm</Filter>
     </ClInclude>
@@ -505,6 +520,9 @@
     </ClInclude>
     <ClInclude Include="TurnManager.h">
       <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemManager.h">
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

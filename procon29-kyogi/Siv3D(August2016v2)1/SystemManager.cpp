@@ -1,10 +1,8 @@
 #include "SystemManager.h"
-#include "Algorithm/AlgorithmManager.h"
 
 void SystemManager::startSolver(void)
 {
 	//システムを開始する
-
 }
 
 void SystemManager::endSolver(void)

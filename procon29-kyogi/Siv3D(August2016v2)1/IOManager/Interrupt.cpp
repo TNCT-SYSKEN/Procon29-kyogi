@@ -2,6 +2,10 @@
 
 void Interrupt::interruptManager(void)
 {
+	backTurn();
+	goTurn();
+	prefetchingInfo();
+	Research();
 }
 
 void Interrupt::backTurn(void)
@@ -12,6 +16,8 @@ void Interrupt::backTurn(void)
 
 void Interrupt::goTurn(void)
 {
+	//1ƒ^[ƒ“i‚Ş
+
 }
 
 void Interrupt::prefetchingInfo(void)
