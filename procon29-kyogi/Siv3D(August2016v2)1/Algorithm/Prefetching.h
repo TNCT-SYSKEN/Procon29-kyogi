@@ -1,6 +1,5 @@
 #pragma once
 #include "../MapClass/Map.h"
-#include <vector>
 
 class Prefetching {
 public:

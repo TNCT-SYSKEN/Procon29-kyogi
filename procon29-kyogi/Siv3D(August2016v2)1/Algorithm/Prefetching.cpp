@@ -1,5 +1,4 @@
-#include "Prefetching.h"
-#include <vector>
+#include "Prefetching.h"sO
 
 void Prefetching::prefetching(void)
 {
@@ -112,8 +111,6 @@ int Prefetching::caluculateEncircle(Map map, std::vector<std::pair<Masu, std::pa
 	}
 	return 0;
 }
-
-
 
 void Prefetching::setMaxStep(int s)
 {
