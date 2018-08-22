@@ -2,6 +2,7 @@
 
 void DrawMap::draw(void)
 {
+
 	//draw‚Ì§Œä
 }
 
