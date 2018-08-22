@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 #include "Masu.h"
 #include "Agent.h"
 #define TurnNumber 120
