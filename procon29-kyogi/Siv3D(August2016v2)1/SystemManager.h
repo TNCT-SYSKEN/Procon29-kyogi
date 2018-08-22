@@ -4,6 +4,10 @@
 
 class SystemManager {
 public:
+	//クラス変数の定義
+	AlgorithmManager *algoManager;
+	InputOutputManager *ioManager;
+
 	//全体の流れの処理を管理
 	void systemManager(void);
 private:
