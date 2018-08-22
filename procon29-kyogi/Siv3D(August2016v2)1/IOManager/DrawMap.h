@@ -1,7 +1,7 @@
 #pragma once
 class DrawMap {
 public:
-	void draw(void);
+	void drawManager(void);
 private:
 	void drawMap(void);
 	void drawAgent(void);

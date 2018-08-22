@@ -1,6 +1,6 @@
 #include "DrawMap.h"
 
-void DrawMap::draw(void)
+void DrawMap::drawManager(void)
 {
 
 	//draw‚Ì§Œä
