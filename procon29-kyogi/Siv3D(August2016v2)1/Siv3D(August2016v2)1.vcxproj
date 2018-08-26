@@ -274,25 +274,27 @@
     <Font Include="Example\YomogiFont.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Agent.cpp" />
     <ClCompile Include="Algorithm\AddEvaluation.cpp" />
     <ClCompile Include="Algorithm\AlgorithmManager.cpp" />
     <ClCompile Include="Algorithm\BruteForce.cpp" />
     <ClCompile Include="Algorithm\Judgment.cpp" />
     <ClCompile Include="Algorithm\JudgmentEncircle.cpp" />
     <ClCompile Include="Algorithm\Prefetching.cpp" />
+    <ClCompile Include="Data\Agent.cpp" />
+    <ClCompile Include="Data\Evaluaiton.cpp" />
+    <ClCompile Include="Data\Map.cpp" />
+    <ClCompile Include="Data\Masu.cpp" />
+    <ClCompile Include="Data\TurnManager.cpp" />
     <ClCompile Include="IOManager\CreateMapClass.cpp" />
+    <ClCompile Include="IOManager\DrawLeft.cpp" />
     <ClCompile Include="IOManager\DrawMap.cpp" />
+    <ClCompile Include="IOManager\DrawRight.cpp" />
     <ClCompile Include="IOManager\InputOutputManager.cpp" />
     <ClCompile Include="IOManager\Interrupt.cpp" />
     <ClCompile Include="IOManager\ReadQR.cpp" />
     <ClCompile Include="IOManager\UpdateTurnInfo.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Masu.cpp" />
-    <ClCompile Include="Evaluaiton.cpp" />
     <ClCompile Include="SystemManager.cpp" />
-    <ClCompile Include="TurnManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm\AddEvaluation.h" />
@@ -301,18 +303,20 @@
     <ClInclude Include="Algorithm\Judgment.h" />
     <ClInclude Include="Algorithm\JudgmentEncircle.h" />
     <ClInclude Include="Algorithm\Prefetching.h" />
+    <ClInclude Include="Data\Agent.h" />
+    <ClInclude Include="Data\Evaluation.h" />
+    <ClInclude Include="Data\Map.h" />
+    <ClInclude Include="Data\Masu.h" />
+    <ClInclude Include="Data\TurnManager.h" />
     <ClInclude Include="gneral.h" />
-    <ClInclude Include="TurnManager.h" />
     <ClInclude Include="IOManager\CreateMapClass.h" />
+    <ClInclude Include="IOManager\DrawLeft.h" />
     <ClInclude Include="IOManager\DrawMap.h" />
+    <ClInclude Include="IOManager\DrawRight.h" />
     <ClInclude Include="IOManager\InputOutputManager.h" />
     <ClInclude Include="IOManager\Interrupt.h" />
     <ClInclude Include="IOManager\ReadQR.h" />
     <ClInclude Include="IOManager\UpdateTurnInfo.h" />
-    <ClInclude Include="MapClass\Agent.h" />
-    <ClInclude Include="MapClass\Evaluation.h" />
-    <ClInclude Include="MapClass\Map.h" />
-    <ClInclude Include="MapClass\Masu.h" />
     <ClInclude Include="SystemManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

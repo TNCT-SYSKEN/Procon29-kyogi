@@ -1,6 +1,6 @@
 #pragma once
 #include "ReadQR.h"
-#include "../MapClass/Map.h"
+#include "../Data/Map.h"
 
 class CreateMapClass {
 public:
