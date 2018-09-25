@@ -1,13 +1,23 @@
 #include "DrawLeft.h"
 
-
 void DrawLeft::drawLeftManager(void)
 {
 	//Mapの表示
+	drawMap();
 }
 
 void DrawLeft::drawMap(void) {
+	Map *map;
+	map = map->getMap();
+	//枠
+	const Rect flame(0,0, LEFT_FLAME_VERTICAL, LEFT_FLAME_WIDTH);
 
+	//vertical,widthで二重ループを作成
+	for (int i = 0; i < map->Vertical;i++) {
+		for (int j = 0; j < map->Width; j++) {
+			
+		}
+	}
 }
 
 void DrawLeft::drawAgent(void)
