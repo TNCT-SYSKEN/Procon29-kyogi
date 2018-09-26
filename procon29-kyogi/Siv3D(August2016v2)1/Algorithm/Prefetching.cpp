@@ -4,7 +4,7 @@ void Prefetching::prefetching(void)
 {
 	//caluculateSumScore();
 	//caluculateTileScore();
-	caluculateMovable();
+	//caluculateMovable();
 	//数手先の先読みを管理
 }
 
@@ -59,9 +59,26 @@ int Prefetching::caluculateTileScore(int nowX, int nowY, int step)
 	}
 }
 
-void Prefetching::caluculateMovable(void)
+int Prefetching::caluculateMovable(int nowX, int nowY, int step)
 {
-	//数手先のマスにおけるマスの移動可能マスの数によって点数付け
+	int dy[] = { 1, 0, -1, 0 };
+	int dx[] = { 0, 1, 0, -1 };
+	//数手先におけるタイル点数によって点数付け
+	if (step >= maxStep) {
+		return 0;
+	}
+	else {
+		Map map = *(Map::getMap());
+		int newMovable = 0;
+		for (int i = 0; i < 4; ++i) {
+			int newX, newY;
+			newX = nowX + dx[i];
+			newY = nowY + dy[i];
+			newMovable += map.board[newX][newY].TilePoint;
+			newMovable += caluculateTileScore(newX, newY, step + 1); //重複して数えてしまうので欠陥処理っぽい　経路を持っておいたほうがいい？
+		}
+		return newMovable;
+	}
 }
 
 int Prefetching::caluculateEncircle(Map map, std::vector<std::pair<Masu, std::pair<int, int>>> route)
