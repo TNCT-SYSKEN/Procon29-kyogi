@@ -471,6 +471,9 @@
     <ClCompile Include="IOManager\DrawRight.cpp">
       <Filter>ソース ファイル\IOManager</Filter>
     </ClCompile>
+    <ClCompile Include="Setting.cpp">
+      <Filter>ソース ファイル\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm\Prefetching.h">
@@ -535,6 +538,9 @@
     </ClInclude>
     <ClInclude Include="IOManager\DrawLeft.h">
       <Filter>ヘッダー ファイル\IOManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Setting.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -294,6 +294,7 @@
     <ClCompile Include="IOManager\ReadQR.cpp" />
     <ClCompile Include="IOManager\UpdateTurnInfo.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Setting.cpp" />
     <ClCompile Include="SystemManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -309,6 +310,7 @@
     <ClInclude Include="Data\Masu.h" />
     <ClInclude Include="Data\TurnManager.h" />
     <ClInclude Include="gneral.h" />
+    <ClInclude Include="Setting.h" />
     <ClInclude Include="IOManager\CreateMapClass.h" />
     <ClInclude Include="IOManager\DrawLeft.h" />
     <ClInclude Include="IOManager\DrawMap.h" />
