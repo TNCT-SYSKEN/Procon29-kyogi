@@ -1,4 +1,4 @@
-#include "MapClass/Masu.h"
+#include "Masu.h"
 Masu* Masu::InsMasu = nullptr;
 
 Masu* Masu::getMasu() {

@@ -1,5 +1,5 @@
 #pragma once
-#include "MapClass/Map.h"
+#include "Map.h"
 #define TurnValue 120
 
 class TurnManager {

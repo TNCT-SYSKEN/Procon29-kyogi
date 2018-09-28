@@ -1,4 +1,4 @@
-#include "MapClass/Agent.h"
+#include "Agent.h"
 
 Agent* Agent::InsAgent = nullptr;
 Agent* Agent::getAgent() {

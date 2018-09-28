@@ -1,4 +1,4 @@
-#include "MapClass/Map.h"
+#include "Map.h"
 
 Map* Map::InsMap = nullptr;
 Map* Map::getMap() {
