@@ -6,15 +6,10 @@ SystemManager *sys;
 
 void Main()
 {
-	int width, height;
-
 	//サイズを変えれるウィンドウに
 	Window::SetStyle(WindowStyle::Sizeable);
-	
-	width = Width();
-	height = Height();
 
-	Resize(width, height);
+	Resize(1200,600);
 	
 	while (System::Update())
 	{
