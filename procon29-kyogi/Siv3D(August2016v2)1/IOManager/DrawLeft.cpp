@@ -16,9 +16,20 @@ void DrawLeft::drawMap(void) {
 	for (int i = 0; i < map->Vertical;i++) {
 		for (int j = 0; j < map->Width; j++) {
 			//’†g‚ªnull‚¶‚á‚È‚¢‚È‚ç‚Î
-			//if (map->board[i][j]->StateOfMasu != ) {
+			switch (map->board[i][j].State) {
+			case 0 :
+				//draw non map
+				break;
+			case 1 :
+				//darw frined map
+				break;
+			case 2 :
+				//draw enemy map
+				break;
+			default:
+				break;
 
-			//}
+			}
 		}
 	}
 }
