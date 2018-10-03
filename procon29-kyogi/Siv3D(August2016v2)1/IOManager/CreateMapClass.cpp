@@ -4,11 +4,13 @@ void CreateMapClass::createMapClass(void)
 {
 	Map *map;
 	map = map->getMap();
+
+	//Masuを代入
 	for (int j = 0; j < VERTICAL; ++j) {
 		for (int i = 0; i < WIDTH; ++i) {
 			Masu masu;
-			
-			map->board[j][i];
+			masu.Status = Masu::Non;
+			map->board[j][i] = masu;
 		}
 	}
 	//Agentクラス,Masuクラスをまとめる配列を用意し代入
