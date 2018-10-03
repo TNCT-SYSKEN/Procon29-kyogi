@@ -8,4 +8,5 @@ public:
 	void drawManager(void);
 private:
 	DrawLeft * drawLeft;
+	DrawRight * drawRight;
 };

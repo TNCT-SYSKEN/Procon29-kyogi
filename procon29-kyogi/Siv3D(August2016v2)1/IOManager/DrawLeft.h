@@ -10,6 +10,9 @@ class DrawLeft {
 public:
 	void drawLeftManager(void);
 private:
+	Map * map;
+	Agent * agent;
+
 	void drawMap(void);
 	void drawAgent(void);
 	void drawTilePoint(void);
