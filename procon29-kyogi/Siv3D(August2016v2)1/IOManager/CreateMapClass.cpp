@@ -1,27 +1,43 @@
 #include "CreateMapClass.h"
 
+vector< vector<int> > input;
+
 void CreateMapClass::createMapClass(void)
 {
 	ReadQR rqr;
-	input = rqr.readQR(); //クラス変数 input に読み取った内容を代入．
+	std::string data = rqr.readQR();
 
-	Map *map;
-	map = map->getMap();
+	//クラス変数 input に読み取った内容を代入していく．
+	vector<std::string> tmp1 = splitStringByCoron(data);
+
+	int i = 0;
+	int end = tmp1[0][0] - '0'; //謎のコードですが，要するに盤面の高さです．読み込む文字列の最初に来る文字．
+	if (input.size() < end) {
+		for (std::string s : tmp1) {
+			if (i) {
+				vector<int> tmp2 = splitStringBySpace(s);
+				input.push_back(tmp2);
+			}
+			++i;
+			if (i > end) break;
+		}
+	}
 
 	createMasuClass();
-	createAgent();
+	//createAgent();
 }
 
 void CreateMapClass::createMasuClass(void)
 {
-	//読み取った内容をもとに各マスクラスを作成
-	//Masuを代入
+	//読み取った内容をもとにMasuを代入
 	Map *map;
 	map = map->getMap();
 
-	for (int j = 0; j < VERTICAL; ++j) {
-		for (int i = 0; i < WIDTH; ++i) {
+	for (int j = 0; j < input.size(); ++j) {
+		vector<int> v = input[j];
+		for (int i = 0; i < v.size(); ++i) {
 			Masu masu;
+			masu.TilePoint = v[i];
 			masu.Status = Masu::Non;
 			map->board[j][i] = masu;
 		}

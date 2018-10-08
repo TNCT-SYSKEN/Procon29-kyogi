@@ -12,5 +12,4 @@ public:
 private:
 	void createMasuClass(void);
 	void createAgent(void);
-	std::string input;
 };
