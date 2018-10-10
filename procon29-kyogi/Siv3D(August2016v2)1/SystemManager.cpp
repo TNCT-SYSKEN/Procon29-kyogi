@@ -3,7 +3,7 @@
 void SystemManager::startSolver(void)
 {
 	//システムを開始する
-	algoManager->algorithmManager();
+	//algoManager->algorithmManager();
 	ioManager->inputOuntputManager();
 }
 
@@ -18,10 +18,11 @@ void SystemManager::systemManager(void)
 {
 	/*
 	アルゴリズムとＩＯマネージャーを管理
-	startSolverを起動
+	startSolver
 	InputOutputManagerを起動
 	AlgorithmManagerを起動
 	endSolverを起動
 	*/
+	startSolver();
 }
 

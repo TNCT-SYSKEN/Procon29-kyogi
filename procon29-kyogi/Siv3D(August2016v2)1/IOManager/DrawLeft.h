@@ -6,12 +6,13 @@
 #define LEFT_FLAME_WIDTH 610
 #define LEFT_FLAME_VERTICAL 810
 
+Map * map;
+Agent * agent;
+
 class DrawLeft {
 public:
 	void drawLeftManager(void);
 private:
-	Map * map;
-	Agent * agent;
 
 	void drawMap(void);
 	void drawAgent(void);

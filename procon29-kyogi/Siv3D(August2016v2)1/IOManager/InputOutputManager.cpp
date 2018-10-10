@@ -9,6 +9,6 @@ void InputOutputManager::inputOuntputManager(void)
 {
 	//DrawMap,CreateMapClass,Interrupt,UpdateTurnInfo‚Ì§Œä
 	drawMap->drawManager();
-	interrupt->interruptManager();
-	updateTurn->updateManager();
+	//interrupt->interruptManager();
+	//updateTurn->updateManager();
 }

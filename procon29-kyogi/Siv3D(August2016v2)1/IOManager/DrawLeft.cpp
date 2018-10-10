@@ -11,7 +11,8 @@ void DrawLeft::drawMap(void) {
 
 	//˜g
 	const Rect flame(0,0, LEFT_FLAME_VERTICAL, LEFT_FLAME_WIDTH);
-
+	const Texture texture(L"image/1.jpg");
+	texture.draw();
 	//vertical,width‚Å“ñdƒ‹[ƒv‚ğì¬
 	for (int i = 0; i < map->Vertical;i++) {
 		for (int j = 0; j < map->Width; j++) {
