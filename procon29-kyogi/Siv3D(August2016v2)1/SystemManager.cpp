@@ -6,9 +6,6 @@ void SystemManager::startSolver(void)
 {
 	//クラス変数の定義
 	//AlgorithmManager *algoManager;
-
-
-
 	//システムを開始する
 	//algoManager->algorithmManager();
 	ioManager->inputOuntputManager();

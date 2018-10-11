@@ -1,5 +1,5 @@
 #include "DrawLeft.h"
-#define MASU_SIZE 40
+#define MASU_SIZE 45
 #define MAX_MAP_SIZE 12
 void DrawLeft::drawLeftManager(void)
 {
@@ -12,7 +12,7 @@ void DrawLeft::drawMap(void) {
 	map = map->getMap();
 
 	//図形の初期化
-	const int pos_sup = MASU_SIZE + 10;
+	const int pos_sup = MASU_SIZE + 5;
 	//枠
 	const Rect flame(0,0, LEFT_FLAME_VERTICAL, LEFT_FLAME_WIDTH);
 	flame.draw();
@@ -25,7 +25,7 @@ void DrawLeft::drawMap(void) {
 		for (int j = 0; j < map->Width; j++) {
 			
 			//Stateの状態に対して表示するマスの変更
-			switch (map->board[i][j].State) {
+			switch (0){//map->board[i][j].State) {
 			case 0 :
 				//draw non map
 				Rect(j * pos_sup + 5 , i * pos_sup + 5 ,MASU_SIZE ,MASU_SIZE).draw(Palette::Gray);

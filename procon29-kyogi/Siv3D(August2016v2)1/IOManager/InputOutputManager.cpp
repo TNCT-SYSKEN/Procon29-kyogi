@@ -1,6 +1,7 @@
 #include "InputOutputManager.h"
 
 DrawMap *drawMap;
+CreateMapClass *createMap;
 
 InputOutputManager::InputOutputManager()
 {

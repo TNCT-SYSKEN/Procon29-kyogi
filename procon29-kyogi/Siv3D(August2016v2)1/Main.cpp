@@ -11,7 +11,7 @@ void Main()
 	//背景色の変更
 	Graphics::SetBackground(Palette::White);
 	//画面サイズの設定
-	Resize(1200,600);
+	Resize(1200,610);
 	
 	while (System::Update())
 	{

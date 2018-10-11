@@ -2,6 +2,7 @@
 
 void CreateMapClass::createMapClass(void)
 {
+	Println(1);
 	//Agentクラス,Masuクラスをまとめる配列を用意し代入
 }
 
