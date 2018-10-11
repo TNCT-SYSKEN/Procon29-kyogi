@@ -9,5 +9,6 @@ public :
 	pair <int, int> position;
 	//どのエージェントか
 	enum EnemyNumber { friend1 = 0, friend2 = 1, enemy1 = 3, enemy2 = 4 };
+	EnemyNumber status;
 private:
 };

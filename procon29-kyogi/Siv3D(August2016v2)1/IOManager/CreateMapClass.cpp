@@ -12,9 +12,10 @@ void CreateMapClass::createMapClass(void)
 	vector<std::string> tmp1 = splitStringByCoron(data);
 
 	int i = 0;
-	int end = tmp1[0][0] - '0'; //謎のコードですが，要するに盤面の高さです．読み込む文字列の最初に来る文字．
+	vector<int> scale = splitStringBySpace(tmp1[0]);
+	int end = scale[0];
+
 	if (input.size() < end) {
-		Console::Open();
 		for (std::string s : tmp1) {
 			if (i > 0 & i <= end) {
 				vector<int> tmp2 = splitStringBySpace(s);
@@ -25,12 +26,16 @@ void CreateMapClass::createMapClass(void)
 			}
 			++i;
 		}
-		cout << agents.size() << endl;
 		agents.clear();
 		agents.push_back(make_pair(splitStringBySpace(tmp1[end + 1])[0], splitStringBySpace(tmp1[end + 1])[1]));
 		agents.push_back(make_pair(splitStringBySpace(tmp1[end + 2])[0], splitStringBySpace(tmp1[end + 2])[1]));
-		cout << agents.size() << endl;
 	}
+
+	//高さと幅を代入．
+	Map *map;
+	map = map->getMap();
+	map->Vertical = end;
+	map->Width = scale[1];
 
 	createMasuClass();
 	createAgent();
@@ -58,14 +63,34 @@ void CreateMapClass::createAgent(void)
 	Map *map;
 	map = map->getMap();
 
-	Console::Open();
-	cout << agents[1].first << endl; 
+	Agent agent1, agent2, agent3, agent4;
 
-	Agent agent1, agent2;
 	agent1.position = agents[0];
+	agent1.status = Agent::friend1;
 	map->agents.push_back(agent1);
+
 	agent2.position = agents[1];
+	agent2.status = Agent::friend2;
 	map->agents.push_back(agent2);
+
+	Console::Open();
+	/* 敵エージェントの座標を計算する． */
+	pair<int, int> pos1, pos2;
+	pos1 = make_pair(agents[1].first, agents[0].second);
+	agent3.position = pos1;
+	agent3.status = Agent::enemy1;
+	map->agents.push_back(agent3);
+
+	pos2 = make_pair(agents[0].first, agents[1].second);
+	agent4.position = pos2;
+	agent4.status = Agent::enemy2;
+	map->agents.push_back(agent4);
+
+	/* デバッグ表示 */
+	for (int i = 0; i < 4; ++i) {
+		cout << map->agents[i].position.first << ' ' << map->agents[i].position.second << endl;
+	}
+
 }
 
 //文字列を : で分割し，vector<std::string> に突っ込んで返す．
