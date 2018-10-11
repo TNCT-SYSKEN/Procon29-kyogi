@@ -3,11 +3,9 @@
 #include "../Data/Agent.h"
 #include "../gneral.h"
 
-#define LEFT_FLAME_WIDTH 610
-#define LEFT_FLAME_VERTICAL 810
+#define LEFT_FLAME_WIDTH 1200
+#define LEFT_FLAME_VERTICAL 600
 
-Map * map;
-Agent * agent;
 
 class DrawLeft {
 public:
