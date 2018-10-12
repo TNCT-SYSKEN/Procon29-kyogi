@@ -53,6 +53,12 @@ void CreateMapClass::createMasuClass(void)
 			Masu masu;
 			masu.TilePoint = v[i];
 			masu.Status = Masu::Non;
+			if ((j + 1 == agents[0].first && i + 1 == agents[0].second) || (j + 1 == agents[1].first && i + 1 == agents[1].second)) {
+				masu.Status = Masu::FriendTile;
+			}
+			if ((j + 1 == agents[1].first && i + 1 == agents[0].second) || (j + 1 == agents[0].first && i + 1 == agents[1].second)) {
+				masu.Status = Masu::EnemyTile;
+			}
 			map->board[j][i] = masu;
 		}
 	}
