@@ -4,7 +4,7 @@
 #include "../gneral.h"
 
 #define LEFT_FLAME_WIDTH 1200
-#define LEFT_FLAME_VERTICAL 600
+#define LEFT_FLAME_VERTICAL 605
 
 
 class DrawLeft {

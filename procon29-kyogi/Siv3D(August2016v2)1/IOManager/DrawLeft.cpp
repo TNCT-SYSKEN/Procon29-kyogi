@@ -28,7 +28,7 @@ void DrawLeft::drawMap(void) {
 		for (int j = 0; j < map->Width; j++) {
 			
 			//Stateの状態に対して表示するマスの変更
-			switch (0){//map->board[i][j].State) {
+			switch (map->board[i][j].State) {
 			case 0 :
 				//draw non map
 				Rect(j * pos_sup + 5 , i * pos_sup + 5 ,MASU_SIZE ,MASU_SIZE).draw(Palette::Gray);
@@ -49,7 +49,7 @@ void DrawLeft::drawMap(void) {
 	}
 
 	//タイルの枠を表示
-	for (int i = 0; i <= map->Vertical; i++) {
+	for (int i = 0; i <= MAX_MAP_SIZE; i++) {
 		//縦ラインの表示
 		Line(2.5, 2.5 + i * pos_sup , MAX_MAP_SIZE * pos_sup, 2.5 + i * pos_sup).draw(5 , Palette::Black);
 		//縦ラインの表示
