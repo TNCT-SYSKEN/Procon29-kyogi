@@ -1,10 +1,10 @@
 #include "DrawMap.h"
 
-DrawLeft * drawLeft;
+DrawLeft drawLeft;
 DrawRight * drawRight;
 
 void DrawMap::drawManager(void)
 {
-	drawLeft->drawLeftManager();
+	drawLeft.drawLeftManager();
 	//drawRight->drawRightManager();
 }

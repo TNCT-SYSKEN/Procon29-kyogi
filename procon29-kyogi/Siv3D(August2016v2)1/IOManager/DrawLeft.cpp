@@ -1,23 +1,26 @@
 #include "DrawLeft.h"
 #define MASU_SIZE 45
 #define MAX_MAP_SIZE 12
+
+DrawLeft::DrawLeft()
+{
+	font(15);
+}
+
 void DrawLeft::drawLeftManager(void)
 {
 	//Mapの表示
 	drawMap();
+	drawTilePoint();
 }
 
 void DrawLeft::drawMap(void) {
 	Map * map;
 	map = map->getMap();
 
-	//図形の初期化
+	//マスの表示座標の補助
 	const int pos_sup = MASU_SIZE + 5;
-	//枠
-	const Rect flame(0,0, LEFT_FLAME_VERTICAL, LEFT_FLAME_WIDTH);
-	flame.draw();
-	//const Texture texture(L"image/1.jpg");
-	//texture.draw();
+
 	map->Vertical = 12;
 	map->Width = 12;
 	//マップのタイルを表示（二重ループで縦横を管理）
@@ -31,7 +34,7 @@ void DrawLeft::drawMap(void) {
 				Rect(j * pos_sup + 5 , i * pos_sup + 5 ,MASU_SIZE ,MASU_SIZE).draw(Palette::Gray);
 				break;
 			case 1 :
-				//darw frined map
+				//draw frined map
 				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Blue);
 				break;
 			case 2 :
@@ -63,6 +66,17 @@ void DrawLeft::drawAgent(void)
 void DrawLeft::drawTilePoint(void)
 {
 	//TilePointをMapに重ねる形で表示
+	Map *map;
+	map = map->getMap();
+
+	int pos_sup = MASU_SIZE + 5;
+
+	for (int i = 0; i < map->Vertical; i++) {
+		for (int j = 0; j < map->Width; j++) {
+			//タイルポイントを表示
+			font(map->board[i][j].TilePoint).draw(10 + pos_sup * j, 10 + pos_sup * i, Palette::Red);
+		}
+	}
 }
 
 void DrawLeft::drawMovableTile(void)

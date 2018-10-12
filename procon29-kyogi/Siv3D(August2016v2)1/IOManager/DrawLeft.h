@@ -9,9 +9,10 @@
 
 class DrawLeft {
 public:
+	DrawLeft();
 	void drawLeftManager(void);
 private:
-
+	Font font;
 	void drawMap(void);
 	void drawAgent(void);
 	void drawTilePoint(void);
