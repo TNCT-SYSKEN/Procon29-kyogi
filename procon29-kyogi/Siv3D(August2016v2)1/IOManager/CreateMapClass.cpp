@@ -63,6 +63,8 @@ void CreateMapClass::createAgent(void)
 	Map *map;
 	map = map->getMap();
 
+	if (map->agents.size() >= 4) return; //1度しか実行しない．
+
 	Agent agent1, agent2, agent3, agent4;
 
 	agent1.position = agents[0];
@@ -73,7 +75,6 @@ void CreateMapClass::createAgent(void)
 	agent2.status = Agent::friend2;
 	map->agents.push_back(agent2);
 
-	Console::Open();
 	/* 敵エージェントの座標を計算する． */
 	pair<int, int> pos1, pos2;
 	pos1 = make_pair(agents[1].first, agents[0].second);
@@ -85,11 +86,6 @@ void CreateMapClass::createAgent(void)
 	agent4.position = pos2;
 	agent4.status = Agent::enemy2;
 	map->agents.push_back(agent4);
-
-	/* デバッグ表示 */
-	for (int i = 0; i < 4; ++i) {
-		cout << map->agents[i].position.first << ' ' << map->agents[i].position.second << endl;
-	}
 
 }
 

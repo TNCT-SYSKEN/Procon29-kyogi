@@ -15,7 +15,7 @@ void Main()
 	height = Height();
 
 	Resize(width, height);
-	
+
 	while (System::Update())
 	{
 		sys->systemManager();
