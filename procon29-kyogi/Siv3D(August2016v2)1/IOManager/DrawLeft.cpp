@@ -41,6 +41,9 @@ void DrawLeft::drawMap(void) {
 				//draw enemy map
 				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Red);
 				break;
+			case 3 :
+				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Black);
+				break;
 			default:
 				break;
 
@@ -73,8 +76,12 @@ void DrawLeft::drawTilePoint(void)
 
 	for (int i = 0; i < map->Vertical; i++) {
 		for (int j = 0; j < map->Width; j++) {
-			//タイルポイントを表示
-			font(map->board[i][j].TilePoint).draw(10 + pos_sup * j, 10 + pos_sup * i, Palette::Red);
+			//Map外のタイルじゃないならTrue
+			//Status Other : 3
+			if (map->board[i][j].Status != 3) {
+				//タイルポイントを表示
+				font(map->board[i][j].TilePoint).draw(10 + pos_sup * j, 10 + pos_sup * i, Palette::Red);
+			}
 		}
 	}
 }

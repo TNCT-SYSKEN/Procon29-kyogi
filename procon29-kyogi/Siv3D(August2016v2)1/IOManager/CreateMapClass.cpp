@@ -1,12 +1,28 @@
 #include "CreateMapClass.h"
+#define MAX_WIDTH 12
+#define MAX_VERTICAL 12
 
 vector< vector<int> > input;
 vector< pair<int, int> > agents;
+
+void CreateMapClass::init(void)
+{
+	Map *map;
+	map = map->getMap();
+	for (int j = 0; j < MAX_VERTICAL; ++j) {
+		for (int i = 0; i < MAX_WIDTH; ++i) {
+			map->board[j][i].Status = Masu::Other;
+		}
+	}
+}
 
 void CreateMapClass::createMapClass(void)
 {
 	ReadQR rqr;
 	std::string data = rqr.readQR();
+
+	//Map->boardの初期化
+	init();
 
 	//クラス変数 input に読み取った内容を代入していく．
 	vector<std::string> tmp1 = splitStringByCoron(data);
@@ -74,23 +90,23 @@ void CreateMapClass::createAgent(void)
 	Agent agent1, agent2, agent3, agent4;
 
 	agent1.position = agents[0];
-	agent1.status = Agent::friend1;
+	agent1.Status = Agent::friend1;
 	map->agents.push_back(agent1);
 
 	agent2.position = agents[1];
-	agent2.status = Agent::friend2;
+	agent2.Status = Agent::friend2;
 	map->agents.push_back(agent2);
 
 	/* 敵エージェントの座標を計算する． */
 	pair<int, int> pos1, pos2;
 	pos1 = make_pair(agents[1].first, agents[0].second);
 	agent3.position = pos1;
-	agent3.status = Agent::enemy1;
+	agent3.Status = Agent::enemy1;
 	map->agents.push_back(agent3);
 
 	pos2 = make_pair(agents[0].first, agents[1].second);
 	agent4.position = pos2;
-	agent4.status = Agent::enemy2;
+	agent4.Status = Agent::enemy2;
 	map->agents.push_back(agent4);
 
 }
