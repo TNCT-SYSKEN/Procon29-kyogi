@@ -74,23 +74,23 @@ void CreateMapClass::createAgent(void)
 	Agent agent1, agent2, agent3, agent4;
 
 	agent1.position = agents[0];
-	agent1.status = Agent::friend1;
+	agent1.Status = Agent::friend1;
 	map->agents.push_back(agent1);
 
 	agent2.position = agents[1];
-	agent2.status = Agent::friend2;
+	agent2.Status = Agent::friend2;
 	map->agents.push_back(agent2);
 
 	/* 敵エージェントの座標を計算する． */
 	pair<int, int> pos1, pos2;
 	pos1 = make_pair(agents[1].first, agents[0].second);
 	agent3.position = pos1;
-	agent3.status = Agent::enemy1;
+	agent3.Status = Agent::enemy1;
 	map->agents.push_back(agent3);
 
 	pos2 = make_pair(agents[0].first, agents[1].second);
 	agent4.position = pos2;
-	agent4.status = Agent::enemy2;
+	agent4.Status = Agent::enemy2;
 	map->agents.push_back(agent4);
 
 }
