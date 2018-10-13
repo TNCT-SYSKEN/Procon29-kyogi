@@ -7,7 +7,7 @@ InputOutputManager ioManager;
 void SystemManager::startSolver(void)
 {
 	//システムを開始する
-	algoManager.algorithmManager();
+	//algoManager.algorithmManager();
 	ioManager.inputOuntputManager();
 }
 
