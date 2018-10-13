@@ -1,6 +1,6 @@
 #pragma once
 
-class DrawLeft {
+class DrawRight {
 public :
 	void drawRightManager(void);
 private : 

@@ -2,22 +2,21 @@
 # include "SystemManager.h"
 using namespace Window;
 
-SystemManager *sys;
+SystemManager sys;
 
 void Main()
 {
-	int width, height;
-
 	//サイズを変えれるウィンドウに
 	Window::SetStyle(WindowStyle::Sizeable);
-	
-	width = Width();
-	height = Height();
-
-	Resize(width, height);
+	//背景色の変更
+	Graphics::SetBackground(Palette::White);
+	//画面サイズの設定
+	//left screen 605 x 605 y
+	//right screen 595 x 605 y 
+	Resize(1200,605);
 
 	while (System::Update())
 	{
-		sys->systemManager();
+		sys.systemManager();
 	}
 }

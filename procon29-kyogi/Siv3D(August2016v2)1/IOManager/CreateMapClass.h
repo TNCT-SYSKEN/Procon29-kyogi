@@ -3,6 +3,7 @@
 #include "../Data/Map.h"
 #include "../Data/Masu.h"
 #include "string"
+#include "../gneral.h"
 
 class CreateMapClass {
 public:
