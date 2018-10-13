@@ -16,10 +16,14 @@ void CreateMapClass::init(void)
 	}
 }
 
-void CreateMapClass::createMapClass(void)
+/* ReadQR->data ‚É‚¿‚á‚ñ‚Æ“ü‚Á‚Ä‚ê‚Î true ‚ğC‚»‚¤‚Å‚È‚¯‚ê‚Î false ‚ğ•Ô‚·D*/
+bool CreateMapClass::createMapClass(void)
 {
-	ReadQR rqr;
-	std::string data = rqr.readQR();
+	ReadQR *rqr;
+	rqr = rqr->getReadQR();
+	std::string data = rqr->data;
+
+	if (data == "nothing") return false;
 
 	//Map->board‚Ì‰Šú‰»
 	init();
@@ -38,13 +42,13 @@ void CreateMapClass::createMapClass(void)
 				input.push_back(tmp2);
 			}else if((i > 0) && (i <= end + 2)){
 				vector<int> tmp2 = splitStringBySpace(s);
-				agents.push_back(make_pair(tmp2[0], tmp2[1]));
+				agents.push_back(make_pair(tmp2[0]-1, tmp2[1]-1));
 			}
 			++i;
 		}
 		agents.clear();
-		agents.push_back(make_pair(splitStringBySpace(tmp1[end + 1])[0], splitStringBySpace(tmp1[end + 1])[1]));
-		agents.push_back(make_pair(splitStringBySpace(tmp1[end + 2])[0], splitStringBySpace(tmp1[end + 2])[1]));
+		agents.push_back(make_pair(splitStringBySpace(tmp1[end + 1])[0]-1, splitStringBySpace(tmp1[end + 1])[1]-1));
+		agents.push_back(make_pair(splitStringBySpace(tmp1[end + 2])[0]-1, splitStringBySpace(tmp1[end + 2])[1]-1));
 	}
 
 	//‚‚³‚Æ•‚ğ‘ã“üD
@@ -55,6 +59,8 @@ void CreateMapClass::createMapClass(void)
 
 	createMasuClass();
 	createAgent();
+
+	return true;
 }
 
 void CreateMapClass::createMasuClass(void)
@@ -69,10 +75,10 @@ void CreateMapClass::createMasuClass(void)
 			Masu masu;
 			masu.TilePoint = v[i];
 			masu.Status = Masu::Non;
-			if ((j + 1 == agents[0].first && i + 1 == agents[0].second) || (j + 1 == agents[1].first && i + 1 == agents[1].second)) {
+			if ((j== agents[0].first && i== agents[0].second) || (j== agents[1].first && i== agents[1].second)) {
 				masu.Status = Masu::FriendTile;
 			}
-			if ((j + 1 == agents[1].first && i + 1 == agents[0].second) || (j + 1 == agents[0].first && i + 1 == agents[1].second)) {
+			if ((j== agents[1].first && i== agents[0].second) || (j== agents[0].first && i== agents[1].second)) {
 				masu.Status = Masu::EnemyTile;
 			}
 			map->board[j][i] = masu;

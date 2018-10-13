@@ -8,8 +8,7 @@ Interrupt interrupt;
 
 InputOutputManager::InputOutputManager()
 {
-	//起動時ののみ実行
-	createMap.createMapClass();
+	//起動時のみ実行
 }
 
 void InputOutputManager::inputOuntputManager(void)
@@ -18,4 +17,9 @@ void InputOutputManager::inputOuntputManager(void)
 	drawMap.drawManager();
 	interrupt.interruptManager();
 	updateTurn.updateManager();
+
+	bool ret;
+	do {
+		ret = createMap.createMapClass();
+	} while (!ret);
 }

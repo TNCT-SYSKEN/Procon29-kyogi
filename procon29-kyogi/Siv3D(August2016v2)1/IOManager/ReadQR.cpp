@@ -1,10 +1,21 @@
 #include "ReadQR.h"
 
-std::string ReadQR::readQR(void)
+ReadQR* ReadQR::InsReadQR = nullptr;
+ReadQR* ReadQR::getReadQR() {
+	if (InsReadQR == nullptr) {
+		InsReadQR = new ReadQR;
+	}
+	return InsReadQR;
+}
+void ReadQR::readQR(void)
 {
 	//Zbarを用いてQRコードの読み取りする
 	//読み取ったQRCodeへ代入し、CreateMapClassへ戻り値として渡す
 
-	//ダミーです
-	return "8 11:-2 1 0 1 2 0 2 1 0 1 -2:1 3 2 -2 0 1 0 -2 2 3 1:1 3 2 1 0 -2 0 1 2 3 1:2 1 1 2 2 3 2 2 1 1 2:2 1 1 2 2 3 2 2 1 1 2 : 1 3 2 1 0 -2 0 1 2 3 1 : 1 3 2 -2 0 1 0 -2 2 3 1 : -2 1 0 1 2 0 2 1 0 1 -2 : 2 2 : 7 10 : ";
+	if (data == "nothing") {
+		TextReader reader(L"qr.txt");
+		String line;
+		reader.readLine(line);
+		data = line.narrow();
+	}
 }
