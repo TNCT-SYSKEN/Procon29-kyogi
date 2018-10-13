@@ -8,6 +8,6 @@ public :
 	//エージェントの現在位置
 	pair <int, int> position = make_pair(0, 0);
 	//どのエージェントか
-	enum EnemyNumber { riend1 = 0, friend2 = 1, enemy1 = 3, enemy2 = 4 };
+	enum EnemyNumber { friend1, friend2, enemy1, enemy2 };
 private:
 };
