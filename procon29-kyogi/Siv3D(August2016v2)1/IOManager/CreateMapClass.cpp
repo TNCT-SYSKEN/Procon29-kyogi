@@ -33,10 +33,10 @@ void CreateMapClass::createMapClass(void)
 
 	if (input.size() < end) {
 		for (std::string s : tmp1) {
-			if (i > 0 & i <= end) {
+			if ((i > 0) & (i <= end)) {
 				vector<int> tmp2 = splitStringBySpace(s);
 				input.push_back(tmp2);
-			}else if(i > 0 && i <= end + 2){
+			}else if((i > 0) && (i <= end + 2)){
 				vector<int> tmp2 = splitStringBySpace(s);
 				agents.push_back(make_pair(tmp2[0], tmp2[1]));
 			}
