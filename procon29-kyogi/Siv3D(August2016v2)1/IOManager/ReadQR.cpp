@@ -1,8 +1,10 @@
 #include "ReadQR.h"
 
-char ReadQR::readQR(void)
+std::string ReadQR::readQR(void)
 {
 	//Zbarを用いてQRコードの読み取りする
 	//読み取ったQRCodeへ代入し、CreateMapClassへ戻り値として渡す
-	return '1';
+
+	//ダミーです
+	return "8 11:-2 1 0 1 2 0 2 1 0 1 -2:1 3 2 -2 0 1 0 -2 2 3 1:1 3 2 1 0 -2 0 1 2 3 1:2 1 1 2 2 3 2 2 1 1 2:2 1 1 2 2 3 2 2 1 1 2 : 1 3 2 1 0 -2 0 1 2 3 1 : 1 3 2 -2 0 1 0 -2 2 3 1 : -2 1 0 1 2 0 2 1 0 1 -2 : 2 2 : 7 10 : ";
 }

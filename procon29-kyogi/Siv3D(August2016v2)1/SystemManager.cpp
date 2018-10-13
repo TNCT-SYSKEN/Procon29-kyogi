@@ -1,10 +1,14 @@
 #include "SystemManager.h"
 
+//クラス変数の定義
+AlgorithmManager algoManager;
+InputOutputManager ioManager;
+
 void SystemManager::startSolver(void)
 {
 	//システムを開始する
-	algoManager->algorithmManager();
-	ioManager->inputOuntputManager();
+	algoManager.algorithmManager();
+	ioManager.inputOuntputManager();
 }
 
 void SystemManager::endSolver(void)
@@ -16,6 +20,7 @@ void SystemManager::endSolver(void)
 
 void SystemManager::systemManager(void)
 {
+	startSolver();
 	/*
 	アルゴリズムとＩＯマネージャーを管理
 	startSolverを起動
