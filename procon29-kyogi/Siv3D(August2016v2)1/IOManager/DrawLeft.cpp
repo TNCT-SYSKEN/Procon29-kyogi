@@ -42,11 +42,11 @@ void DrawLeft::drawMap(void) {
 				break;
 			case 1 :
 				//draw frined map
-				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Blue);
+				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Skyblue);
 				break;
 			case 2 :
 				//draw enemy map
-				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Red);
+				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Lightpink);
 				break;
 			case 3 :
 				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Black);
@@ -74,20 +74,27 @@ void DrawLeft::drawAgent(void)
 	Map *map;
 	map = map->getMap();
 	int pos_sup = MASU_SIZE + 5;
-	static Texture fri(L"image/friend.png");
-	static Texture ene(L"image/enemy.png");
+	//picture agent
+	static Texture fri1(L"image/friend1.png");
+	static Texture fri2(L"image/friend2.png");
+	static Texture ene1(L"image/enemy1.png");
+	static Texture ene2(L"image/enemy2.png");
 
 	for (int i = 0; i < map->agents.size(); i++) {
 		switch (map->agents[i].Status) {
 		case 0:
+			fri1.draw(map->agents[i].position.second * pos_sup + 5, map->agents[i].position.first * pos_sup + 5);
+			break;
 		case 1:
 			//friend の場合
-			fri.draw(map->agents[i].position.second * pos_sup + 5 ,map->agents[i].position.first * pos_sup + 5);
+			fri2.draw(map->agents[i].position.second * pos_sup + 5 ,map->agents[i].position.first * pos_sup + 5);
 			break;
 		case 3 :
+			ene1.draw(map->agents[i].position.second * pos_sup + 5, map->agents[i].position.first * pos_sup + 5);
+			break;
 		case 4 :
 			//enemyの場合
-			ene.draw(map->agents[i].position.second * pos_sup + 5 , map->agents[i].position.first * pos_sup + 5);
+			ene2.draw(map->agents[i].position.second * pos_sup + 5 , map->agents[i].position.first * pos_sup + 5);
 			break;
 		default:
 			break;
@@ -109,7 +116,7 @@ void DrawLeft::drawTilePoint(void)
 			//Status Other : 3
 			if (map->board[i][j].Status != 3) {
 				//タイルポイントを表示
-				font(map->board[i][j].TilePoint).draw(10 + pos_sup * j, 10 + pos_sup * i, Palette::Red);
+				font(map->board[i][j].TilePoint).draw(10 + pos_sup * j, 10 + pos_sup * i, Palette::Yellow);
 			}
 		}
 	}
