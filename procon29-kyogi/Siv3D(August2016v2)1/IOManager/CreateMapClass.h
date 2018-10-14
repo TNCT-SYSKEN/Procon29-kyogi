@@ -8,7 +8,7 @@
 class CreateMapClass {
 public:
 	void init(void);
-	void createMapClass(void);
+	bool createMapClass(void);
 	static std::vector<string> splitStringByCoron(const std::string &s);
 	static std::vector<int> splitStringBySpace(const std::string &s);
 private:

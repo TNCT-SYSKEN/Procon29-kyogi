@@ -3,10 +3,14 @@
 //クラス型変数の宣言
 InputOutputManager ioManager;
 AlgorithmManager algoManager;
+ReadQR readQR;
 
 void SystemManager::startSolver(void)
 {
 	//システムを開始する
+	ReadQR *rqr;
+	rqr = rqr->getReadQR();
+	rqr->readQR();
 	algoManager.algorithmManager();
 	ioManager.inputOuntputManager();
 }
