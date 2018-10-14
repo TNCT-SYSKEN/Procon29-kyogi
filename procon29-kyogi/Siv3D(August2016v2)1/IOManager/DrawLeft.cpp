@@ -2,9 +2,15 @@
 #define MASU_SIZE 45
 #define MAX_MAP_SIZE 12
 
+
 DrawLeft::DrawLeft()
 {
 	font(15);
+	//agentの画像をロード
+	//Texture fri_ob(L"image/friend.png");
+	//Texture ene_ob(L"image/enemy.png");
+	//fri = fri_ob;
+	//ene = ene_ob;
 }
 
 void DrawLeft::drawLeftManager(void)
@@ -12,6 +18,7 @@ void DrawLeft::drawLeftManager(void)
 	//Mapの表示
 	drawMap();
 	drawTilePoint();
+	drawAgent();
 }
 
 void DrawLeft::drawMap(void) {
@@ -64,6 +71,28 @@ void DrawLeft::drawMap(void) {
 void DrawLeft::drawAgent(void)
 {
 	//Mapに重ねてAgent位置の表示(両方)
+	Map *map;
+	map = map->getMap();
+	int pos_sup = MASU_SIZE + 5;
+	static Texture fri(L"image/friend.png");
+	static Texture ene(L"image/enemy.png");
+
+	for (int i = 0; i < map->agents.size(); i++) {
+		switch (map->agents[i].Status) {
+		case 0:
+		case 1:
+			//friend の場合
+			fri.draw(map->agents[i].position.second * pos_sup + 5 ,map->agents[i].position.first * pos_sup + 5);
+			break;
+		case 3 :
+		case 4 :
+			//enemyの場合
+			ene.draw(map->agents[i].position.second * pos_sup + 5 , map->agents[i].position.first * pos_sup + 5);
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 void DrawLeft::drawTilePoint(void)
