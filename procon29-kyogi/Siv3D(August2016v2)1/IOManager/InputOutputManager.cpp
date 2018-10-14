@@ -6,9 +6,13 @@ DrawMap drawMap;
 UpdateTurnInfo updateTurn;
 Interrupt interrupt;
 
-InputOutputManager::InputOutputManager()
+void InputOutputManager::init(void)
 {
 	//‹N“®‚Ì‚İÀs
+	bool ret;
+	do {
+		ret = createMap.createMapClass();
+	} while (!ret);
 }
 
 void InputOutputManager::inputOuntputManager(void)
@@ -18,8 +22,4 @@ void InputOutputManager::inputOuntputManager(void)
 	interrupt.interruptManager();
 	updateTurn.updateManager();
 
-	bool ret;
-	do {
-		ret = createMap.createMapClass();
-	} while (!ret);
 }

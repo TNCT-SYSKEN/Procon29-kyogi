@@ -8,7 +8,7 @@
 class InputOutputManager {
 public:
 	//CreateMap‚ğ‹N“®
-	InputOutputManager();
+	void init(void);
 	//IOŠÖ˜A‚ğŠÇ—
 	void inputOuntputManager(void);
 private:

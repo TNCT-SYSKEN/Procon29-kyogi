@@ -11,8 +11,8 @@ void SystemManager::startSolver(void)
 	ReadQR *rqr;
 	rqr = rqr->getReadQR();
 	rqr->readQR();
-	algoManager.algorithmManager();
-	ioManager.inputOuntputManager();
+
+	ioManager.init();
 }
 
 void SystemManager::endSolver(void)
@@ -31,7 +31,9 @@ void SystemManager::systemManager(void)
 	AlgorithmManager‚ð‹N“®
 	endSolver‚ð‹N“®
 	*/
-	startSolver();
-	endSolver();
+	algoManager.algorithmManager();
+	ioManager.inputOuntputManager();
+	//startSolver();
+	//endSolver();
 }
 

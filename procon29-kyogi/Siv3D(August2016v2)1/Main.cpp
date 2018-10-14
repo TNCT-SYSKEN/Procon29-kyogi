@@ -15,6 +15,7 @@ void Main()
 	//right screen 595 x 605 y 
 	Resize(1200,605);
 
+	sys.startSolver();
 	while (System::Update())
 	{
 		sys.systemManager();
