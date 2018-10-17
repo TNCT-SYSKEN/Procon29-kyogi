@@ -7,6 +7,7 @@ public:
 	void prefetching(void);
 	void setMaxStep(int s);
 	int getMaxStep(void);
+	int ansScore;
 private:
 	int caluculateSumScore(int nowX, int nowY, int step, std::vector<std::pair<Masu, std::pair<int, int>>> route);
 	int caluculateTileScore(int nowX, int nowY, int step);

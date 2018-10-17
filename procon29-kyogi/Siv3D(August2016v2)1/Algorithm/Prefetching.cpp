@@ -5,7 +5,16 @@ void Prefetching::prefetching(void)
 	//caluculateSumScore();
 	//caluculateTileScore();
 	//caluculateMovable();
-	//”Žèæ‚Ìæ“Ç‚Ý‚ðŠÇ—
+	Map *map;
+	map = map->getMap();
+	vector<Agent> agents = map->agents;
+	int nowX = agents[0].position.first;
+	int nowY = agents[0].position.second;
+	int ansScore;
+	std::vector<std::pair<Masu, std::pair<int, int>>> route = {};
+	ansScore += caluculateSumScore(nowX, nowY, 0, route);
+	ansScore += caluculateTileScore(nowX, nowY, 0);
+	ansScore += caluculateMovable(nowX, nowY, 0);
 }
 
 int Prefetching::caluculateSumScore(int nowX, int nowY, int step, std::vector<std::pair<Masu, std::pair<int, int>>> route)
