@@ -1,12 +1,23 @@
 ﻿# include <Siv3D.hpp>
 # include "SystemManager.h"
+using namespace Window;
+
+SystemManager sys;
 
 void Main()
 {
-	const Font font(30);
+	//サイズを変えれるウィンドウに
+	Window::SetStyle(WindowStyle::Sizeable);
+	//背景色の変更
+	Graphics::SetBackground(Palette::White);
+	//画面サイズの設定
+	//left screen 605 x 605 y
+	//right screen 595 x 605 y 
+	Resize(1200,605);
+
+	sys.startSolver();
 	while (System::Update())
 	{
-		font(L"ようこそ、Siv3D の世界へ！").draw();
-		Circle(Mouse::Pos(), 50).draw({ 255, 0, 0, 127 });
+		sys.systemManager();
 	}
 }

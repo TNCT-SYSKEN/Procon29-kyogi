@@ -1,4 +1,4 @@
-#include "Prefetching.h"sO
+#include "Prefetching.h"
 
 void Prefetching::prefetching(void)
 {
@@ -63,7 +63,7 @@ int Prefetching::caluculateMovable(int nowX, int nowY, int step)
 {
 	int dy[] = { 1, 0, -1, 0 };
 	int dx[] = { 0, 1, 0, -1 };
-	//数手先におけるタイル点数によって点数付け
+	//移動可能マス数によって点数付け
 	if (step >= maxStep) {
 		return 0;
 	}

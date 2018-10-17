@@ -6,6 +6,7 @@ void AlgorithmManager::algorithmManager(void)
 	総当たりか数手先読みか判断して読み出す
 	*/
 
+	/*
 	if (1) { // 判定用のフラグをあとで突っ込む
 		BruteForce bruteForce;
 		bruteForce.bruteForce();
@@ -13,4 +14,5 @@ void AlgorithmManager::algorithmManager(void)
 		AddEvaluation addEvaluation;
 		addEvaluation.addEvaluation();
 	}
+	*/
 }

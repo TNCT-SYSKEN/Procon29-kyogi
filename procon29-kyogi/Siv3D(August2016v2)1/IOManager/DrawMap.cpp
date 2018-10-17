@@ -1,36 +1,12 @@
 #include "DrawMap.h"
 
-void DrawMap::draw(void)
-{
-	//drawの制御
-}
+DrawLeft drawLeft;
+DrawRight drawRight;
 
-void DrawMap::drawMap(void)
+void DrawMap::drawManager(void)
 {
-	//Mapの表示
-}
-
-void DrawMap::drawAgent(void)
-{
-	//Mapに重ねてAgent位置の表示（両方）
-}
-
-void DrawMap::drawTilePoint(void)
-{
-	//TilePointをMapに重ねる形で表示
-}
-
-void DrawMap::drawScore(void)
-{
-	//両チームの合計得点の表示
-}
-
-void DrawMap::drawMovableTile(void)
-{
-	//自分のエージェントが移動出来る場所の表示
-}
-
-void DrawMap::drawTurn(void)
-{
-	//何ターンか表示
+	//mapの下地、タイルポイント、エージェントの位置、エージェントの移動可能マスの表示
+	drawLeft.drawLeftManager();
+	//入出力系のGUIの表示
+	drawRight.drawRightManager();
 }

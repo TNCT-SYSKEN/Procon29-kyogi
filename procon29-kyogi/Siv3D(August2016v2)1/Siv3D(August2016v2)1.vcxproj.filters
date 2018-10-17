@@ -450,19 +450,28 @@
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
+    <ClCompile Include="Data\Agent.cpp">
       <Filter>ソース ファイル\Data</Filter>
     </ClCompile>
-    <ClCompile Include="Agent.cpp">
+    <ClCompile Include="Data\Evaluaiton.cpp">
       <Filter>ソース ファイル\Data</Filter>
     </ClCompile>
-    <ClCompile Include="Masu.cpp">
+    <ClCompile Include="Data\Map.cpp">
       <Filter>ソース ファイル\Data</Filter>
     </ClCompile>
-    <ClCompile Include="Evaluaiton.cpp">
+    <ClCompile Include="Data\Masu.cpp">
       <Filter>ソース ファイル\Data</Filter>
     </ClCompile>
-    <ClCompile Include="TurnManager.cpp">
+    <ClCompile Include="Data\TurnManager.cpp">
+      <Filter>ソース ファイル\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="IOManager\DrawLeft.cpp">
+      <Filter>ソース ファイル\IOManager</Filter>
+    </ClCompile>
+    <ClCompile Include="IOManager\DrawRight.cpp">
+      <Filter>ソース ファイル\IOManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Setting.cpp">
       <Filter>ソース ファイル\Data</Filter>
     </ClCompile>
   </ItemGroup>
@@ -506,23 +515,32 @@
     <ClInclude Include="gneral.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MapClass\Agent.h">
-      <Filter>ヘッダー ファイル\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="MapClass\Evaluation.h">
-      <Filter>ヘッダー ファイル\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="MapClass\Map.h">
-      <Filter>ヘッダー ファイル\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="MapClass\Masu.h">
-      <Filter>ヘッダー ファイル\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="TurnManager.h">
-      <Filter>ヘッダー ファイル\Data</Filter>
-    </ClInclude>
     <ClInclude Include="SystemManager.h">
-      <Filter>リソース ファイル</Filter>
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Agent.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Evaluation.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Map.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Masu.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TurnManager.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="IOManager\DrawRight.h">
+      <Filter>ヘッダー ファイル\IOManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IOManager\DrawLeft.h">
+      <Filter>ヘッダー ファイル\IOManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Setting.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
