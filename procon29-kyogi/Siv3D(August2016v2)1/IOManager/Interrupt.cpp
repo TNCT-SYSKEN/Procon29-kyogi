@@ -1,5 +1,15 @@
 #include "Interrupt.h"
 
+Interrupt *Interrupt::InsInterrupt = nullptr;
+
+Interrupt *Interrupt::getInterrupt()
+{
+	if (InsInterrupt == nullptr) {
+		InsInterrupt = new Interrupt;
+	}
+	return InsInterrupt;
+}
+
 void Interrupt::interruptManager(void)
 {
 	backTurn();
@@ -24,6 +34,14 @@ void Interrupt::prefetchingInfo(void)
 {
 	//どこまで先読むかの数を読み込み
 	//Mapクラスの中を書き換え・・・？
+	//GUIの宣言
+	static GUI gui(GUIStyle::Default);
+
+	gui.setPos(605, 0);
+	gui.add(GUIText::Create(L"Input"));
+	gui.addln(GUIButton::Create(L"hoge"));
+
+	gui.add(GUINewLine::Create());
 }
 
 void Interrupt::Research(void)
