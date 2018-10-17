@@ -19,6 +19,8 @@ public:
 	int Turn;
 	//Masuを二次元配列で持っている
 	Masu board[VERTICAL][WIDTH];
+	//エージェント
+	vector< Agent > agents;
 private:
 	static Map* InsMap;
 };
