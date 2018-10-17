@@ -74,8 +74,10 @@ int Prefetching::caluculateMovable(int nowX, int nowY, int step)
 			int newX, newY;
 			newX = nowX + dx[i];
 			newY = nowY + dy[i];
-			newMovable += map.board[newX][newY].TilePoint;
-			newMovable += caluculateTileScore(newX, newY, step + 1); //重複して数えてしまうので欠陥処理っぽい　経路を持っておいたほうがいい？
+			if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical) {
+				++newMovable;
+				newMovable += caluculateMovable(newX, newY, step + 1);
+			}
 		}
 		return newMovable;
 	}
