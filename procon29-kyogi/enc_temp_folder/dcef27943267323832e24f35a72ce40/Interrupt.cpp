@@ -38,13 +38,13 @@ Interrupt::Interrupt()
 
 	// スコア表示
 	//赤チーム合計スコア
-	m_gui.add(L"text1", GUIText::Create(L"赤得点　:",80));
+	m_gui.add(L"text1", GUIText::Create(L"赤得点:",60));
 	m_gui.text(L"text1").style.color = Palette::Red;
-	m_gui.add(L"enemySumScore", GUITextArea::Create(1, 5));
+	m_gui.add(L"enemySumScore", GUITextArea::Create(1, 10));
 	//青チーム合計スコア
-	m_gui.add(L"text2", GUIText::Create(L"青得点　:", 80));
+	m_gui.add(L"text2", GUIText::Create(L"青得点:", 60));
 	m_gui.text(L"text2").style.color = Palette::Blue;
-	m_gui.addln(L"friendSumScore", GUITextArea::Create(1, 5));
+	m_gui.addln(L"friendSumScore", GUITextArea::Create(1, 10));
 
 	//赤チームタイルスコア
 	m_gui.add(L"text3", GUIText::Create(L"赤タイル:", 80));
@@ -213,9 +213,4 @@ void Interrupt::drawAreaScore()
 	//draw sumScore
 	m_gui.textArea(L"friendAreaScore").setText(friendAreaScore);
 	m_gui.textArea(L"enemyAreaScore").setText(enemyAreaScore);
-}
-
-//ターン数を表示
-void Interrupt::drawTurn()
-{
 }
