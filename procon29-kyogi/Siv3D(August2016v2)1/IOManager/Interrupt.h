@@ -23,4 +23,5 @@ private:
 	void drawSumScore();
 	void drawTileScore();
 	void drawAreaScore();
+	void drawTurn();
 };

@@ -51,7 +51,7 @@ Interrupt::Interrupt()
 	m_gui.text(L"text3").style.color = Palette::Red;
 	m_gui.add(L"enemyTileScore", GUITextArea::Create(1, 5));
 	//青チームタイル
-	m_gui.add(L"text4", GUIText::Create(L"赤タイル:",80));
+	m_gui.add(L"text4", GUIText::Create(L"青タイル:",80));
 	m_gui.text(L"text4").style.color = Palette::Blue;
 	m_gui.addln(L"friendTileScore", GUITextArea::Create(1, 5));
 
@@ -73,6 +73,11 @@ Interrupt::Interrupt()
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
 	
+	//ターン数を表示
+	m_gui.add(L"text9", GUIText::Create(L"ターン数:", 80));
+	m_gui.text(L"text9").style.color = Palette::Black;
+	m_gui.addln(L"Turn", GUITextArea::Create(1, 5));
+
 	// 横幅の設定
 	m_gui.style.width = 595;
 	m_gui.style.showTitle = true;
