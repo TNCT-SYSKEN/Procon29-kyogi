@@ -57,7 +57,6 @@ Interrupt::Interrupt()
 	m_gui.add(L"text4", GUIText::Create(L"Ôƒ^ƒCƒ‹:",80));
 	m_gui.text(L"text4").style.color = Palette::Blue;
 	m_gui.add(L"ta4", GUITextArea::Create(1, 5));
-	m_gui.textArea(L"ta4").setText(L"hoge");
 
 	// …•½ü
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
@@ -83,6 +82,7 @@ void Interrupt::interruptManager(void)
 	prefetchingInfo();
 	Research();
 	selectAglo();
+	drawScore();
 }
 
 void Interrupt::backTurn(void)
@@ -153,5 +153,18 @@ void Interrupt::selectAglo()
 
 void Interrupt::drawScore()
 {
-	//Map 
+	Map *map;
+	map = map->getMap();
+
+	//siv3d::String‚ÌéŒ¾
+	String friendSumScore;
+	String enemySumScore;
+
+	//int -> std::string -> siv3d::String‚É•ÏŠ·
+	friendSumScore = Widen(to_string(map->friendSumScore));
+	enemySumScore = Widen(to_string(map->enemySumScore));
+
+	//draw sumScore
+	m_gui.textArea(L"ta1").setText(friendSumScore);
+	m_gui.textArea(L"ta2").setText(friendSumScore);
 }
