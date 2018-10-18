@@ -88,6 +88,7 @@ void Interrupt::interruptManager(void)
 	selectAglo();
 	drawSumScore();
 	drawTileScore();
+	drawAreaScore();
 }
 
 //1ターン戻る処理
@@ -198,5 +199,18 @@ void Interrupt::drawTileScore()
 //領域スコアの表示
 void Interrupt::drawAreaScore()
 {
-	
+	Map *map;
+	map = map->getMap();
+
+	//siv3d::Stringの宣言
+	String friendAreaScore;
+	String enemyAreaScore;
+
+	//int -> std::string -> siv3d::Stringに変換
+	friendAreaScore = Widen(to_string(map->friendAreaScore));
+	enemyAreaScore = Widen(to_string(map->enemyAreaScore));
+
+	//draw sumScore
+	m_gui.textArea(L"friendAreaScore").setText(friendAreaScore);
+	m_gui.textArea(L"enemyAreaScore").setText(enemyAreaScore);
 }
