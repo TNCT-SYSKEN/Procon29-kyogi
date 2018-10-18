@@ -285,6 +285,7 @@
     <ClCompile Include="Data\Map.cpp" />
     <ClCompile Include="Data\Masu.cpp" />
     <ClCompile Include="Data\TurnManager.cpp" />
+    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="IOManager\CreateMapClass.cpp" />
     <ClCompile Include="IOManager\DrawLeft.cpp" />
     <ClCompile Include="IOManager\DrawMap.cpp" />
@@ -310,6 +311,7 @@
     <ClInclude Include="Data\Masu.h" />
     <ClInclude Include="Data\TurnManager.h" />
     <ClInclude Include="gneral.h" />
+    <ClInclude Include="GUI.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="IOManager\CreateMapClass.h" />
     <ClInclude Include="IOManager\DrawLeft.h" />
