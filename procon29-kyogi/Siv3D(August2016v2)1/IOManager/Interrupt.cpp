@@ -20,8 +20,9 @@ Interrupt::Interrupt()
 	m_gui.addln(L"research", GUIButton::Create(L"再探索"));
 
 	// 先読み深度読み取り
-	m_gui.add(L"tf1", GUITextField::Create(3));
-	m_gui.addln(L"sl1", GUISlider::Create(0, 100, 0, 200));
+	m_gui.add(L"text0", GUIText::Create(L"先読み深度"));
+	m_gui.add(L"prefetchingTF", GUITextField::Create(3));
+	m_gui.addln(L"prefetchingSL", GUISlider::Create(0, 100, 0, 200));
 
 	// 全探索、数手先選択
 	m_gui.add(L"switchAlgo", GUIToggleSwitch::Create(L"全探索", L"数手先読み", false));
@@ -39,22 +40,29 @@ Interrupt::Interrupt()
 	//赤チーム合計スコア
 	m_gui.add(L"text1", GUIText::Create(L"赤得点:",60));
 	m_gui.text(L"text1").style.color = Palette::Red;
-	m_gui.add(L"ta1", GUITextArea::Create(1, 10));
-
+	m_gui.add(L"enemySumScore", GUITextArea::Create(1, 10));
 	//青チーム合計スコア
 	m_gui.add(L"text2", GUIText::Create(L"青得点:", 60));
 	m_gui.text(L"text2").style.color = Palette::Blue;
-	m_gui.addln(L"ta2", GUITextArea::Create(1, 10));
+	m_gui.addln(L"friendSumScore", GUITextArea::Create(1, 10));
 
 	//赤チームタイルスコア
 	m_gui.add(L"text3", GUIText::Create(L"赤タイル:", 80));
 	m_gui.text(L"text3").style.color = Palette::Red;
 	m_gui.add(L"enemyTileScore", GUITextArea::Create(1, 5));
-	
 	//青チームタイル
 	m_gui.add(L"text4", GUIText::Create(L"赤タイル:",80));
 	m_gui.text(L"text4").style.color = Palette::Blue;
-	m_gui.add(L"friendTileScore", GUITextArea::Create(1, 5));
+	m_gui.addln(L"friendTileScore", GUITextArea::Create(1, 5));
+
+	//赤チーム領域スコア
+	m_gui.add(L"text5", GUIText::Create(L"赤エリア:", 80));
+	m_gui.text(L"text5").style.color = Palette::Red;
+	m_gui.add(L"enemyAreaScore", GUITextArea::Create(1, 5));
+	//青チーム領域スコア
+	m_gui.add(L"text6", GUIText::Create(L"青エリア:", 80));
+	m_gui.text(L"text6").style.color = Palette::Blue;
+	m_gui.addln(L"friendAreaScore", GUITextArea::Create(1, 5));
 
 	// 水平線
 	//Other表示
@@ -107,19 +115,19 @@ void Interrupt::prefetchingInfo(void)
 	setting = setting->getSetting();
 	
 	// スライダーが変化したら、数値を変更する
-	if (m_gui.slider(L"sl1").hasChanged)
+	if (m_gui.slider(L"prefetchingSL").hasChanged)
 	{
-		m_gui.textField(L"tf1").setText(Format(m_gui.slider(L"sl1").value));
+		m_gui.textField(L"prefetchingTF").setText(Format(m_gui.slider(L"prefetchingSL").value));
 	}
 	// 数値が変化したら、スライダーを変更する
-	if (m_gui.textField(L"tf1").hasChanged)
+	if (m_gui.textField(L"prefetchingTF").hasChanged)
 	{
-		m_gui.slider(L"sl1").setValue(Parse<double>(m_gui.textField(L"tf1").text));
+		m_gui.slider(L"prefetchingSL").setValue(Parse<double>(m_gui.textField(L"prefetchingTF").text));
 	}
 
 	//深度の深さを受け付け
-	if (m_gui.textField(L"tf1").hasChanged) {
-		setting->maxStep = Parse<int>(m_gui.textField(L"tf1").text);
+	if (m_gui.textField(L"prefetchingTF").hasChanged) {
+		setting->maxStep = Parse<int>(m_gui.textField(L"prefetchingTF").text);
 	}
 }
 
@@ -164,8 +172,8 @@ void Interrupt::drawSumScore()
 	enemySumScore = Widen(to_string(map->enemySumScore));
 
 	//draw sumScore
-	m_gui.textArea(L"ta1").setText(friendSumScore);
-	m_gui.textArea(L"ta2").setText(friendSumScore);
+	m_gui.textArea(L"friendSumScore").setText(friendSumScore);
+	m_gui.textArea(L"enemySumScore").setText(enemySumScore);
 }
 
 //タイルスコアの表示
@@ -190,4 +198,5 @@ void Interrupt::drawTileScore()
 //領域スコアの表示
 void Interrupt::drawAreaScore()
 {
+	
 }
