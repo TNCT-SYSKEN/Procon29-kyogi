@@ -13,8 +13,15 @@ public:
 	int Vertical;
 	//横
 	int Width;
-	//スコア合計(縦がエージェントの区別,横が各ターンごとの点数を保存
-	int SumScore[ValueOfAgent][TurnNumber];
+	//スコア合計
+	int friendSumScore;
+	int enemySumScore;
+	//タイルポイント
+	int friendTileScore;
+	int enemyTileScore;
+	//領域ポイント
+	int friendAreaScore;
+	int enemyAreaScore;
 	//ターン数
 	int Turn;
 	//Masuを二次元配列で持っている

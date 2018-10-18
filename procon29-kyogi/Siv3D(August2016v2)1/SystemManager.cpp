@@ -33,7 +33,5 @@ void SystemManager::systemManager(void)
 	*/
 	algoManager.algorithmManager();
 	ioManager.inputOuntputManager();
-	//startSolver();
-	//endSolver();
 }
 

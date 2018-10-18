@@ -474,6 +474,9 @@
     <ClCompile Include="Setting.cpp">
       <Filter>ソース ファイル\Data</Filter>
     </ClCompile>
+    <ClCompile Include="GUI.cpp">
+      <Filter>ソース ファイル\IOManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm\Prefetching.h">
@@ -540,6 +543,9 @@
       <Filter>ヘッダー ファイル\IOManager</Filter>
     </ClInclude>
     <ClInclude Include="Setting.h">
+      <Filter>ヘッダー ファイル\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
       <Filter>ヘッダー ファイル\Data</Filter>
     </ClInclude>
   </ItemGroup>

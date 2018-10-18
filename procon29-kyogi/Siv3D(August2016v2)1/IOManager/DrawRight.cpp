@@ -2,7 +2,8 @@
 
 void DrawRight::drawRightManager(void)
 {
-	//‰E‘¤‚Ì•\¦‚ğŠÇ—
+	drawTurn();
+	drawScore();
 }
 
 void DrawRight::drawTurn(void)
