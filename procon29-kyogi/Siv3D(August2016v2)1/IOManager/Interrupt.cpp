@@ -153,6 +153,7 @@ void Interrupt::selectAglo()
 	Setting *setting;
 	setting = setting->getSetting();
 
+
 	//true ”èæ“Ç‚İ
 	//false ‘S’Tõ
 	if (m_gui.toggleSwitch(L"switchAlgo").enabled == false) {
