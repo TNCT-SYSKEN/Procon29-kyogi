@@ -20,5 +20,7 @@ private:
 	//Ä“x’Tõ‚·‚é
 	void Research(void);
 	void selectAglo();
-	void drawScore();
+	void drawSumScore();
+	void drawTileScore();
+	void drawAreaScore();
 };

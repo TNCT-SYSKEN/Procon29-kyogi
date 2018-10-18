@@ -16,6 +16,12 @@ public:
 	//スコア合計
 	int friendSumScore;
 	int enemySumScore;
+	//タイルポイント
+	int friendTileScore;
+	int enemyTileScore;
+	//領域ポイント
+	int friendAreaScore;
+	int enemyAreaScore;
 	//ターン数
 	int Turn;
 	//Masuを二次元配列で持っている

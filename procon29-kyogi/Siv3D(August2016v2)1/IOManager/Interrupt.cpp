@@ -6,34 +6,32 @@ Interrupt::Interrupt()
 	m_gui.setPos(605, 0);
 
 	// 水平線
+	// Title Input
+	// 水平線
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
-	// Title Input
 	m_gui.add(GUIText::Create(L"Input"));
-	// 水平線
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
 
 	// ボタン
-	m_gui.add(L"bt1", GUIButton::Create(L"一手進む"));
-	m_gui.add(L"bt2", GUIButton::Create(L"一手戻る"));
-	m_gui.addln(L"bt3", GUIButton::Create(L"再探索"));
+	m_gui.add(L"goTurn", GUIButton::Create(L"一手進む"));
+	m_gui.add(L"backTurn", GUIButton::Create(L"一手戻る"));
+	m_gui.addln(L"research", GUIButton::Create(L"再探索"));
 
 	// 先読み深度読み取り
 	m_gui.add(L"tf1", GUITextField::Create(3));
 	m_gui.addln(L"sl1", GUISlider::Create(0, 100, 0, 200));
 
 	// 全探索、数手先選択
-	m_gui.add(L"ts1", GUIToggleSwitch::Create(L"全探索", L"数手先読み", false));
+	m_gui.add(L"switchAlgo", GUIToggleSwitch::Create(L"全探索", L"数手先読み", false));
 
+	// 水平線
+	//タイトル：スコア
 	// 水平線
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
-
-	//タイトル：スコア
 	m_gui.add(GUIText::Create(L"Score"));
-	
-	// 水平線
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
 
@@ -51,21 +49,19 @@ Interrupt::Interrupt()
 	//赤チームタイルスコア
 	m_gui.add(L"text3", GUIText::Create(L"赤タイル:", 80));
 	m_gui.text(L"text3").style.color = Palette::Red;
-	m_gui.add(L"ta3", GUITextArea::Create(1, 5));
+	m_gui.add(L"enemyTileScore", GUITextArea::Create(1, 5));
 	
 	//青チームタイル
 	m_gui.add(L"text4", GUIText::Create(L"赤タイル:",80));
 	m_gui.text(L"text4").style.color = Palette::Blue;
-	m_gui.add(L"ta4", GUITextArea::Create(1, 5));
+	m_gui.add(L"friendTileScore", GUITextArea::Create(1, 5));
 
+	// 水平線
+	//Other表示
 	// 水平線
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
-
-	//Other表示
 	m_gui.add(GUIText::Create(L"Other"));
-
-	// 水平線
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
 	
@@ -82,29 +78,30 @@ void Interrupt::interruptManager(void)
 	prefetchingInfo();
 	Research();
 	selectAglo();
-	drawScore();
+	drawSumScore();
+	drawTileScore();
 }
 
+//1ターン戻る処理
 void Interrupt::backTurn(void)
 {
-	//1ターン戻る処理
 	//ターンを管理している変数の値を減らす・・？
-	if (m_gui.button(L"bt2").pushed) {
+	if (m_gui.button(L"backTurn").pushed) {
 
 	}
 }
 
+//1ターン進む
 void Interrupt::goTurn(void)
 {
-	//1ターン進む
-	if (m_gui.button(L"bt1").pushed) {
+	if (m_gui.button(L"goTurn").pushed) {
 
 	}
 }
 
+//どこまで先読むかの数を読み込み
 void Interrupt::prefetchingInfo(void)
 {
-	//どこまで先読むかの数を読み込み
 	//Mapクラスの中を書き換え・・・？
 	Setting *setting;
 	setting = setting->getSetting();
@@ -126,16 +123,17 @@ void Interrupt::prefetchingInfo(void)
 	}
 }
 
+//同じターンにおいて探索アルゴリズムを再度動かす
 void Interrupt::Research(void)
 {
 	AlgorithmManager algo;
 
-	//同じターンにおいて探索アルゴリズムを再度動かす
-	if (m_gui.button(L"bt3").pushed) {
+	if (m_gui.button(L"research").pushed) {
 		algo.algorithmManager();
 	}
 }
 
+//全探索と数手先読みのどちらを行うかの選択
 void Interrupt::selectAglo()
 {
 	Setting *setting;
@@ -143,15 +141,16 @@ void Interrupt::selectAglo()
 
 	//true 数手先読み
 	//false 全探索
-	if (m_gui.toggleSwitch(L"ts1").enabled == false) {
+	if (m_gui.toggleSwitch(L"switchAlgo").enabled == false) {
 		setting->bruteForce = 1;
 	}
-	else if (m_gui.toggleSwitch(L"ts1").enabled == true) {
+	else if (m_gui.toggleSwitch(L"switchAlgo").enabled == true) {
 		setting->bruteForce = 0;
 	}
 }
 
-void Interrupt::drawScore()
+//スコア合計を表示
+void Interrupt::drawSumScore()
 {
 	Map *map;
 	map = map->getMap();
@@ -167,4 +166,28 @@ void Interrupt::drawScore()
 	//draw sumScore
 	m_gui.textArea(L"ta1").setText(friendSumScore);
 	m_gui.textArea(L"ta2").setText(friendSumScore);
+}
+
+//タイルスコアの表示
+void Interrupt::drawTileScore()
+{
+	Map *map;
+	map = map->getMap();
+
+	//siv3d::Stringの宣言
+	String friendTileScore;
+	String enemyTileScore;
+
+	//int -> std::string -> siv3d::Stringに変換
+	friendTileScore = Widen(to_string(map->friendTileScore));
+	enemyTileScore = Widen(to_string(map->enemyTileScore));
+
+	//draw sumScore
+	m_gui.textArea(L"friendTileScore").setText(friendTileScore);
+	m_gui.textArea(L"enemyTileScore").setText(enemyTileScore);
+}
+
+//領域スコアの表示
+void Interrupt::drawAreaScore()
+{
 }
