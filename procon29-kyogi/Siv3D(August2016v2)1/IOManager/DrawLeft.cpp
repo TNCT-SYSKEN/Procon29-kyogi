@@ -126,3 +126,9 @@ void DrawLeft::drawMovableTile(void)
 {
 	//自分のエージェントが移動出来る場所の表示
 }
+
+//エージェントの次の候補地を表示
+void DrawLeft::drawNextPosition(void)
+{
+	
+}

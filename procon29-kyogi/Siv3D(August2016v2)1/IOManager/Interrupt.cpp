@@ -99,9 +99,10 @@ void Interrupt::interruptManager(void)
 //1ターン戻る処理
 void Interrupt::backTurn(void)
 {
+	UpdateTurnInfo update;
 	//ターンを管理している変数の値を減らす・・？
 	if (m_gui.button(L"backTurn").pushed) {
-
+		update.backTurn();
 	}
 }
 
