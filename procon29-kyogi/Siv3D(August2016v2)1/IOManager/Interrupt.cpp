@@ -86,7 +86,7 @@ Interrupt::Interrupt()
 
 void Interrupt::interruptManager(void)
 {
-	//backTurn();
+	backTurn();
 	//goTurn();
 	prefetchingInfo();
 	Research();
@@ -94,6 +94,7 @@ void Interrupt::interruptManager(void)
 	drawSumScore();
 	drawTileScore();
 	drawAreaScore();
+	drawTurn();
 }
 
 //1ターン戻る処理
@@ -225,4 +226,14 @@ void Interrupt::drawAreaScore()
 //ターン数を表示
 void Interrupt::drawTurn()
 {
+	Map *map;
+	map = map->getMap();
+
+	//siv3d::Stringの宣言
+	String Turn;
+
+	//int -> std::string -> siv3d::Stringに変換
+	Turn = Widen(to_string(map->Turn));
+
+	m_gui.textArea(L"Turn").setText(Turn);
 }

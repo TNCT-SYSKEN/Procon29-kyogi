@@ -3,7 +3,6 @@
 #include "../Data/Evaluation.h"
 #include "../Setting.h"
 #include "../Data/TurnManager.h"
-#include "UpdateTurnInfo.h"
 
 class UpdateTurnInfo {
 public:

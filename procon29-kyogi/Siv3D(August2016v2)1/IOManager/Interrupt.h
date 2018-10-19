@@ -6,6 +6,7 @@
 #include "../GUI.h"
 #include "../Setting.h"
 #include "../Algorithm/AlgorithmManager.h"
+#include "UpdateTurnInfo.h"
 
 class Interrupt {
 public:
