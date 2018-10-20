@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <Siv3D.hpp>
+#include "../gneral.h"
+
 #define ReadVERTICAL 20
 #define ReadWIDTH 20
 
