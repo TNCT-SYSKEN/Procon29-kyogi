@@ -2,15 +2,12 @@
 
 void Prefetching::prefetching(void)
 {
-	//caluculateSumScore();
-	//caluculateTileScore();
-	//caluculateMovable();
 	Map *map;
 	map = map->getMap();
 	vector<Agent> agents = map->agents;
 	int nowX = agents[0].position.first;
 	int nowY = agents[0].position.second;
-	int ansScore;
+	int ansScore = 0;
 	std::vector<std::pair<Masu, std::pair<int, int>>> route = {};
 	ansScore += caluculateSumScore(nowX, nowY, 0, route);
 	ansScore += caluculateTileScore(nowX, nowY, 0);
