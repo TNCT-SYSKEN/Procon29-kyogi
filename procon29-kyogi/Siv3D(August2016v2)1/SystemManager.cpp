@@ -34,7 +34,5 @@ void SystemManager::systemManager(void)
 	*/
 	
 	ioManager.inputOuntputManager();
-	//startSolver();
-	//endSolver();
 }
 

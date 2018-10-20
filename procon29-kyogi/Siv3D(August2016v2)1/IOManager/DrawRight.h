@@ -1,4 +1,6 @@
 #pragma once
+#include "Interrupt.h"
+#include "../gneral.h"
 
 class DrawRight {
 public :
