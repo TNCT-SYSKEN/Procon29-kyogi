@@ -34,4 +34,28 @@ void AgentManager::checkAgentConflict()
 		}
 		count = 0;
 	}
+
+	//タイル状況によって移動できるか判定
+	for (int i = 0; i < AGENTS; i++) {
+		//味方のエージェントの場合
+		if (0 == i && 1 == i) {
+			if (map->board[map->agents[i].nextPosition.first][map->agents[i].nextPosition.second].Status == Masu::EnemyTile) {
+				//そのマスに移動できないように
+				map->agents[i].canMoveTile = false;
+			}
+			else {
+				map->agents[i].canMoveTile = true;
+			}
+		}
+		//敵エージェントの場合
+		if (2 == i || 3 == i) {
+			if (map->board[map->agents[i].nextPosition.first][map->agents[i].nextPosition.second].Status == Masu::FriendTile) {
+				//そのマスに移動できないように
+				map->agents[i].canMoveTile = false;
+			}
+			else {
+				map->agents[i].canMoveTile = true;
+			}
+		}
+	}
 }
