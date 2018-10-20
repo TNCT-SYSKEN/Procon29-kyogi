@@ -46,20 +46,20 @@ void AgentManager::checkAgentConflict()
 		if (0 == i && 1 == i) {
 			if (map->board[map->agents[i].nextPosition.first][map->agents[i].nextPosition.second].Status == Masu::EnemyTile) {
 				//そのマスに移動できないように
-				map->agents[i].canMoveTile = false;
+				map->agents[i].canMoveTile = true;
 			}
 			else {
-				map->agents[i].canMoveTile = true;
+				map->agents[i].canMoveTile = false;
 			}
 		}
 		//敵エージェントの場合
 		if (2 == i || 3 == i) {
 			if (map->board[map->agents[i].nextPosition.first][map->agents[i].nextPosition.second].Status == Masu::FriendTile) {
 				//そのマスに移動できないように
-				map->agents[i].canMoveTile = false;
+				map->agents[i].canMoveTile = true;
 			}
 			else {
-				map->agents[i].canMoveTile = true;
+				map->agents[i].canMoveTile = false;
 			}
 		}
 	}
@@ -73,7 +73,16 @@ void AgentManager::decideAgentAct()
 
 	//移動かどうか判定
 	for (int i = 0; i < AGENTS; i++) {
-		
+		//移動先が被ってない
+		//移動先に相手のタイルがない
+		if (map->agents[i].canMoveNextPos == true && map->agents[i].canMoveTile == false) {
+			map->agents[i].actAgent = Agent::move;
+		}
+	}
+
+	//除去かどうか判定
+	for (int i = 0; i < AGENTS; i++) {
+		//map->agents[i].
 	}
 
 	//停滞かどうか判定
