@@ -32,15 +32,17 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 			int newX, newY;
 			newX = nowX + dx[i];
 			newY = nowY + dy[i];
-			newScore += map.board[newX][newY].TilePoint;
-			pair<Masu, pair<int, int>> p;
-			pair<int, int> position;
-			p.first = map.board[newX][newY];
-			position.first = newX; position.second = newY;
-			p.second = position;
-			route.push_back(p);
+			if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical) {
+				newScore += map.board[newX][newY].TilePoint;
+				pair<Masu, pair<int, int>> p;
+				pair<int, int> position;
+				p.first = map.board[newX][newY];
+				position.first = newX; position.second = newY;
+				p.second = position;
+				route.push_back(p);
 
-			newScore += caluculateSumScore(newX, newY, step + 1, route);
+				newScore += caluculateSumScore(newX, newY, step + 1, route);
+			}
 		}
 		return newScore;
 	}
@@ -48,8 +50,8 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 
 int Prefetching::caluculateTileScore(int nowX, int nowY, int step)
 {
-	int dy[] = { 1, 0, -1, 0 };
-	int dx[] = { 0, 1, 0, -1 };
+	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
+	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
 	//数手先におけるタイル点数によって点数付け
 	Setting *setting;
 	setting = setting->getSetting();
@@ -59,12 +61,14 @@ int Prefetching::caluculateTileScore(int nowX, int nowY, int step)
 	else {
 		Map map = *(Map::getMap());
 		int newScore = 0;
-		for (int i = 0; i < 4; ++i) {
+		for (int i = 0; i < 8; ++i) {
 			int newX, newY;
 			newX = nowX + dx[i];
 			newY = nowY + dy[i];
-			newScore += map.board[newX][newY].TilePoint;
-			newScore += caluculateTileScore(newX, newY, step + 1); //重複して数えてしまうので欠陥処理っぽい　経路を持っておいたほうがいい？
+			if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical) {
+				newScore += map.board[newX][newY].TilePoint;
+				newScore += caluculateTileScore(newX, newY, step + 1); //重複して数えてしまうので欠陥処理っぽい　経路を持っておいたほうがいい？
+			}
 		}
 		return newScore;
 	}
