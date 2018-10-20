@@ -137,15 +137,3 @@ int Prefetching::caluculateEncircle(Map map, std::vector<std::pair<Masu, std::pa
 	}
 	return 0;
 }
-
-void Prefetching::setMaxStep(int s)
-{
-	//æ“Ç‚Ý‚Ì[‚³‚ð•ÏX‚·‚é
-	maxStep = s;
-	return;
-}
-
-int Prefetching::getMaxStep(void)
-{
-	return maxStep;
-}
