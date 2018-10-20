@@ -13,7 +13,7 @@ void SystemManager::startSolver(void)
 	rqr->readQR();
 
 	ioManager.init();
-	algoManager.algorithmManager();
+
 }
 
 void SystemManager::endSolver(void)

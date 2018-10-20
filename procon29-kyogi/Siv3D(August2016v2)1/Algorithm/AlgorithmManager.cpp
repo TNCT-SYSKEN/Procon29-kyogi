@@ -14,6 +14,8 @@ void AlgorithmManager::algorithmManager(void)
 		Map *map;
 		map = map->getMap();
 
+		Println(map->Vertical);
+
 		AddEvaluation addEvaluation;
 
 		Agent agent1 = map->agents[0];

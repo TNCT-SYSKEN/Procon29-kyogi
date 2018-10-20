@@ -8,7 +8,7 @@ public:
 	vector<int> prefetching(int, int);
 	int ansScore;
 private:
-	int caluculateSumScore(int nowX, int nowY, int step, vector<pair<Masu, pair<int, int>>> route);
+	int caluculateSumScore(int nowX, int nowY, int step, vector<pair<Masu, pair<int, int>>> route, vector<pair<Masu, pair<int, int>>> route4C);
 	int caluculateTileScore(int nowX, int nowY, int step, vector<pair<Masu, pair<int, int>>> route);
 	int caluculateMovable(int nowX, int nowY, int step);
 	void caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, int nowX, int nowY, vector< vector<int> >& visited);
