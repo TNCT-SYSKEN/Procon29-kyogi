@@ -5,12 +5,56 @@ vector<int> Prefetching::prefetching(int toX, int toY)
 	Map *map;
 	map = map->getMap();
 	vector<Agent> agents = map->agents;
-	vector<pair<Masu, pair<int, int>>> route = {};
+	vector<pair<Masu, pair<int, int>>> rout = {};
 
 	vector<int> ret;
-	ret.push_back(caluculateSumScore(toX, toY, 0, route));
-	ret.push_back(caluculateTileScore(toX, toY, 0, route));
+	ret.push_back(caluculateSumScore(toX, toY, 0, rout));
+	ret.push_back(caluculateTileScore(toX, toY, 0, rout));
 	ret.push_back(caluculateMovable(toX, toY, 0));
+
+	vector< vector<int> > visited;
+	for (int i = 0; i < map->Vertical; ++i) {
+		vector<int> v(map->Width, 0);
+		visited.push_back(v);
+	}
+	vector<pair<Masu, pair<int, int>>> route;
+
+	pair<Masu, pair<int, int>> p;
+	p.first = map->board[0][1];
+	p.second = make_pair(1, 0);
+	route.push_back(p);
+	p.first = map->board[0][2];
+	p.second = make_pair(2, 0);
+	route.push_back(p);
+	p.first = map->board[0][3];
+	p.second = make_pair(3, 0);
+	route.push_back(p);
+	p.first = map->board[1][3];
+	p.second = make_pair(3, 1);
+	route.push_back(p);
+	p.first = map->board[2][3];
+	p.second = make_pair(3, 2);
+	route.push_back(p);
+	p.first = map->board[2][2];
+	p.second = make_pair(2, 2);
+	route.push_back(p);
+	p.first = map->board[2][1];
+	p.second = make_pair(1, 2);
+	route.push_back(p);
+	p.first = map->board[1][1];
+	p.second = make_pair(1, 1);
+	route.push_back(p);
+
+	caluculateEncircle(route, 0, 0, visited);
+
+	Println(Widen("result"));
+	for (int i = 0; i < map->Vertical; ++i) {
+		for (int j = 0; j < map->Width; ++j) {
+			Print(visited[i][j]);
+			Print(Widen(" "));
+		}
+		Println();
+	}
 
 	return ret;
 }
@@ -109,50 +153,23 @@ int Prefetching::caluculateMovable(int nowX, int nowY, int step)
 	}
 }
 
-int Prefetching::caluculateEncircle(Map map, vector<pair<Masu, pair<int, int>>> route)
+void Prefetching::caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, int nowX, int nowY, vector< vector<int> >& visited)
 {
+	int dy[] = { 1, 0, -1, 0 };
+	int dx[] = { 0, 1, 0, -1 };
+
 	//経路 route をとったときの囲み判定をする
-	vector<pair<pair<int, int>, pair<int, int>>> visited;
+	Map map = *(Map::getMap());
 
-	int i;
-	for (i = 0; i < route.size(); ++i) {
-		Masu m = route[i].first;
-		pair<int, int> position = route[i].second;
-		int x = position.first;
-		int y = position.second;
+	for (int i = 0; i < 4; ++i) {
+		visited[nowY][nowX] = 1;
+		int newX = nowX + dx[i];
+		int newY = nowY + dy[i];
+		if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical) {
+			if (!visited[newY][newX] && !isVisited(route, newX, newY)) {
+				caluculateEncircle(route, newX, newY, visited);
 
-		for (pair<Masu, pair<int, int>> dm : route) {
-			int dx = dm.second.first;
-			int dy = dm.second.second;
-
-			if (isAdjoin(dm.second, position)) {
-				if (dx != route[i - 1].second.first || dy != route[i - 1].second.second) {
-					//経路 route 単独で囲んでいる
-				}
-			}
-		}
-
-		//自領域と経路とが隣接並行している場合はいったん考えないことにする．
-		//内部の得点を計算することで実質的にその場合についても考慮できそう．
-		for (int w = 0; w < map.Width; ++w) {
-			for (int h = 0; h < map.Vertical; ++h) {
-				Masu dm = map.board[h][w];
-
-				if (isAdjoin(make_pair(w, h), position)) {
-					for (pair<pair<int, int>, pair<int, int>> r : visited) {
-						pair<int, int> rf = r.first;
-						pair<int, int> rs = r.second;
-
-						if (rs.first != route[i - 1].second.first || rs.second != route[i - 1].second.second) {
-							//経路 route と領域とで囲んでいる
-						}
-					}
-					pair<int, int> t; t.first = w; t.second = h;
-					pair<int, int> p; p.first = x; p.second = y;
-					visited.push_back(make_pair(t, p));
-				}
 			}
 		}
 	}
-	return 0;
 }
