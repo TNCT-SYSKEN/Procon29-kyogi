@@ -10,5 +10,6 @@ public:
 	void update();
 	void goTurn(void);
 	void backTurn(void);
+	void incrementTurn(void);
 private:
 };

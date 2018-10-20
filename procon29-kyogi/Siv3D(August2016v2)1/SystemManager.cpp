@@ -24,13 +24,10 @@ void SystemManager::endSolver(void)
 
 void SystemManager::systemManager(void)
 {
-	/*
-	アルゴリズムとＩＯマネージャーを管理
-	startSolver
-	InputOutputManagerを起動
-	AlgorithmManagerを起動
-	endSolverを起動
-	*/
+	
+	//アルゴリズムとＩＯマネージャーを管理
+	//ゲームの流れの管理する
+
 	algoManager.algorithmManager();
 	ioManager.inputOuntputManager();
 }

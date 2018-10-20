@@ -23,6 +23,6 @@ void InputOutputManager::inputOuntputManager(void)
 	drawMap.drawManager();
 	//“ü—Í
 	//interrupt->interruptManager();
-	updateTurn.updateManager();
+	//updateTurn.updateManager();
 
 }

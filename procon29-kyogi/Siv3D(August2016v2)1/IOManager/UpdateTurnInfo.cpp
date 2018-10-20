@@ -3,12 +3,29 @@
 void UpdateTurnInfo::updateManager(void)
 {
 	//ターンごとのデータの更新を行う
-	//TurnManager->
+	incrementTurn();
+	update();
 }
 
 //各ターンの最初のデータを保存
 void UpdateTurnInfo::update()
 {
+	//そのターンの情報をターンマネージャに保存
+	//現在のデータを取得
+	Map *now_map;
+	now_map = now_map->getMap();
+	Evaluation *now_eva;
+	now_eva = now_eva->getEvaluation();
+	Setting *now_setting;
+	now_setting = now_setting->getSetting();
+
+	TurnManager *turnManager;
+	turnManager = turnManager->getTurnManager();
+
+	//現在の情報をターンマネージャに保存
+	turnManager->eva[now_map->Turn] = *now_eva;
+	turnManager->map[now_map->Turn] = *now_map;
+	turnManager->setting[now_map->Turn] = *now_setting;
 }
 
 //一手進処理（保留）
@@ -38,4 +55,13 @@ void UpdateTurnInfo::backTurn(void)
 		*now_map = turnManager->map[now_map->Turn - 1];
 		*now_setting = turnManager->setting[now_map->Turn - 1];
 	}
+}
+
+void UpdateTurnInfo::incrementTurn(void)
+{
+	Map *map;
+	map = map->getMap();
+
+	//ターン数をインクリメント
+	map->Turn++;
 }
