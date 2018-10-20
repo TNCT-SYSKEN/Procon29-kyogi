@@ -5,7 +5,7 @@ vector<int> Prefetching::prefetching(int toX, int toY)
 	Map *map;
 	map = map->getMap();
 	vector<Agent> agents = map->agents;
-	std::vector<std::pair<Masu, std::pair<int, int>>> route = {};
+	vector<pair<Masu, pair<int, int>>> route = {};
 
 	vector<int> ret;
 	ret.push_back(caluculateSumScore(toX, toY, 0, route));
@@ -15,7 +15,7 @@ vector<int> Prefetching::prefetching(int toX, int toY)
 	return ret;
 }
 
-int Prefetching::caluculateSumScore(int nowX, int nowY, int step, std::vector<std::pair<Masu, std::pair<int, int>>> route)
+int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Masu, pair<int, int>>> route)
 {
 	int dy[] = { 1, 0, -1, 0 };
 	int dx[] = { 0, 1, 0, -1 };
@@ -33,8 +33,8 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, std::vector<st
 			newX = nowX + dx[i];
 			newY = nowY + dy[i];
 			newScore += map.board[newX][newY].TilePoint;
-			std::pair<Masu, std::pair<int, int>> p;
-			std::pair<int, int> position;
+			pair<Masu, pair<int, int>> p;
+			pair<int, int> position;
 			p.first = map.board[newX][newY];
 			position.first = newX; position.second = newY;
 			p.second = position;
@@ -96,19 +96,19 @@ int Prefetching::caluculateMovable(int nowX, int nowY, int step)
 	}
 }
 
-int Prefetching::caluculateEncircle(Map map, std::vector<std::pair<Masu, std::pair<int, int>>> route)
+int Prefetching::caluculateEncircle(Map map, vector<pair<Masu, pair<int, int>>> route)
 {
 	//Œo˜H route ‚ð‚Æ‚Á‚½‚Æ‚«‚ÌˆÍ‚Ý”»’è‚ð‚·‚é
-	std::vector<std::pair<std::pair<int, int>, std::pair<int, int>>> visited;
+	vector<pair<pair<int, int>, pair<int, int>>> visited;
 
 	int i;
 	for (i = 0; i < route.size(); ++i) {
 		Masu m = route[i].first;
-		std::pair<int, int> position = route[i].second;
+		pair<int, int> position = route[i].second;
 		int x = position.first;
 		int y = position.second;
 
-		for (std::pair<Masu, std::pair<int, int>> dm : route) {
+		for (pair<Masu, pair<int, int>> dm : route) {
 			int dx = dm.second.first;
 			int dy = dm.second.second;
 
@@ -125,18 +125,18 @@ int Prefetching::caluculateEncircle(Map map, std::vector<std::pair<Masu, std::pa
 			for (int h = 0; h < map.Vertical; ++h) {
 				Masu dm = map.board[h][w];
 
-				if (isAdjoin(std::make_pair(w, h), position)) {
-					for (std::pair<std::pair<int, int>, std::pair<int, int>> r : visited) {
-						std::pair<int, int> rf = r.first;
-						std::pair<int, int> rs = r.second;
+				if (isAdjoin(make_pair(w, h), position)) {
+					for (pair<pair<int, int>, pair<int, int>> r : visited) {
+						pair<int, int> rf = r.first;
+						pair<int, int> rs = r.second;
 
 						if (rs.first != route[i - 1].second.first || rs.second != route[i - 1].second.second) {
 							//Œo˜H route ‚Æ—Ìˆæ‚Æ‚ÅˆÍ‚ñ‚Å‚¢‚é
 						}
 					}
-					std::pair<int, int> t; t.first = w; t.second = h;
-					std::pair<int, int> p; p.first = x; p.second = y;
-					visited.push_back(std::make_pair(t, p));
+					pair<int, int> t; t.first = w; t.second = h;
+					pair<int, int> p; p.first = x; p.second = y;
+					visited.push_back(make_pair(t, p));
 				}
 			}
 		}

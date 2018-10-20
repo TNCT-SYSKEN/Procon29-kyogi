@@ -5,6 +5,6 @@
 class Judgment {
 public:
 	//•Ô‚è’l‚ÍPair?
-	std::pair<int, int> judgment(Evaluation evl);
+	pair<int, int> judgment(Evaluation evl);
 private:
 };

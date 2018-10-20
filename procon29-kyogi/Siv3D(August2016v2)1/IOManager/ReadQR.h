@@ -8,7 +8,7 @@ class ReadQR {
 public:
 	static ReadQR* getReadQR();
 	void readQR(void);
-	std::string data = "nothing";
+	string data = "nothing";
 private:
 	char MapData[ReadVERTICAL][ReadWIDTH];
 	int TilePoint[ReadVERTICAL][ReadWIDTH];

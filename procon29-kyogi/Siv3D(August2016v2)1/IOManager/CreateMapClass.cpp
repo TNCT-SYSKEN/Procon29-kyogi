@@ -21,7 +21,7 @@ bool CreateMapClass::createMapClass(void)
 {
 	ReadQR *rqr;
 	rqr = rqr->getReadQR();
-	std::string data = rqr->data;
+	string data = rqr->data;
 
 	if (data == "nothing") return false;
 
@@ -29,14 +29,14 @@ bool CreateMapClass::createMapClass(void)
 	init();
 
 	//クラス変数 input に読み取った内容を代入していく．
-	vector<std::string> tmp1 = splitStringByCoron(data);
+	vector<string> tmp1 = splitStringByCoron(data);
 
 	int i = 0;
 	vector<int> scale = splitStringBySpace(tmp1[0]);
 	int end = scale[0];
 
 	if (input.size() < end) {
-		for (std::string s : tmp1) {
+		for (string s : tmp1) {
 			if ((i > 0) & (i <= end)) {
 				vector<int> tmp2 = splitStringBySpace(s);
 				input.push_back(tmp2);
@@ -119,7 +119,7 @@ void CreateMapClass::createAgent(void)
 
 //文字列を : で分割し，vector<std::string> に突っ込んで返す．
 //ヘルパー関数みたいなものです．さしたる意味はないです．
-vector<std::string> CreateMapClass::splitStringByCoron(const std::string &s)
+vector<string> CreateMapClass::splitStringByCoron(const string &s)
 {
 	vector<string> elems;
 	string item;
@@ -140,7 +140,7 @@ vector<std::string> CreateMapClass::splitStringByCoron(const std::string &s)
 
 //文字列を半角スペースで分割し，vector<int> を返す．
 //上と同じくヘルパー関数です．
-vector<int> CreateMapClass::splitStringBySpace(const std::string &s)
+vector<int> CreateMapClass::splitStringBySpace(const string &s)
 {
 	vector<int> elems;
 	string item;
