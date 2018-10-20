@@ -274,6 +274,7 @@
     <Font Include="Example\YomogiFont.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AgentManager.cpp" />
     <ClCompile Include="Algorithm\AddEvaluation.cpp" />
     <ClCompile Include="Algorithm\AlgorithmManager.cpp" />
     <ClCompile Include="Algorithm\BruteForce.cpp" />
@@ -312,6 +313,7 @@
     <ClInclude Include="Data\TurnManager.h" />
     <ClInclude Include="gneral.h" />
     <ClInclude Include="GUI.h" />
+    <ClInclude Include="AgentManager.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="IOManager\CreateMapClass.h" />
     <ClInclude Include="IOManager\DrawLeft.h" />

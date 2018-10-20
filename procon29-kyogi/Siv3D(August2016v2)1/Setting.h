@@ -6,6 +6,7 @@ public:
 	//”“I“Ç‚İF0
 	int bruteForce;
 	int maxStep;
+	bool turnFlag;
 private:
 	static Setting* InsSetting;
 };

@@ -27,8 +27,21 @@ void SystemManager::systemManager(void)
 	
 	//アルゴリズムとＩＯマネージャーを管理
 	//ゲームの流れの管理する
+	UpdateTurnInfo update;
+	Setting *setting;
+	setting = setting->getSetting();
 
-	algoManager.algorithmManager();
+	if (setting->turnFlag == true) {
+		//そのターンのデータを保存＋ターン数を進める
+		update.updateManager();
+		//最善手を求める
+		algoManager.algorithmManager();
+		//最善手によって味方エージェントの移動先を表示する
+		//敵の入力の受付
+		//敵と味方の無効処理
+		//敵の入力によって敵エージェントの位置を更新
+		//ここまでの流れが終わったらturnFlagをtrueにする
+	}
 	ioManager.inputOuntputManager();
 }
 
