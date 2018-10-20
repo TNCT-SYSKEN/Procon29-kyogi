@@ -4,7 +4,6 @@
 
 class  Evaluation{
 public:
-	static Evaluation* getEvaluation();
 	//合計点による評価点
 	int SumScore[AroundEight];
 	//タイルによる評価点

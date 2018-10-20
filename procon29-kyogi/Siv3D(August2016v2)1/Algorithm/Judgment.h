@@ -1,7 +1,10 @@
 #pragma once
+#include "../Data/Evaluation.h"
+#include "../gneral.h"
+
 class Judgment {
 public:
 	//•Ô‚è’l‚ÍPair?
-	void judgment(void);
+	std::pair<int, int> judgment(Evaluation evl);
 private:
 };

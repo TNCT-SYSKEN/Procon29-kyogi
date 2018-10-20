@@ -1,17 +1,18 @@
 #include "Prefetching.h"
 
-void Prefetching::prefetching(void)
+vector<int> Prefetching::prefetching(int toX, int toY)
 {
 	Map *map;
 	map = map->getMap();
 	vector<Agent> agents = map->agents;
-	int nowX = agents[0].position.first;
-	int nowY = agents[0].position.second;
-	int ansScore = 0;
 	std::vector<std::pair<Masu, std::pair<int, int>>> route = {};
-	ansScore += caluculateSumScore(nowX, nowY, 0, route);
-	ansScore += caluculateTileScore(nowX, nowY, 0);
-	ansScore += caluculateMovable(nowX, nowY, 0);
+
+	vector<int> ret;
+	ret.push_back(caluculateSumScore(toX, toY, 0, route));
+	ret.push_back(caluculateTileScore(toX, toY, 0));
+	ret.push_back(caluculateMovable(toX, toY, 0));
+
+	return ret;
 }
 
 int Prefetching::caluculateSumScore(int nowX, int nowY, int step, std::vector<std::pair<Masu, std::pair<int, int>>> route)

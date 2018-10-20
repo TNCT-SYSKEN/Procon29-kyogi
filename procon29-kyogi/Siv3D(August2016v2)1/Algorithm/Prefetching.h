@@ -4,7 +4,7 @@
 
 class Prefetching {
 public:
-	void prefetching(void);
+	vector<int> prefetching(int, int);
 	void setMaxStep(int s);
 	int getMaxStep(void);
 	int ansScore;
