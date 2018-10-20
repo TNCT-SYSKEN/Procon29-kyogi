@@ -20,7 +20,9 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, std::vector<st
 	int dy[] = { 1, 0, -1, 0 };
 	int dx[] = { 0, 1, 0, -1 };
 	//数手先における合計点数によって点数付け
-	if (step >= maxStep) {
+	Setting *setting;
+	setting = setting->getSetting();
+	if (step >= setting->maxStep) {
 		return 0;
 	}
 	else {
@@ -49,7 +51,9 @@ int Prefetching::caluculateTileScore(int nowX, int nowY, int step)
 	int dy[] = { 1, 0, -1, 0 };
 	int dx[] = { 0, 1, 0, -1 };
 	//数手先におけるタイル点数によって点数付け
-	if (step >= maxStep) {
+	Setting *setting;
+	setting = setting->getSetting();
+	if (step >= setting->maxStep) {
 		return 0;
 	}
 	else {
@@ -71,7 +75,9 @@ int Prefetching::caluculateMovable(int nowX, int nowY, int step)
 	int dy[] = { 1, 0, -1, 0 };
 	int dx[] = { 0, 1, 0, -1 };
 	//移動可能マス数によって点数付け
-	if (step >= maxStep) {
+	Setting *setting;
+	setting = setting->getSetting();
+	if (step >= setting->maxStep) {
 		return 0;
 	}
 	else {
