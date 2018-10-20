@@ -9,7 +9,7 @@ public:
 	int ansScore;
 private:
 	int caluculateSumScore(int nowX, int nowY, int step, vector<pair<Masu, pair<int, int>>> route);
-	int caluculateTileScore(int nowX, int nowY, int step);
+	int caluculateTileScore(int nowX, int nowY, int step, vector<pair<Masu, pair<int, int>>> route);
 	int caluculateMovable(int nowX, int nowY, int step);
 	int caluculateEncircle(Map map, vector<pair<Masu, pair<int, int>>> route);
 	static bool isAdjoin(pair<int, int> p1, pair<int, int > p2) {

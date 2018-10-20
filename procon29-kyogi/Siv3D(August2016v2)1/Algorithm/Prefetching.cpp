@@ -9,7 +9,7 @@ vector<int> Prefetching::prefetching(int toX, int toY)
 
 	vector<int> ret;
 	ret.push_back(caluculateSumScore(toX, toY, 0, route));
-	ret.push_back(caluculateTileScore(toX, toY, 0));
+	ret.push_back(caluculateTileScore(toX, toY, 0, route));
 	ret.push_back(caluculateMovable(toX, toY, 0));
 
 	return ret;
@@ -48,7 +48,7 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 	}
 }
 
-int Prefetching::caluculateTileScore(int nowX, int nowY, int step)
+int Prefetching::caluculateTileScore(int nowX, int nowY, int step, vector<pair<Masu, pair<int, int>>> route)
 {
 	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
 	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
