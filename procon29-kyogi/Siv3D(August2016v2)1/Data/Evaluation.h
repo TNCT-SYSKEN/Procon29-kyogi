@@ -11,6 +11,4 @@ public:
 	int TileScore[AroundEight];
 	//八近傍の移動可能マス
 	int Movable[AroundEight];
-private:
-	static Evaluation *InsEvaluation;
 };
