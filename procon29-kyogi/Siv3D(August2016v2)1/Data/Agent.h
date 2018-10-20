@@ -6,7 +6,7 @@ public :
 	//エージェントがそのターンにおいて動くべき最終的な座標
 	pair <int, int> nextPosition;
 	bool canMoveNextPos;
-	bool camMoveTile;
+	bool canMoveTile;
 	//エージェントが除去するタイルの座標
 	pair <int, int> erasePosition;
 	//エージェントの現在位置

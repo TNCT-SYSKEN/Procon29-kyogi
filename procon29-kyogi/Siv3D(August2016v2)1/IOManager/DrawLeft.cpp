@@ -83,7 +83,7 @@ void DrawLeft::drawAgent(void)
 	for (int i = 0; i < map->agents.size(); i++) {
 		switch (map->agents[i].Status) {
 		case Agent::friend1:
-			fri1.draw(map->agents[i].position.second * pos_sup + 25, map->agents[i].position.first * pos_sup + 5);
+			fri1.draw(map->agents[i].position.second * pos_sup + 5, map->agents[i].position.first * pos_sup + 5);
 			break;
 		case Agent::friend2:
 			//friend �̏ꍇ

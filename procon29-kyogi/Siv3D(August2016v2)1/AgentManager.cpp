@@ -6,6 +6,11 @@ void AgentManager::setAgentPos()
 
 void AgentManager::setTurnFlag()
 {
+	Setting setting;
+	//1ターンが終了したらの部分がtrueに置き換わる
+	if (true) {
+		setting.turnFlag = true;
+	}
 }
 
 //敵と味方の無効処理
