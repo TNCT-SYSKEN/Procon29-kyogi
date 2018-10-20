@@ -5,7 +5,9 @@ class Agent {
 public :
 	//エージェントがそのターンにおいて動くべき最終的な座標
 	pair <int, int> nextPosition;
+	//移動先が他のエージェント被ってない
 	bool canMoveNextPos;
+	//移動先にてきのたいるがある
 	bool canMoveTile;
 	//エージェントが除去するタイルの座標
 	pair <int, int> erasePosition;

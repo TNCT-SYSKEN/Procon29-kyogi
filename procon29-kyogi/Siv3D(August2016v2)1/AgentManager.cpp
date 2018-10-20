@@ -64,3 +64,39 @@ void AgentManager::checkAgentConflict()
 		}
 	}
 }
+
+//エージェントの行う動きを決定
+void AgentManager::decideAgentAct()
+{
+	Map *map;
+	map = map->getMap();
+
+	//移動かどうか判定
+	for (int i = 0; i < AGENTS; i++) {
+		
+	}
+
+	//停滞かどうか判定
+	for (int i = 0; i < AGENTS;i++) {
+		if (map->agents[i].position.first == map->agents[i].nextPosition.first &&
+			map->agents[i].position.second == map->agents[i].nextPosition.second) {
+			//停滞：stagnation
+			map->agents[i].actAgent = Agent::stagnation;
+		}
+	}
+}
+
+//エージェントの移動
+void AgentManager::moveAgent()
+{
+}
+
+//マスの削除
+void AgentManager::eraseAgent()
+{
+}
+
+//停滞処理
+void AgentManager::stayAgent()
+{
+}

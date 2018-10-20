@@ -10,5 +10,9 @@ public:
 	void setAgentPos();
 	void setTurnFlag();
 	void checkAgentConflict();
+	void decideAgentAct();
+	void moveAgent();
+	void eraseAgent();
+	void stayAgent();
 private:
 };
