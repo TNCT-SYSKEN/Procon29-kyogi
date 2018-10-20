@@ -15,4 +15,10 @@ private:
 	static bool isAdjoin(pair<int, int> p1, pair<int, int > p2) {
 		return (abs(p1.first - p2.first) <= 1 && abs(p1.second - p2.second));
 	}
+	static bool isVisited(vector<pair<Masu, pair<int, int>>> route, int newX, int newY) {
+		for (pair<Masu, pair<int, int>> p : route) {
+			if (newX == p.second.first && newY == p.second.second) return true;
+		}
+		return false;
+	}
 };

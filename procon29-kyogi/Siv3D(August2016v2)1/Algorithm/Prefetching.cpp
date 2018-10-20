@@ -17,8 +17,8 @@ vector<int> Prefetching::prefetching(int toX, int toY)
 
 int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Masu, pair<int, int>>> route)
 {
-	int dy[] = { 1, 0, -1, 0 };
-	int dx[] = { 0, 1, 0, -1 };
+	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
+	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
 	//数手先における合計点数によって点数付け
 	Setting *setting;
 	setting = setting->getSetting();
@@ -28,16 +28,17 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 	else {
 		Map map = *(Map::getMap());
 		int newScore = 0;
-		for (int i = 0; i < 4; ++i) {
+		for (int i = 0; i < 8; ++i) {
 			int newX, newY;
 			newX = nowX + dx[i];
 			newY = nowY + dy[i];
-			if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical) {
+			if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical && !isVisited(route, newX, newY)) {
 				newScore += map.board[newX][newY].TilePoint;
+
 				pair<Masu, pair<int, int>> p;
 				pair<int, int> position;
-				p.first = map.board[newX][newY];
-				position.first = newX; position.second = newY;
+				p.first = map.board[nowX][nowY];
+				position.first = nowX; position.second = nowY;
 				p.second = position;
 				route.push_back(p);
 
@@ -65,9 +66,17 @@ int Prefetching::caluculateTileScore(int nowX, int nowY, int step, vector<pair<M
 			int newX, newY;
 			newX = nowX + dx[i];
 			newY = nowY + dy[i];
-			if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical) {
+			if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical && !isVisited(route, newX, newY)) {
 				newScore += map.board[newX][newY].TilePoint;
-				newScore += caluculateTileScore(newX, newY, step + 1); //重複して数えてしまうので欠陥処理っぽい　経路を持っておいたほうがいい？
+
+				pair<Masu, pair<int, int>> p;
+				pair<int, int> position;
+				p.first = map.board[nowX][nowY];
+				position.first = nowX; position.second = nowY;
+				p.second = position;
+				route.push_back(p);
+
+				newScore += caluculateTileScore(newX, newY, step + 1, route);
 			}
 		}
 		return newScore;
