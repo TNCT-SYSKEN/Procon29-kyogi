@@ -5,56 +5,12 @@ vector<int> Prefetching::prefetching(int toX, int toY)
 	Map *map;
 	map = map->getMap();
 	vector<Agent> agents = map->agents;
-	vector<pair<Masu, pair<int, int>>> rout = {};
+	vector<pair<Masu, pair<int, int>>> route = {};
 
 	vector<int> ret;
-	ret.push_back(caluculateSumScore(toX, toY, 0, rout));
-	ret.push_back(caluculateTileScore(toX, toY, 0, rout));
+	ret.push_back(caluculateSumScore(toX, toY, 0, route));
+	ret.push_back(caluculateTileScore(toX, toY, 0, route));
 	ret.push_back(caluculateMovable(toX, toY, 0));
-
-	vector< vector<int> > visited;
-	for (int i = 0; i < map->Vertical; ++i) {
-		vector<int> v(map->Width, 0);
-		visited.push_back(v);
-	}
-	vector<pair<Masu, pair<int, int>>> route;
-
-	pair<Masu, pair<int, int>> p;
-	p.first = map->board[0][1];
-	p.second = make_pair(1, 0);
-	route.push_back(p);
-	p.first = map->board[0][2];
-	p.second = make_pair(2, 0);
-	route.push_back(p);
-	p.first = map->board[0][3];
-	p.second = make_pair(3, 0);
-	route.push_back(p);
-	p.first = map->board[1][3];
-	p.second = make_pair(3, 1);
-	route.push_back(p);
-	p.first = map->board[2][3];
-	p.second = make_pair(3, 2);
-	route.push_back(p);
-	p.first = map->board[2][2];
-	p.second = make_pair(2, 2);
-	route.push_back(p);
-	p.first = map->board[2][1];
-	p.second = make_pair(1, 2);
-	route.push_back(p);
-	p.first = map->board[1][1];
-	p.second = make_pair(1, 1);
-	route.push_back(p);
-
-	caluculateEncircle(route, 0, 0, visited);
-
-	Println(Widen("result"));
-	for (int i = 0; i < map->Vertical; ++i) {
-		for (int j = 0; j < map->Width; ++j) {
-			Print(visited[i][j]);
-			Print(Widen(" "));
-		}
-		Println();
-	}
 
 	return ret;
 }
