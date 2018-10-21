@@ -155,6 +155,12 @@ void AgentManager::decideAgentAct()
 //エージェントの移動
 void AgentManager::moveAgent(int agentNum)
 {
+	Map *map;
+	map = map->getMap();
+
+	//候補地に移動
+	map->agents[agentNum].position.first = map->agents[agentNum].nextPosition.first;
+	map->agents[agentNum].position.second = map->agents[agentNum].nextPosition.second;
 }
 
 //マスの削除
