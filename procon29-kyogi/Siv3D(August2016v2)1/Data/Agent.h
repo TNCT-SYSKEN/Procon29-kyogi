@@ -11,6 +11,7 @@ public :
 	bool canMoveTile;
 	//移動先が敵の居るタイルである
 	bool beAgent;
+	int beAgentNum;
 	//エージェントが除去するタイルの座標
 	pair <int, int> erasePosition;
 	//エージェントの現在位置

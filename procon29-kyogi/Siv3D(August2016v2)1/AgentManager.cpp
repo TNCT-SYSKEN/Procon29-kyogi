@@ -48,6 +48,7 @@ void AgentManager::checkAgentConflict()
 				if (map->agents[i].nextPosition.first == map->agents[j].position.first &&
 					map->agents[i].nextPosition.second == map->agents[j].position.second) {
 					map->agents[i].beAgent = true;
+					map->agents[i].beAgentNum =j;
 				}
 			}
 		}
@@ -101,12 +102,20 @@ void AgentManager::decideAgentAct()
 		y_pos = map->agents[i].nextPosition.first;
 		//移動先が被っていない
 		//移動候補地に敵のタイルがある
-		//候補地に敵がいる＆＆その敵の候補地にそのエージェントとは違うタイルがある
 		if (map->agents[i].canMoveNextPos == true && map->agents[i].canMoveTile == true) {
-			if (y_pos == map->agents[i].position.first) {
-
+			//候補地に敵がいる
+			if (map->agents[i].beAgent == true) {
+				//その敵の候補地にそのエージェントとは違うタイルがない
+				//その敵が移動できるならばerase
+				if (map->agents[map->agents[i].beAgentNum].canMoveTile == false && 
+					map->agents[map->agents[i].beAgentNum].canMoveNextPos == true) {
+					map->agents[i].actAgent = Agent::erase;
+				}
 			}
-			map->agents[i].actAgent = Agent::move;
+			else {
+				map->agents[i].actAgent = Agent::erase;
+			}
+			
 		}
 	}
 
