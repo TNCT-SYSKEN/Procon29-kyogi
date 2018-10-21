@@ -11,7 +11,12 @@ vector<int> BruteForce::bruteForce(int nX, int nY)
 	//残りターン数．現在はダミー
 	int remainingTurn = 3;
 	nowX = nX; nowY = nY;
+
 	vector<int> route;
+
+	ansVec = route;
+	maxAns = 0;
+
 	calcRoute(remainingTurn, route);
 	Println(ansVec);
 	Println(maxAns);

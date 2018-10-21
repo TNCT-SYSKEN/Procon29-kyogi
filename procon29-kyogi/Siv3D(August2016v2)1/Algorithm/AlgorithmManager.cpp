@@ -11,6 +11,7 @@ void AlgorithmManager::algorithmManager(void)
 	if (setting->bruteForce) {
 		Map *map;
 		map = map->getMap();
+
 		BruteForce bruteForce;
 
 		Agent agent1 = map->agents[0];
