@@ -1,5 +1,26 @@
 #include "AgentManager.h"
 
+void AgentManager::agentManager()
+{
+	Map *map;
+	map = map->getMap();
+
+	//各エージェントの動作の読み出し
+	for (int i = 0; i < AGENTS; i++) {
+		switch (map->agents[i].actAgent) {
+		case Agent::move :
+			moveAgent(i);
+			break;
+		case Agent::erase :
+			eraseAgent(i);
+			break;
+		case Agent::stagnation : 
+			stayAgent(i);
+			break;
+		}
+	}
+}
+
 void AgentManager::setAgentPos()
 {
 }
@@ -130,16 +151,17 @@ void AgentManager::decideAgentAct()
 }
 
 //エージェントの移動
-void AgentManager::moveAgent()
+void AgentManager::moveAgent(int agentNum)
 {
 }
 
 //マスの削除
-void AgentManager::eraseAgent()
+void AgentManager::eraseAgent(int agentNum)
 {
 }
 
 //停滞処理
-void AgentManager::stayAgent()
+void AgentManager::stayAgent(int agentNum)
 {
+	
 }
