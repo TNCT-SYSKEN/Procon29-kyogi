@@ -7,12 +7,13 @@
 //agent‚ÌˆÊ’u‚ÌXV
 class AgentManager {
 public:
+	void agentManager();
 	void setAgentPos();
 	void setTurnFlag();
 	void checkAgentConflict();
 	void decideAgentAct();
-	void moveAgent();
-	void eraseAgent();
-	void stayAgent();
+	void moveAgent(int agentNum);
+	void eraseAgent(int agentNum);
+	void stayAgent(int agentNum);
 private:
 };

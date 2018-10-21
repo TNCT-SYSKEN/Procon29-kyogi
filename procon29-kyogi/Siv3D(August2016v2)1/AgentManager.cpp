@@ -163,5 +163,10 @@ void AgentManager::eraseAgent(int agentNum)
 //’â‘Øˆ—
 void AgentManager::stayAgent(int agentNum)
 {
-	
+	Map *map;
+	map = map->getMap();
+	//ˆÚ“®Œó•â’n‚ðŒ»ÝˆÊ’u‚É‘ã“ü‚·‚é
+	map->agents[agentNum].position.first = map->agents[agentNum].nextPosition.first;
+	map->agents[agentNum].position.second = map->agents[agentNum].nextPosition.second;
+
 }
