@@ -58,8 +58,8 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 
 				for (int u = 1; u <= map->Vertical; ++u) {
 					for (int v = 1; v <= map->Width; ++v) {
-						if (!visited[u][v]) {
-							newScore += abs(map->board[u + 1][v + 1].TilePoint);
+						if (!visited[u][v] && !isVisited(route, v-1, u-1)) {
+							newScore += abs(map->board[u - 1][v - 1].TilePoint);
 						}
 					}
 				}

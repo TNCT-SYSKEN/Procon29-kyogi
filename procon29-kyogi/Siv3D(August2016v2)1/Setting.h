@@ -1,4 +1,5 @@
 #pragma once
+#include "gneral.h"
 class Setting {
 public:
 	static Setting* getSetting();

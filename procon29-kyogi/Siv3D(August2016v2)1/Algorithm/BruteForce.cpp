@@ -13,10 +13,12 @@ vector<int> BruteForce::bruteForce(int nX, int nY)
 	nowX = nX; nowY = nY;
 	vector<int> route;
 	calcRoute(remainingTurn, route);
-
+	Println(ansVec);
+	Println(maxAns);
 	return ansVec;
 }
 
+/* TODO: 経路の重複をなくす */
 //経路のパターンを生やす．
 int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 	if (remainingTurn == 0) {
@@ -50,7 +52,7 @@ int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 		int s2 = 0;
 		for (int u = 1; u <= map->Vertical; ++u) {
 			for (int v = 1; v <= map->Width; ++v) {
-				if (!visited[u][v]) {
+				if (!visited[u][v] && !Prefetching::isVisited(route4C , v, u)) {
 					s2 += abs(map->board[u - 1][v - 1].TilePoint);
 				}
 			}
