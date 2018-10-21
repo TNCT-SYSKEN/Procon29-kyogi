@@ -12,9 +12,15 @@ pair<int, int> AddEvaluation::addEvaluation(Agent agent)
 
 	for (int i = 0; i < 8; ++i) {
 		Prefetching prefetching;
-		vector<int> ret = prefetching.prefetching(agent.position.second + dx[i], agent.position.first + dy[i]);
+		int newX = agent.position.second + dx[i];
+		int newY = agent.position.first + dy[i];
+		Map *map;
+		map = map->getMap();
+		if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical) {
+			vector<int> ret = prefetching.prefetching(newX, newY);
 
-		evl.SumScore[i] = ret[0]; evl.TileScore[i] = ret[1]; evl.Movable[i] = ret[2];
+			evl.SumScore[i] = ret[0]; evl.TileScore[i] = ret[1]; evl.Movable[i] = ret[2];
+		}
 		JudgmentEncircle judgeEncircle;
 		judgeEncircle.judgmentEncircle();
 	}

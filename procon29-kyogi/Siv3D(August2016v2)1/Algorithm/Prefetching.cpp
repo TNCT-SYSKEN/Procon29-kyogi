@@ -25,7 +25,8 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 	setting = setting->getSetting();
 	if (step >= setting->maxStep) {
 		return 0;
-	}	
+	}
+	
 	else {
 		Map *map;
 		map = map->getMap();
@@ -34,6 +35,7 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 			int newX, newY;
 			newX = nowX + dx[i];
 			newY = nowY + dy[i];
+
 			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !isVisited(route, newX, newY)) {
 				newScore += map->board[newX][newY].TilePoint;
 
@@ -53,18 +55,24 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 					vector<int> v(map->Width + 2, 0);
 					visited.push_back(v);
 				}
-
 				caluculateEncircle(route4C, 0, 0, visited);
 
-				if (visited[2][2] == 0 && !isVisited(route, 1, 1)) {
+				/*
+				if (visited[2][2] == 0 && !isVisited(route4C, 2, 2)) {
 					Println(Widen("result"));
 					for (int u = 0; u <= map->Vertical + 1; ++u) {
 						for (int v = 0; v <= map->Width + 1; ++v) {
-							Print(visited[u][v]);
+							if (isVisited(route4C, v, u)) {
+								Print(2);
+							}
+							else {
+								Print(visited[u][v]);
+							}
 						}
 						Println();
 					}
 				}
+				*/
 
 
 				newScore += caluculateSumScore(newX, newY, step + 1, route, route4C);
