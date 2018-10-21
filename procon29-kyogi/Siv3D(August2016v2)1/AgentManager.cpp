@@ -40,6 +40,19 @@ void AgentManager::checkAgentConflict()
 		count = 0;
 	}
 
+	//移動先に敵のエージェントがいるかどうかの判定
+	for (int i = 0; i < AGENTS; i++) {
+		for (int j = 0; j < AGENTS; j++) {
+			if (i != j) {
+				//agent同士のnextPosを比較し、同じならcount++;
+				if (map->agents[i].nextPosition.first == map->agents[j].position.first &&
+					map->agents[i].nextPosition.second == map->agents[j].position.second) {
+					map->agents[i].beAgent = true;
+				}
+			}
+		}
+	}
+
 	//タイル状況によって移動できるか判定
 	for (int i = 0; i < AGENTS; i++) {
 		//味方のエージェントの場合
@@ -81,8 +94,20 @@ void AgentManager::decideAgentAct()
 	}
 
 	//除去かどうか判定
+	int x_pos;
+	int y_pos;
 	for (int i = 0; i < AGENTS; i++) {
-		//map->agents[i].
+		x_pos = map->agents[i].nextPosition.second;
+		y_pos = map->agents[i].nextPosition.first;
+		//移動先が被っていない
+		//移動候補地に敵のタイルがある
+		//候補地に敵がいる＆＆その敵の候補地にそのエージェントとは違うタイルがある
+		if (map->agents[i].canMoveNextPos == true && map->agents[i].canMoveTile == true) {
+			if (y_pos == map->agents[i].position.first) {
+
+			}
+			map->agents[i].actAgent = Agent::move;
+		}
 	}
 
 	//停滞かどうか判定

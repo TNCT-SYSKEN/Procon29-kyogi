@@ -9,6 +9,8 @@ public :
 	bool canMoveNextPos;
 	//移動先にてきのたいるがある
 	bool canMoveTile;
+	//移動先が敵の居るタイルである
+	bool beAgent;
 	//エージェントが除去するタイルの座標
 	pair <int, int> erasePosition;
 	//エージェントの現在位置
