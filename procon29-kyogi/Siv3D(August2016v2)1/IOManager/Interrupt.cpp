@@ -78,6 +78,16 @@ Interrupt::Interrupt()
 	m_gui.text(L"text9").style.color = Palette::Black;
 	m_gui.addln(L"Turn", GUITextArea::Create(1, 5));
 
+	//制限時間を表示
+	m_gui.add(L"text11", GUIText::Create(L"制限時間:", 80));
+	m_gui.text(L"text11").style.color = Palette::Black;
+	m_gui.addln(L"Turn", GUITextArea::Create(1, 5));
+
+	//Infomation
+	m_gui.add(L"text10", GUIText::Create(L"Infomation", 80));
+	m_gui.text(L"text10").style.color = Palette::Black;
+	m_gui.addln(L"Info", GUITextArea::Create(4, 15));
+
 	// 横幅の設定
 	m_gui.style.width = 595;
 	m_gui.style.showTitle = true;
@@ -237,8 +247,57 @@ void Interrupt::drawTurn()
 	m_gui.textArea(L"Turn").setText(Turn);
 }
 
+//情報を表示
+void Interrupt::drawInfo()
+{
+	
+}
+
 //敵の移動候補地の入力
 void Interrupt::inputEnemyMovePos()
 {
+	Map *map;
+	map = map->getMap();
+	DrawLeft drawLeft;
 
+	bool roopBreak = false;
+	//マスの表示座標の補助
+	const int pos_sup = MASU_SIZE + 5;
+	
+	//敵エージェントだけ参照
+	for (int k = 2; k <= 3; k++) {
+		String text = Format(L"EnemyAgent[", k - 1, L"]の移動先をクリックしてください");
+		m_gui.textArea(L"Info").setText(text);
+		while (true) {
+			//draw left map
+			drawLeft.drawLeftManager();
+			System::Update();
+			if (Input::MouseL.clicked) {
+				const Point pos = Mouse::Pos();
+				int count = 0;
+				for (int i = 0; i < 12;i++) {
+					//x軸が位置でいうとどこなのか
+					if (5 + pos_sup * i < pos.x&&pos.x < pos_sup * (i + 1)) {
+						map->agents[k].nextPosition.second = i;
+						count++;
+					}
+					//y軸が位置で言うとどこなのか
+					if (5 + pos_sup * i < pos.y&&pos.y < pos_sup * (i + 1)) {
+						map->agents[k].nextPosition.second = i;
+						count++;
+					}
+				}
+				//x , y両方nextPosが代入されたか確認
+				if (count == 2) {
+					roopBreak = true;
+				}
+			}
+			if (roopBreak) {
+				break;
+			}
+		}
+		roopBreak = false;
+	}
+
+	m_gui.textArea(L"Info").setText(L"敵エージェントの位置入力が完了しました。");
 }

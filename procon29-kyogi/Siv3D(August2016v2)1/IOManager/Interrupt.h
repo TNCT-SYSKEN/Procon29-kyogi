@@ -7,6 +7,9 @@
 #include "../Setting.h"
 #include "../Algorithm/AlgorithmManager.h"
 #include "UpdateTurnInfo.h"
+#include "DrawLeft.h"
+#define MASU_SIZE 45
+#define MAX_MAP_SIZE 12
 
 class Interrupt {
 public:
@@ -26,4 +29,5 @@ private:
 	void drawTileScore();
 	void drawAreaScore();
 	void drawTurn();
+	void drawInfo();
 };
