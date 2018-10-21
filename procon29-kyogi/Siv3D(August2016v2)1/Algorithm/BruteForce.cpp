@@ -23,7 +23,6 @@ vector<int> BruteForce::bruteForce(int nX, int nY)
 	return ansVec;
 }
 
-/* TODO: 経路の重複をなくす */
 //経路のパターンを生やす．
 int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 	if (remainingTurn == 0) {
