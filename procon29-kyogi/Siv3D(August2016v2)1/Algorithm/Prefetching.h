@@ -1,5 +1,6 @@
 #pragma once
 #include "../Data/Map.h"
+#include "../Data/Masu.h"
 #include "../Setting.h"
 #include <vector>
 

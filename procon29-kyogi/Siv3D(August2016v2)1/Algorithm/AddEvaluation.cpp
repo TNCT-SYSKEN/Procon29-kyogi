@@ -18,7 +18,6 @@ pair<int, int> AddEvaluation::addEvaluation(Agent agent)
 		map = map->getMap();
 		if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical) {
 			vector<int> ret = prefetching.prefetching(newX, newY);
-
 			evl.SumScore[i] = ret[0]; evl.TileScore[i] = ret[1]; evl.Movable[i] = ret[2];
 		}
 		JudgmentEncircle judgeEncircle;
