@@ -25,6 +25,8 @@ void Main()
 	sys.startSolver();
 	//GUI
 	Interrupt inter;
+	Setting *setting;
+	setting = setting->getSetting();
 	while (System::Update())
 	{
 		inter.interruptManager();

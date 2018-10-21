@@ -32,10 +32,16 @@ void SystemManager::systemManager(void)
 	Interrupt inter;
 	DrawLeft drawLeft;
 	AgentManager agentManager;
+	Map *map;
+	map = map->getMap();
 	setting = setting->getSetting();
 	
-	if (setting->turnFlag == true) {		
-		update.updateManager(); //ターンの開始情報を保存
+	if (setting->turnFlag == true) {
+		update.updateManager();
+		setting->turnFlag = false;
+	}
+	
+	if (setting->turnFlag == true) {
 		update.updateManager(); //そのターンのデータを保存＋ターン数を進める
 		algoManager.algorithmManager(); //最善手を求める
 		drawLeft.drawLeftManager();     //最善手によって味方エージェントの移動先を表示する
@@ -46,6 +52,7 @@ void SystemManager::systemManager(void)
 		agentManager.agentMoveManager(); //エージェントが実際に行動する
 		drawLeft.drawLeftManager();      //行動後の状態を表示
 		System::Update();
+		map->agents[1].actAgent;
 		//ここまでの流れが終わったらturnFlagをtrueにする
 		setting->turnFlag = false;
 	}

@@ -155,7 +155,6 @@ void Interrupt::selectAglo()
 	Setting *setting;
 	setting = setting->getSetting();
 
-
 	//true ”èæ“Ç‚İ
 	//false ‘S’Tõ
 	if (m_gui.toggleSwitch(L"switchAlgo").enabled == false) {
@@ -241,4 +240,5 @@ void Interrupt::drawTurn()
 //“G‚ÌˆÚ“®Œó•â’n‚Ì“ü—Í
 void Interrupt::inputEnemyMovePos()
 {
+
 }

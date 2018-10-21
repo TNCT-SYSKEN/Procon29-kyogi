@@ -24,8 +24,8 @@ void UpdateTurnInfo::update()
 
 	//現在の情報をターンマネージャに保存
 	turnManager->eva[now_map->Turn] = *now_eva;
+	//turnManager->setting[now_map->Turn] = *now_setting;
 	turnManager->map[now_map->Turn] = *now_map;
-	turnManager->setting[now_map->Turn] = *now_setting;
 }
 
 //一手進処理（保留）
@@ -85,7 +85,7 @@ void UpdateTurnInfo::research(void)
 
 	//ターン始めののデータを代入
 	*now_eva = turnManager->eva[now_map->Turn];
-	*now_setting = turnManager->setting[now_map->Turn];
+	//*now_setting = turnManager->setting[now_map->Turn];
 	*now_map = turnManager->map[now_map->Turn];
 
 	//アルゴリズムを動かす
