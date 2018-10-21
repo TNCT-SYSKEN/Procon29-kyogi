@@ -84,7 +84,9 @@ int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 				route4Check.push_back(make_pair(masu, po));
 			}
 
-			if (!Prefetching::isVisited(route4Check, nX + dx[i], nY + dy[i])) {
+			Map *map;
+			map = map->getMap();
+			if (!Prefetching::isVisited(route4Check, nX + dx[i], nY + dy[i]) && map->board[nY+dy[i]][nX+dx[i]].Status != Masu::FriendTile && map->board[nY + dy[i]][nX + dx[i]].Status != Masu::EnemyTile) {
 				r1.push_back(i);
 				int s = calcRoute(remainingTurn - 1, r1);
 				if (s > maxScore) {
