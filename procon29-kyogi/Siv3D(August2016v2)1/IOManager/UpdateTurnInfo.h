@@ -3,6 +3,7 @@
 #include "../Data/Evaluation.h"
 #include "../Setting.h"
 #include "../Data/TurnManager.h"
+#include "../Algorithm/AlgorithmManager.h"
 
 class UpdateTurnInfo {
 public:
@@ -11,5 +12,6 @@ public:
 	void goTurn(void);
 	void backTurn(void);
 	void incrementTurn(void);
+	void research(void);
 private:
 };

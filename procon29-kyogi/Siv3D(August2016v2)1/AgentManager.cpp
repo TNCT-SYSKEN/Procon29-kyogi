@@ -1,6 +1,6 @@
 #include "AgentManager.h"
 
-void AgentManager::agentManager()
+void AgentManager::agentMoveManager()
 {
 	Map *map;
 	map = map->getMap();
@@ -106,6 +106,8 @@ void AgentManager::decideAgentAct()
 	Map *map;
 	map = map->getMap();
 
+	checkAgentConflict();
+
 	//ˆÚ“®‚©‚Ç‚¤‚©”»’è
 	for (int i = 0; i < AGENTS; i++) {
 		//ˆÚ“®æ‚ª”í‚Á‚Ä‚È‚¢
@@ -168,5 +170,4 @@ void AgentManager::stayAgent(int agentNum)
 	//ˆÚ“®Œó•â’n‚ðŒ»ÝˆÊ’u‚É‘ã“ü‚·‚é
 	map->agents[agentNum].position.first = map->agents[agentNum].nextPosition.first;
 	map->agents[agentNum].position.second = map->agents[agentNum].nextPosition.second;
-
 }

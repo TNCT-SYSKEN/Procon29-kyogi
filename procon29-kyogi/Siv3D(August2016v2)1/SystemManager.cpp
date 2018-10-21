@@ -29,18 +29,25 @@ void SystemManager::systemManager(void)
 	//ゲームの流れの管理する
 	UpdateTurnInfo update;
 	Setting *setting;
+	Interrupt inter;
+	DrawLeft drawLeft;
+	AgentManager agentManager;
 	setting = setting->getSetting();
-
-	if (setting->turnFlag == true) {
-		//そのターンのデータを保存＋ターン数を進める
-		update.updateManager();
-		//最善手を求める
-		algoManager.algorithmManager();
-		//最善手によって味方エージェントの移動先を表示する
-		//敵の入力の受付
-		//敵と味方の無効処理
-		//敵の入力によって敵エージェントの位置を更新
+	
+	if (setting->turnFlag == true) {		
+		update.updateManager(); //ターンの開始情報を保存
+		update.updateManager(); //そのターンのデータを保存＋ターン数を進める
+		algoManager.algorithmManager(); //最善手を求める
+		drawLeft.drawLeftManager();     //最善手によって味方エージェントの移動先を表示する
+		System::Update();
+		
+		inter.inputEnemyMovePos();      //敵の候補地の入力の受付
+		agentManager.decideAgentAct();  //敵と味方の候補地によって次に行う行動の決定
+		agentManager.agentMoveManager(); //エージェントが実際に行動する
+		drawLeft.drawLeftManager();      //行動後の状態を表示
+		System::Update();
 		//ここまでの流れが終わったらturnFlagをtrueにする
+		setting->turnFlag = false;
 	}
 	ioManager.inputOuntputManager();
 }

@@ -142,10 +142,10 @@ void Interrupt::prefetchingInfo(void)
 //“¯‚¶ƒ^[ƒ“‚É‚¨‚¢‚Ä’TõƒAƒ‹ƒSƒŠƒYƒ€‚ðÄ“x“®‚©‚·
 void Interrupt::Research(void)
 {
-	AlgorithmManager algo;
+	UpdateTurnInfo update;
 
 	if (m_gui.button(L"research").pushed) {
-		algo.algorithmManager();
+		update.research();
 	}
 }
 
@@ -236,4 +236,9 @@ void Interrupt::drawTurn()
 	Turn = Widen(to_string(map->Turn));
 
 	m_gui.textArea(L"Turn").setText(Turn);
+}
+
+//“G‚ÌˆÚ“®Œó•â’n‚Ì“ü—Í
+void Interrupt::inputEnemyMovePos()
+{
 }

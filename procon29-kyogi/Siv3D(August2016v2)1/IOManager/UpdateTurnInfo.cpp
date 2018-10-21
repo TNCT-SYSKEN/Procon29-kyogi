@@ -54,6 +54,7 @@ void UpdateTurnInfo::backTurn(void)
 		*now_eva = turnManager->eva[now_map->Turn - 1];
 		*now_map = turnManager->map[now_map->Turn - 1];
 		*now_setting = turnManager->setting[now_map->Turn - 1];
+		now_map->Turn--;
 	}
 }
 
@@ -64,4 +65,29 @@ void UpdateTurnInfo::incrementTurn(void)
 
 	//ターン数をインクリメント
 	map->Turn++;
+}
+
+//再探索処理
+void UpdateTurnInfo::research(void)
+{
+	//現在のデータを取得
+	Map *now_map;
+	now_map = now_map->getMap();
+	Evaluation *now_eva;
+	now_eva = now_eva->getEvaluation();
+	Setting *now_setting;
+	now_setting = now_setting->getSetting();
+
+	//その他必要なクラス型変数の宣言
+	AlgorithmManager algo;
+	TurnManager *turnManager;
+	turnManager = turnManager->getTurnManager();
+
+	//ターン始めののデータを代入
+	*now_eva = turnManager->eva[now_map->Turn];
+	*now_setting = turnManager->setting[now_map->Turn];
+	*now_map = turnManager->map[now_map->Turn];
+
+	//アルゴリズムを動かす
+	algo.algorithmManager();
 }

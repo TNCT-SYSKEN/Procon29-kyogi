@@ -7,7 +7,7 @@
 //agent‚ÌˆÊ’u‚ÌXV
 class AgentManager {
 public:
-	void agentManager();
+	void agentMoveManager();
 	void setAgentPos();
 	void setTurnFlag();
 	void checkAgentConflict();

@@ -12,6 +12,7 @@ class Interrupt {
 public:
 	Interrupt();
 	GUI m_gui;
+	void inputEnemyMovePos();
 	void interruptManager(void);
 private:
 	void backTurn(void);
