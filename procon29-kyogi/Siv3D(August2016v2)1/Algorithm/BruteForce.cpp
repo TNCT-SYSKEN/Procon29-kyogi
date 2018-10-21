@@ -68,10 +68,23 @@ int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 	else {
 		int maxScore = 0;
 		for (int i = 0; i < 8; ++i) {
-			vector<int> r1 = route; r1.push_back(i);
-			int s = calcRoute(remainingTurn - 1, r1);
-			if (s > maxScore) {
-				maxScore = s;
+			vector<int> r1 = route;
+
+			vector<pair<Masu, pair<int, int>>> route4Check;
+			int nX = nowX; int nY = nowY;
+			for (int i : route) {
+				nX += dx[i]; nY += dy[i];
+				pair<int, int> po = make_pair(nX, nY);
+				Masu masu;
+				route4Check.push_back(make_pair(masu, po));
+			}
+
+			if (!Prefetching::isVisited(route4Check, nX + dx[i], nY + dy[i])) {
+				r1.push_back(i);
+				int s = calcRoute(remainingTurn - 1, r1);
+				if (s > maxScore) {
+					maxScore = s;
+				}
 			}
 		}
 		return maxScore;
