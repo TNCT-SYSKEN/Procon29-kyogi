@@ -3,15 +3,7 @@
 using namespace Window;
 
 SystemManager sys;
-void hoge() {
-	static GUI gui(GUIStyle::Default);
 
-	gui.setPos(605, 0);
-	gui.add(GUIText::Create(L"Input"));
-	gui.addln(GUIButton::Create(L"hoge"));
-
-	gui.add(GUINewLine::Create());
-}
 void Main()
 {
 	//背景色の変更
@@ -27,6 +19,7 @@ void Main()
 	Interrupt inter;
 	Setting *setting;
 	setting = setting->getSetting();
+	setting->turnFlag = false;
 	while (System::Update())
 	{
 		inter.interruptManager();

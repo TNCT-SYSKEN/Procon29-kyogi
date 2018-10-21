@@ -24,6 +24,7 @@ private:
 	void prefetchingInfo(void);
 	//Ä“x’Tõ‚·‚é
 	void Research(void);
+	void start();
 	void selectAglo();
 	void drawSumScore();
 	void drawTileScore();

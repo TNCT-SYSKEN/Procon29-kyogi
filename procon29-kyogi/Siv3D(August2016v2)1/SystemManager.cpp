@@ -28,12 +28,12 @@ void SystemManager::systemManager(void)
 	//ƒAƒ‹ƒSƒŠƒYƒ€‚Æ‚h‚nƒ}ƒl[ƒWƒƒ[‚ðŠÇ—
 	//ƒQ[ƒ€‚Ì—¬‚ê‚ÌŠÇ—‚·‚é
 	UpdateTurnInfo update;
-	Setting *setting;
 	Interrupt inter;
 	DrawLeft drawLeft;
 	AgentManager agentManager;
 	Map *map;
 	map = map->getMap();
+	Setting *setting;
 	setting = setting->getSetting();
 	
 	if (setting->turnFlag == true) {

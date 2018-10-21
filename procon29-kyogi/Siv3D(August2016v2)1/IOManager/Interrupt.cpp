@@ -17,7 +17,8 @@ Interrupt::Interrupt()
 	// ボタン
 	m_gui.add(L"goTurn", GUIButton::Create(L"一手進む"));
 	m_gui.add(L"backTurn", GUIButton::Create(L"一手戻る"));
-	m_gui.addln(L"research", GUIButton::Create(L"再探索"));
+	m_gui.add(L"research", GUIButton::Create(L"再探索"));
+	m_gui.addln(L"start", GUIButton::Create(L"ターンの開始"));
 
 	// 先読み深度読み取り
 	m_gui.add(L"text0", GUIText::Create(L"先読み深度"));
@@ -100,6 +101,7 @@ void Interrupt::interruptManager(void)
 	//goTurn();
 	prefetchingInfo();
 	Research();
+	start();
 	selectAglo();
 	drawSumScore();
 	drawTileScore();
@@ -156,6 +158,16 @@ void Interrupt::Research(void)
 
 	if (m_gui.button(L"research").pushed) {
 		update.research();
+	}
+}
+
+void Interrupt::start()
+{
+	Setting *setting;
+	setting = setting->getSetting();
+
+	if (m_gui.button(L"start").pushed) {
+		setting->turnFlag = true;
 	}
 }
 
