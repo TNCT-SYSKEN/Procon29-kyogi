@@ -7,9 +7,17 @@ void AlgorithmManager::algorithmManager(void)
 	*/
 	Setting *setting;
 	setting = setting->getSetting();
+
 	if (setting->bruteForce) {
+		Map *map;
+		map = map->getMap();
 		BruteForce bruteForce;
-		bruteForce.bruteForce();
+
+		Agent agent1 = map->agents[0];
+		bruteForce.bruteForce(agent1.position.second, agent1.position.first);
+
+		Agent agent2 = map->agents[1];
+		bruteForce.bruteForce(agent2.position.second, agent2.position.first);
 	} else {
 		Map *map;
 		map = map->getMap();

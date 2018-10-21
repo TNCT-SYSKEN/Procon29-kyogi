@@ -144,7 +144,7 @@ void Prefetching::caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, i
 		int newX = nowX + dx[i];
 		int newY = nowY + dy[i];
 		if (newX >= 0 && newX <= map.Width + 1 && newY >= 0 && newY <= map.Vertical + 1) {
-			if (!visited[newY][newX] && !isVisited(route, newX, newY) && map.board[newY][newX].Status != Masu::FriendTile && map.board[newY][newX].Status != Masu::EnemyTile) {
+			if (!visited[newY][newX] && !isVisited(route, newX, newY)) {
 				caluculateEncircle(route, newX, newY, visited);
 			}
 		}
