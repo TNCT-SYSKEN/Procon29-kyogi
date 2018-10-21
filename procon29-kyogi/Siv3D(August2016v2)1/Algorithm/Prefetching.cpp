@@ -5,7 +5,6 @@ vector<int> Prefetching::prefetching(int toX, int toY)
 {
 	Map *map;
 	map = map->getMap();
-	vector<Agent> agents = map->agents;
 	vector<pair<Masu, pair<int, int>>> route = {};
 
 	vector<int> ret;
