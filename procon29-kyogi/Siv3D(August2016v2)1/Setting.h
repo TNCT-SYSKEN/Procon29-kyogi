@@ -6,6 +6,7 @@ public:
 	//”èæ“Ç‚İF0
 	int bruteForce = 0;
 	int maxStep;
+	vector< vector<int> > bruteForceResults;
 private:
 	static Setting* InsSetting;
 };

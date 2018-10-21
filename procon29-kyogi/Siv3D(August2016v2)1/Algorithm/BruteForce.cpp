@@ -6,7 +6,7 @@ int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
 vector<int> ansVec;
 int maxAns = 0;
 
-void BruteForce::bruteForce(int nX, int nY)
+vector<int> BruteForce::bruteForce(int nX, int nY)
 {
 	//残りターン数．現在はダミー
 	int remainingTurn = 3;
@@ -14,11 +14,7 @@ void BruteForce::bruteForce(int nX, int nY)
 	vector<int> route;
 	calcRoute(remainingTurn, route);
 
-	for (int i : ansVec) {
-		Println(i);
-	}
-
-	vector<int> v = { 0, 1, 7 };
+	return ansVec;
 }
 
 //経路のパターンを生やす．

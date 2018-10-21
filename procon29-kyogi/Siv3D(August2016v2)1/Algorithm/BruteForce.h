@@ -5,7 +5,7 @@
 
 class BruteForce {
 public:
-	void bruteForce(int, int);
+	vector<int> bruteForce(int, int);
 private:
 	int calculateScore(int, int, vector<int>);
 	int calcRoute(int, vector<int>);
