@@ -182,7 +182,8 @@ void AgentManager::stayAgent(int agentNum)
 {
 	Map *map;
 	map = map->getMap();
-	//ˆÚ“®Œó•â’n‚ðŒ»ÝˆÊ’u‚É‘ã“ü‚·‚é
-	map->agents[agentNum].position.first = map->agents[agentNum].nextPosition.first;
-	map->agents[agentNum].position.second = map->agents[agentNum].nextPosition.second;
+	//’â‘Øˆ—‚È‚Ì‚Å‰½‚à‚µ‚È‚¢
+	//ŽŸ‚ÌˆÚ“®êŠ‚ÉŒ»Ý‚ÌˆÊ’u‚ð‘ã“ü
+	map->agents[agentNum].nextPosition.first = map->agents[agentNum].position.first;
+	map->agents[agentNum].nextPosition.second = map->agents[agentNum].position.second;
 }
