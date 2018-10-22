@@ -5,14 +5,30 @@ void AlgorithmManager::algorithmManager(void)
 	/*
 	総当たりか数手先読みか判断して読み出す
 	*/
+	Setting *setting;
+	setting = setting->getSetting();
 
-	/*
-	if (1) { // 判定用のフラグをあとで突っ込む
+	if (setting->bruteForce) {
+		Map *map;
+		map = map->getMap();
+
 		BruteForce bruteForce;
-		bruteForce.bruteForce();
+
+		Agent agent1 = map->agents[0];
+		setting->bruteForceResults.push_back(bruteForce.bruteForce(agent1.position.second, agent1.position.first));
+
+		Agent agent2 = map->agents[1];
+		setting->bruteForceResults.push_back(bruteForce.bruteForce(agent2.position.second, agent2.position.first));
 	} else {
+		Map *map;
+		map = map->getMap();
+
 		AddEvaluation addEvaluation;
-		addEvaluation.addEvaluation();
+
+		Agent agent1 = map->agents[0];
+		map->agents[0].nextPosition = addEvaluation.addEvaluation(agent1);
+
+		Agent agent2 = map->agents[1];
+		map->agents[1].nextPosition = addEvaluation.addEvaluation(agent2);
 	}
-	*/
 }

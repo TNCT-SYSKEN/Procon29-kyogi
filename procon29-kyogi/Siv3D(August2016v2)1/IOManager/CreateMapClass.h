@@ -9,8 +9,8 @@ class CreateMapClass {
 public:
 	void init(void);
 	bool createMapClass(void);
-	static std::vector<string> splitStringByCoron(const std::string &s);
-	static std::vector<int> splitStringBySpace(const std::string &s);
+	static vector<string> splitStringByCoron(const string &s);
+	static vector<int> splitStringBySpace(const string &s);
 private:
 	void createMasuClass(void);
 	void createAgent(void);

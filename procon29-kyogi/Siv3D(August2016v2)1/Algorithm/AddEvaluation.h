@@ -2,9 +2,11 @@
 #include "Prefetching.h"
 #include "Judgment.h"
 #include "JudgmentEncircle.h"
+#include "../Data/Evaluation.h"
+#include "../gneral.h"
 
 class AddEvaluation {
 public:
-	void addEvaluation(void);
+	pair<int, int> addEvaluation(Agent agent);
 private:
 };
