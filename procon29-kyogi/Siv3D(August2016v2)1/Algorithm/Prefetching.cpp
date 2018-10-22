@@ -30,41 +30,69 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 		Map *map;
 		map = map->getMap();
 		int newScore = 0;
-		for (int i = 0; i < 8; ++i) {
+		for (int i = 0; i < 16; ++i) {
 			int newX, newY;
-			newX = nowX + dx[i];
-			newY = nowY + dy[i];
+			newX = nowX + dx[i % 8];
+			newY = nowY + dy[i % 8];
 
 			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !isVisited(route, newX, newY)) {
-				newScore += map->board[newX][newY].TilePoint;
+				if (i < 8) {
+					newScore += map->board[newX][newY].TilePoint;
 
-				pair<Masu, pair<int, int>> p;
-				pair<int, int> position;
-				p.first = map->board[nowX][nowY];
-				position.first = nowX; position.second = nowY;
-				p.second = position;
-				route.push_back(p);
+					pair<Masu, pair<int, int>> p;
+					pair<int, int> position;
+					Masu masu; masu.Status = Masu::FriendTile;
+					p.first = masu;
+					position.first = nowX; position.second = nowY;
+					p.second = position;
+					route.push_back(p);
 
-				++position.first; ++position.second;
-				p.second = position;
-				route4C.push_back(p);
+					++position.first; ++position.second;
+					p.second = position;
+					route4C.push_back(p);
 
-				vector< vector<int> > visited;
-				for (int u = 0; u <= map->Vertical + 1; ++u) {
-					vector<int> v(map->Width + 2, 0);
-					visited.push_back(v);
-				}
-				caluculateEncircle(route4C, 0, 0, visited);
+					vector< vector<int> > visited;
+					for (int u = 0; u <= map->Vertical + 1; ++u) {
+						vector<int> v(map->Width + 2, 0);
+						visited.push_back(v);
+					}
+					caluculateEncircle(route4C, 0, 0, visited);
 
-				for (int u = 1; u <= map->Vertical; ++u) {
-					for (int v = 1; v <= map->Width; ++v) {
-						if (!visited[u][v] && !isVisited(route, v-1, u-1)) {
-							newScore += abs(map->board[u - 1][v - 1].TilePoint);
+					for (int u = 1; u <= map->Vertical; ++u) {
+						for (int v = 1; v <= map->Width; ++v) {
+							if (!visited[u][v] && !isVisited(route, v - 1, u - 1)) {
+								newScore += abs(map->board[u - 1][v - 1].TilePoint);
+							}
 						}
 					}
-				}
 
-				newScore += caluculateSumScore(newX, newY, step + 1, route, route4C);
+					newScore += caluculateSumScore(newX, newY, step + 1, route, route4C);
+				}else{ //“G‚Ìƒ^ƒCƒ‹œ‹Ž‚ð‘I‚ñ‚¾ê‡
+					if(map->board[newY][newX].Status == Masu::EnemyTile){
+						Println(Widen("yeah"));
+						if (!isVisited(route, newX, newY)) {
+							newScore += map->board[newY][newX].TilePoint;
+
+							pair<Masu, pair<int, int>> p;
+							pair<int, int> position;
+							Masu masu; masu.Status = Masu::EnemyTile;
+							p.first = masu;
+							position.first = nowX; position.second = nowY;
+							p.second = position;
+							route.push_back(p);
+
+							++position.first; ++position.second;
+							p.second = position;
+							route4C.push_back(p);
+
+							newScore += caluculateSumScore(nowX, nowY, step + 1, route, route4C);
+
+							Println(newScore);
+						}
+					}else{
+						return 0;
+					}
+				}
 			}
 		}
 		return newScore;

@@ -11,7 +11,7 @@ public:
 	static void caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, int nowX, int nowY, vector< vector<int> >& visited);
 	static bool isVisited(vector<pair<Masu, pair<int, int>>> route, int newX, int newY) {
 		for (pair<Masu, pair<int, int>> p : route) {
-			if (newX == p.second.first && newY == p.second.second) return true;
+			if (newX == p.second.first && newY == p.second.second  && p.first.Status != Masu::EnemyTile) return true;
 		}
 		return false;
 	}
