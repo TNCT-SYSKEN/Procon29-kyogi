@@ -39,13 +39,14 @@ void SystemManager::systemManager(void)
 	if (setting->turnFlag == true) {
 		update.updateManager(); //そのターンのデータを保存＋ターン数を進める
 		algoManager.algorithmManager(); //最善手を求める
-		drawLeft.drawLeftManager();     //最善手によって味方エージェントの移動先を表示する
+		drawLeft.drawLeftManager();    //最善手によって味方エージェントの移動先を表示する
 		inter.inputEnemyMovePos();   //敵の候補地の入力の受付
 		//agentManager.decideAgentAct();  //敵と味方の候補地によって次に行う行動の決定
 		//agentManager.agentMoveManager(); //エージェントが実際に行動する
 		drawLeft.drawLeftManager();      //行動後の状態を表示
 		System::Update();
-		map->agents[1].actAgent;
+		map->agents[2].nextPosition.first;
+		map->agents[2].nextPosition.second;
 		//ここまでの流れが終わったらturnFlagをtrueにする
 		setting->turnFlag = false;
 	}

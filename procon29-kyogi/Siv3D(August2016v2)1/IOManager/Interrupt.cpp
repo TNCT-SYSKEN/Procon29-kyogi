@@ -279,7 +279,8 @@ void Interrupt::inputEnemyMovePos()
 	//敵エージェントだけ参照
 	for (int k = 2; k <= 3; k++) {
 		String text = Format(L"EnemyAgent[", k - 1, L"]の移動先をクリックしてください");
-		while (true) {
+		m_gui.textArea(L"Info").setText(text);
+		while (System::Update()) {
 			if (Input::MouseL.clicked) {
 				const Point pos = Mouse::Pos();
 				int count = 0;
@@ -291,7 +292,7 @@ void Interrupt::inputEnemyMovePos()
 					}
 					//y軸が位置で言うとどこなのか
 					if (5 + pos_sup * i < pos.y&&pos.y < pos_sup * (i + 1)) {
-						map->agents[k].nextPosition.second = i;
+						map->agents[k].nextPosition.first = i;
 						count++;
 					}
 				}
@@ -302,8 +303,7 @@ void Interrupt::inputEnemyMovePos()
 			}
 			//draw left map
 			drawLeft.drawLeftManager();
-			m_gui.textArea(L"Info").setText(text);
-			System::Update();
+			//System::Update();
 			if (roopBreak) {
 				break;
 			}
@@ -312,4 +312,5 @@ void Interrupt::inputEnemyMovePos()
 	}
 
 	m_gui.textArea(L"Info").setText(L"敵エージェントの位置入力が完了しました。");
+	System::Update();
 }
