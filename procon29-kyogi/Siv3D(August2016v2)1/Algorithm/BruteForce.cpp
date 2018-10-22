@@ -51,12 +51,12 @@ int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 			route4C.push_back(make_pair(masu, po));
 		}
 
-		Prefetching::caluculateEncircle(route4C, 0, 0, visited);
+		Prefetching::caluculateEncircle(route4C, 0, 0, visited, Masu::FriendTile);
 
 		int s2 = 0;
 		for (int u = 1; u <= map->Vertical; ++u) {
 			for (int v = 1; v <= map->Width; ++v) {
-				if (!visited[u][v] && !Prefetching::isVisited(route4C , v, u)) {
+				if (!visited[u][v] && !Prefetching::isVisited(route4C , v, u, Masu::FriendTile)) {
 					s2 += abs(map->board[u - 1][v - 1].TilePoint);
 				}
 			}
@@ -85,7 +85,7 @@ int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 
 			Map *map;
 			map = map->getMap();
-			if (!Prefetching::isVisited(route4Check, nX + dx[i], nY + dy[i]) && map->board[nY+dy[i]][nX+dx[i]].Status != Masu::FriendTile && map->board[nY + dy[i]][nX + dx[i]].Status != Masu::EnemyTile) {
+			if (!Prefetching::isVisited(route4Check, nX + dx[i], nY + dy[i], Masu::FriendTile) && map->board[nY+dy[i]][nX+dx[i]].Status != Masu::FriendTile && map->board[nY + dy[i]][nX + dx[i]].Status != Masu::EnemyTile) {
 				r1.push_back(i);
 				int s = calcRoute(remainingTurn - 1, r1);
 				if (s > maxScore) {

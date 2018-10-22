@@ -35,7 +35,7 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 			newX = nowX + dx[i % 8];
 			newY = nowY + dy[i % 8];
 
-			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !isVisited(route, newX, newY)) {
+			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !isVisited(route, newX, newY, Masu::FriendTile)) {
 				if (i < 8) {
 					newScore += map->board[newX][newY].TilePoint;
 
@@ -56,11 +56,11 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 						vector<int> v(map->Width + 2, 0);
 						visited.push_back(v);
 					}
-					caluculateEncircle(route4C, 0, 0, visited);
+					caluculateEncircle(route4C, 0, 0, visited, Masu::FriendTile);
 
 					for (int u = 1; u <= map->Vertical; ++u) {
 						for (int v = 1; v <= map->Width; ++v) {
-							if (!visited[u][v] && !isVisited(route, v - 1, u - 1)) {
+							if (!visited[u][v] && !isVisited(route, v - 1, u - 1, Masu::FriendTile) && map->board[u][v].Status != Masu::FriendTile) {
 								newScore += abs(map->board[u - 1][v - 1].TilePoint);
 							}
 						}
@@ -69,8 +69,7 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 					newScore += caluculateSumScore(newX, newY, step + 1, route, route4C);
 				}else{ //“G‚Ìƒ^ƒCƒ‹œ‹Ž‚ð‘I‚ñ‚¾ê‡
 					if(map->board[newY][newX].Status == Masu::EnemyTile){
-						Println(Widen("yeah"));
-						if (!isVisited(route, newX, newY)) {
+						if (!isVisited(route, newX, newY, Masu::FriendTile)) {
 							newScore += map->board[newY][newX].TilePoint;
 
 							pair<Masu, pair<int, int>> p;
@@ -81,13 +80,43 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 							p.second = position;
 							route.push_back(p);
 
+							vector< vector<int> > visited;
+							for (int u = 0; u <= map->Vertical + 1; ++u) {
+								vector<int> v(map->Width + 2, 0);
+								visited.push_back(v);
+							}
+
+							int se = 0;
+							caluculateEncircle(route4C, 0, 0, visited, Masu::EnemyTile);
+							for (int u = 1; u <= map->Vertical; ++u) {
+								for (int v = 1; v <= map->Width; ++v) {
+									if (!visited[u][v] && map->board[u-1][v-1].Status != Masu::EnemyTile) {
+										se += abs(map->board[u - 1][v - 1].TilePoint);
+									}
+								}
+							}
+
 							++position.first; ++position.second;
 							p.second = position;
+							masu.Status = Masu::EnemyTile;
+							p.first = masu;
 							route4C.push_back(p);
 
-							newScore += caluculateSumScore(nowX, nowY, step + 1, route, route4C);
+							caluculateEncircle(route4C, 0, 0, visited, Masu::EnemyTile);
 
-							Println(newScore);
+							for (int u = 1; u <= map->Vertical; ++u) {
+								for (int v = 1; v <= map->Width; ++v) {
+									if (!visited[u][v] && map->board[u - 1][v - 1].Status != Masu::EnemyTile && !(u-1 == newY && v-1 == newX)) {
+										se -= abs(map->board[u - 1][v - 1].TilePoint);
+									}
+								}
+							}
+
+							Println(se);
+
+							newScore += se;
+
+							newScore += caluculateSumScore(nowX, nowY, step + 1, route, route4C);
 						}
 					}else{
 						return 0;
@@ -116,7 +145,7 @@ int Prefetching::caluculateTileScore(int nowX, int nowY, int step, vector<pair<M
 			int newX, newY;
 			newX = nowX + dx[i];
 			newY = nowY + dy[i];
-			if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical && !isVisited(route, newX, newY)) {
+			if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical && !isVisited(route, newX, newY, Masu::FriendTile)) {
 				newScore += map.board[newX][newY].TilePoint;
 
 				pair<Masu, pair<int, int>> p;
@@ -159,7 +188,7 @@ int Prefetching::caluculateMovable(int nowX, int nowY, int step)
 	}
 }
 
-void Prefetching::caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, int nowX, int nowY, vector< vector<int> >& visited)
+void Prefetching::caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, int nowX, int nowY, vector< vector<int> >& visited, Masu::StateOfMasu st)
 {
 	int dy[] = { 1, 0, -1, 0 };
 	int dx[] = { 0, 1, 0, -1 };
@@ -172,8 +201,8 @@ void Prefetching::caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, i
 		int newX = nowX + dx[i];
 		int newY = nowY + dy[i];
 		if (newX >= 0 && newX <= map.Width + 1 && newY >= 0 && newY <= map.Vertical + 1) {
-			if (!visited[newY][newX] && !isVisited(route, newX, newY)) {
-				caluculateEncircle(route, newX, newY, visited);
+			if (!visited[newY][newX] && !isVisited(route, newX, newY, st) && map.board[newY][newX].Status != st) {
+				caluculateEncircle(route, newX, newY, visited, st);
 			}
 		}
 	}
