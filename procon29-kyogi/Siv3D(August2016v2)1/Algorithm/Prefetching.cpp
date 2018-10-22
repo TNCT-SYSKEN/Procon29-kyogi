@@ -1,80 +1,180 @@
 #include "Prefetching.h"
-#include <vector>
 
-void Prefetching::prefetching(void)
+
+vector<int> Prefetching::prefetching(int toX, int toY)
 {
-	//caluculateSumScore();
-	//caluculateTileScore();
-	caluculateMovable();
-	//数手先の先読みを管理
+	Map *map;
+	map = map->getMap();
+	vector<pair<Masu, pair<int, int>>> route = {};
+
+	vector<int> ret;
+	ret.push_back(caluculateSumScore(toX, toY, 0, route, route));
+	ret.push_back(caluculateTileScore(toX, toY, 0, route));
+	ret.push_back(caluculateMovable(toX, toY, 0));
+
+	return ret;
 }
 
-int Prefetching::caluculateSumScore(int nowX, int nowY, int step, std::vector<Masu> route)
+int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Masu, pair<int, int>>> route, vector<pair<Masu, pair<int, int>>> route4C)
 {
-	int dy[] = { 1, 0, -1, 0 };
-	int dx[] = { 0, 1, 0, -1 };
+	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
+	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
 	//数手先における合計点数によって点数付け
-	if (step >= maxStep) {
+	Setting *setting;
+	setting = setting->getSetting();
+	if (step >= setting->maxStep) {
 		return 0;
 	}
+	
 	else {
-		Map map;
+		Map *map;
+		map = map->getMap();
 		int newScore = 0;
-		for (int i = 0; i < 4; ++i) {
+		for (int i = 0; i < 16; ++i) {
 			int newX, newY;
-			newX = nowX + dx[i];
-			newY = nowY + dy[i];
-			newScore += map.board[newX][newY].TilePoint;
-			route.push_back(map.board[newX][newY]);
+			newX = nowX + dx[i % 8];
+			newY = nowY + dy[i % 8];
 
-			newScore += caluculateSumScore(newX, newY, step + 1, route);
+			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !isVisited(route, newX, newY)) {
+				if (i < 8) {
+					newScore += map->board[newX][newY].TilePoint;
+
+					pair<Masu, pair<int, int>> p;
+					pair<int, int> position;
+					Masu masu; masu.Status = Masu::FriendTile;
+					p.first = masu;
+					position.first = nowX; position.second = nowY;
+					p.second = position;
+					route.push_back(p);
+
+					++position.first; ++position.second;
+					p.second = position;
+					route4C.push_back(p);
+
+					vector< vector<int> > visited;
+					for (int u = 0; u <= map->Vertical + 1; ++u) {
+						vector<int> v(map->Width + 2, 0);
+						visited.push_back(v);
+					}
+					caluculateEncircle(route4C, 0, 0, visited);
+
+					for (int u = 1; u <= map->Vertical; ++u) {
+						for (int v = 1; v <= map->Width; ++v) {
+							if (!visited[u][v] && !isVisited(route, v - 1, u - 1)) {
+								newScore += abs(map->board[u - 1][v - 1].TilePoint);
+							}
+						}
+					}
+
+					newScore += caluculateSumScore(newX, newY, step + 1, route, route4C);
+				}else{ //敵のタイル除去を選んだ場合
+					if(map->board[newY][newX].Status == Masu::EnemyTile){
+						Println(Widen("yeah"));
+						if (!isVisited(route, newX, newY)) {
+							newScore += map->board[newY][newX].TilePoint;
+
+							pair<Masu, pair<int, int>> p;
+							pair<int, int> position;
+							Masu masu; masu.Status = Masu::EnemyTile;
+							p.first = masu;
+							position.first = nowX; position.second = nowY;
+							p.second = position;
+							route.push_back(p);
+
+							++position.first; ++position.second;
+							p.second = position;
+							route4C.push_back(p);
+
+							newScore += caluculateSumScore(nowX, nowY, step + 1, route, route4C);
+
+							Println(newScore);
+						}
+					}else{
+						return 0;
+					}
+				}
+			}
 		}
 		return newScore;
 	}
 }
 
-int Prefetching::caluculateTileScore(int nowX, int nowY, int step)
+int Prefetching::caluculateTileScore(int nowX, int nowY, int step, vector<pair<Masu, pair<int, int>>> route)
+{
+	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
+	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
+	//数手先におけるタイル点数によって点数付け
+	Setting *setting;
+	setting = setting->getSetting();
+	if (step >= setting->maxStep) {
+		return 0;
+	}
+	else {
+		Map map = *(Map::getMap());
+		int newScore = 0;
+		for (int i = 0; i < 8; ++i) {
+			int newX, newY;
+			newX = nowX + dx[i];
+			newY = nowY + dy[i];
+			if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical && !isVisited(route, newX, newY)) {
+				newScore += map.board[newX][newY].TilePoint;
+
+				pair<Masu, pair<int, int>> p;
+				pair<int, int> position;
+				p.first = map.board[nowX][nowY];
+				position.first = nowX; position.second = nowY;
+				p.second = position;
+				route.push_back(p);
+
+				newScore += caluculateTileScore(newX, newY, step + 1, route);
+			}
+		}
+		return newScore;
+	}
+}
+
+int Prefetching::caluculateMovable(int nowX, int nowY, int step)
 {
 	int dy[] = { 1, 0, -1, 0 };
 	int dx[] = { 0, 1, 0, -1 };
-	//数手先におけるタイル点数によって点数付け
-	if (step >= maxStep) {
+	//移動可能マス数によって点数付け
+	Setting *setting;
+	setting = setting->getSetting();
+	if (step >= setting->maxStep) {
 		return 0;
 	}
 	else {
-		Map map;
-		int newScore = 0;
+		Map map = *(Map::getMap());
+		int newMovable = 0;
 		for (int i = 0; i < 4; ++i) {
 			int newX, newY;
 			newX = nowX + dx[i];
 			newY = nowY + dy[i];
-			newScore += map.board[newX][newY].TilePoint;
-			newScore += caluculateTileScore(newX, newY, step + 1); //重複して数えてしまうので欠陥処理っぽい　経路を持っておいたほうがいい？
+			if (newX >= 0 && newX < map.Width && newY >= 0 && newY < map.Vertical) {
+				++newMovable;
+				newMovable += caluculateMovable(newX, newY, step + 1);
+			}
 		}
-		return newScore;
+		return newMovable;
 	}
 }
 
-void Prefetching::caluculateMovable(void)
+void Prefetching::caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, int nowX, int nowY, vector< vector<int> >& visited)
 {
-	//数手先のマスにおけるマスの移動可能マスの数によって点数付け
-}
+	int dy[] = { 1, 0, -1, 0 };
+	int dx[] = { 0, 1, 0, -1 };
 
-int Prefetching::caluculateEncircle(Map map, std::vector<Masu> route)
-{
-	//経路 route をとったときの囲み判定をして，領域ポイントの総計を返す
-	map;
-	return 0;
-}
+	//経路 route をとったときの囲み判定をする
+	Map map = *(Map::getMap());
 
-void Prefetching::setMaxStep(int s)
-{
-	//先読みの深さを変更する
-	maxStep = s;
-	return;
-}
-
-int Prefetching::getMaxStep(void)
-{
-	return maxStep;
+	for (int i = 0; i < 4; ++i) {
+		visited[nowY][nowX] = 1;
+		int newX = nowX + dx[i];
+		int newY = nowY + dy[i];
+		if (newX >= 0 && newX <= map.Width + 1 && newY >= 0 && newY <= map.Vertical + 1) {
+			if (!visited[newY][newX] && !isVisited(route, newX, newY)) {
+				caluculateEncircle(route, newX, newY, visited);
+			}
+		}
+	}
 }
