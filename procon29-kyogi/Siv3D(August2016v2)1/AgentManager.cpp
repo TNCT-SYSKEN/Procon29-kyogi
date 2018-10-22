@@ -78,7 +78,7 @@ void AgentManager::checkAgentConflict()
 	//タイル状況によって移動できるか判定
 	for (int i = 0; i < AGENTS; i++) {
 		//味方のエージェントの場合
-		if (0 == i && 1 == i) {
+		if (0 == i || 1 == i) {
 			if (map->board[map->agents[i].nextPosition.first][map->agents[i].nextPosition.second].Status == Masu::EnemyTile) {
 				//そのマスに移動できないように
 				map->agents[i].canMoveTile = true;

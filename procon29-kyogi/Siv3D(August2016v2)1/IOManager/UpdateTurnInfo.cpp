@@ -24,7 +24,6 @@ void UpdateTurnInfo::update()
 
 	//現在の情報をターンマネージャに保存
 	turnManager->eva[now_map->Turn] = *now_eva;
-	//turnManager->setting[now_map->Turn] = *now_setting;
 	turnManager->map[now_map->Turn] = *now_map;
 }
 
@@ -50,11 +49,11 @@ void UpdateTurnInfo::backTurn(void)
 
 	//これ以上戻るターンが無い場合は処理を実行しない
 	if (now_map->Turn > 1) {
-		//1ターン前のデータを代入
-		*now_eva = turnManager->eva[now_map->Turn - 1];
-		*now_map = turnManager->map[now_map->Turn - 1];
-		*now_setting = turnManager->setting[now_map->Turn - 1];
 		now_map->Turn--;
+		//1ターン前のデータを代入
+		*now_eva = turnManager->eva[now_map->Turn];
+		*now_map = turnManager->map[now_map->Turn];
+		now_setting->turnFlag = false;
 	}
 }
 
@@ -83,11 +82,14 @@ void UpdateTurnInfo::research(void)
 	TurnManager *turnManager;
 	turnManager = turnManager->getTurnManager();
 
+	pair <int, int> enemy1 = make_pair(now_map->agents[2].nextPosition.first, now_map->agents[2].nextPosition.second);
+	pair <int, int> enemy2 = make_pair(now_map->agents[3].nextPosition.first, now_map->agents[3].nextPosition.second);
+
 	//ターン始めののデータを代入
 	*now_eva = turnManager->eva[now_map->Turn];
 	//*now_setting = turnManager->setting[now_map->Turn];
 	*now_map = turnManager->map[now_map->Turn];
-
+	now_setting->turnFlag = false;
 	//アルゴリズムを動かす
 	algo.algorithmManager();
 }
