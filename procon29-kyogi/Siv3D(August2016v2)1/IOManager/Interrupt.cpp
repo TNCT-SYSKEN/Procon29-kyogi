@@ -303,7 +303,6 @@ void Interrupt::inputEnemyMovePos()
 			}
 			//draw left map
 			drawLeft.drawLeftManager();
-			//System::Update();
 			if (roopBreak) {
 				break;
 			}
