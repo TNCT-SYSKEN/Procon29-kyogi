@@ -8,7 +8,6 @@ int maxAns = 0;
 
 vector<int> BruteForce::bruteForce(int nX, int nY)
 {
-	//残りターン数．現在はダミー
 	int remainingTurn = 3;
 	nowX = nX; nowY = nY;
 
@@ -77,8 +76,8 @@ int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 
 			vector<pair<Masu, pair<int, int>>> route4Check;
 			int nX = nowX; int nY = nowY;
-			for (int i : route) {
-				nX += dx[i]; nY += dy[i];
+			for (int j : route) {
+				nX += dx[j]; nY += dy[j];
 				pair<int, int> po = make_pair(nX, nY);
 				Masu masu;
 				route4Check.push_back(make_pair(masu, po));
