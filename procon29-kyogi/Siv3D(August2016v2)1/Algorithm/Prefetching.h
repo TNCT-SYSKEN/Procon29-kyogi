@@ -2,6 +2,7 @@
 #include "../Data/Map.h"
 #include "../Data/Masu.h"
 #include "../Setting.h"
+#include "../gneral.h"
 #include <vector>
 
 class Prefetching {
