@@ -178,8 +178,8 @@ int Prefetching::caluculateTileScore(int nowX, int nowY, int step, vector<pair<M
 
 int Prefetching::caluculateMovable(int nowX, int nowY, int step)
 {
-	int dy[] = { 1, 0, -1, 0 };
-	int dx[] = { 0, 1, 0, -1 };
+	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1};
+	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1};
 	//移動可能マス数によって点数付け
 	Setting *setting;
 	setting = setting->getSetting();
@@ -189,7 +189,7 @@ int Prefetching::caluculateMovable(int nowX, int nowY, int step)
 	else {
 		Map map = *(Map::getMap());
 		int newMovable = 0;
-		for (int i = 0; i < 4; ++i) {
+		for (int i = 0; i < 8; ++i) {
 			int newX, newY;
 			newX = nowX + dx[i];
 			newY = nowY + dy[i];
