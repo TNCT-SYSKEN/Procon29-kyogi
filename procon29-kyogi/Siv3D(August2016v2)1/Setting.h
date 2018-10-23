@@ -3,11 +3,11 @@
 class Setting {
 public:
 	static Setting* getSetting();
-	//ç·å½“ãŸã‚Šã‚’å®Ÿè¡Œã™ã‚‹ï¼š1
-	//æ•°æ‰‹å…ˆèª­ã¿ï¼š0
+	//‘“–‚½‚è‚ğÀs‚·‚éF1
+	//”èæ“Ç‚İF0
 	int bruteForce = 0;
 	int maxStep;
-	//trueãªã‚‰å®Ÿè¡Œ
+	//true‚È‚çÀs
 	bool turnFlag;
 	vector< vector<int> > bruteForceResults;
 private:

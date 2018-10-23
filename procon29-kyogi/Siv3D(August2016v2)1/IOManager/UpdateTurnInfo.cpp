@@ -85,6 +85,7 @@ void UpdateTurnInfo::research(void)
 	pair <int, int> enemy1 = make_pair(now_map->agents[2].nextPosition.first, now_map->agents[2].nextPosition.second);
 	pair <int, int> enemy2 = make_pair(now_map->agents[3].nextPosition.first, now_map->agents[3].nextPosition.second);
 
+
 	//ターン始めののデータを代入
 	//*now_eva = turnManager->eva[now_map->Turn];
 	//*now_setting = turnManager->setting[now_map->Turn];
