@@ -23,7 +23,8 @@ vector<int> Prefetching::prefetching(int toX, int toY, bool isRmv = false)
 			int newY = toY + dy[i];
 
 			ret[0] += caluculateSumScore(newX, newY, 1, route, route);
-			ret[1] += caluculateTileScore(newX, newY, 0, route);
+			ret[1] += map->board[toY][toX].TilePoint;
+			ret[1] += caluculateTileScore(newX, newY, 1, route);
 			ret[2] += caluculateMovable(newX, newY, 1);
 		}
 	}
