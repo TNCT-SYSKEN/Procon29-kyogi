@@ -179,10 +179,10 @@ void Interrupt::selectAglo()
 
 	//true ”Žèæ“Ç‚Ý
 	//false ‘S’Tõ
-	if (m_gui.toggleSwitch(L"switchAlgo").enabled == false) {
+	if (m_gui.toggleSwitch(L"switchAlgo").isRight) {
 		setting->bruteForce = 1;
 	}
-	else if (m_gui.toggleSwitch(L"switchAlgo").enabled == true) {
+	else{
 		setting->bruteForce = 0;
 	}
 }

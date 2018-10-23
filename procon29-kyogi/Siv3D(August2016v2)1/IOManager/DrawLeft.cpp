@@ -28,11 +28,9 @@ void DrawLeft::drawMap(void) {
 	//マスの表示座標の補助
 	const int pos_sup = MASU_SIZE + 5;
 
-	map->Vertical = 12;
-	map->Width = 12;
 	//マップのタイルを表示（二重ループで縦横を管理）
-	for (int i = 0; i < map->Vertical;i++) {
-		for (int j = 0; j < map->Width; j++) {
+	for (int i = 0; i < 12;i++) {
+		for (int j = 0; j < 12; j++) {
 			
 			//Stateの状態に対して表示するマスの変更
 			switch (map->board[i][j].Status) {
