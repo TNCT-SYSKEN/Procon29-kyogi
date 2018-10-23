@@ -6,7 +6,7 @@
 
 class Prefetching {
 public:
-	vector<int> prefetching(int, int);
+	vector<int> prefetching(int, int, bool);
 	int ansScore;
 	static void caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, int nowX, int nowY, vector< vector<int> >& visited, Masu::StateOfMasu);
 	static bool isVisited(vector<pair<Masu, pair<int, int>>> route, int newX, int newY, Masu::StateOfMasu st) {

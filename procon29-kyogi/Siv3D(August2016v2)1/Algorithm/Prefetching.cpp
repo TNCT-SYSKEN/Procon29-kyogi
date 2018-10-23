@@ -1,16 +1,32 @@
 #include "Prefetching.h"
 
 
-vector<int> Prefetching::prefetching(int toX, int toY)
+vector<int> Prefetching::prefetching(int toX, int toY, bool isRmv = false)
 {
 	Map *map;
 	map = map->getMap();
 	vector<pair<Masu, pair<int, int>>> route = {};
 
 	vector<int> ret;
-	ret.push_back(caluculateSumScore(toX, toY, 0, route, route));
-	ret.push_back(caluculateTileScore(toX, toY, 0, route));
-	ret.push_back(caluculateMovable(toX, toY, 0));
+
+	if (!isRmv) {
+		ret.push_back(caluculateSumScore(toX, toY, 0, route, route));
+		ret.push_back(caluculateTileScore(toX, toY, 0, route));
+		ret.push_back(caluculateMovable(toX, toY, 0));
+	}else{
+		ret.push_back(0); ret.push_back(0); ret.push_back(0);
+		for (int i = 0; i < 8; ++i) {
+			int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
+			int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
+
+			int newX = toX + dx[i];
+			int newY = toY + dy[i];
+
+			ret[0] += caluculateSumScore(newX, newY, 1, route, route);
+			ret[1] += caluculateTileScore(newX, newY, 0, route);
+			ret[2] += caluculateMovable(newX, newY, 1);
+		}
+	}
 
 	return ret;
 }
@@ -111,8 +127,6 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 									}
 								}
 							}
-
-							Println(se);
 
 							newScore += se;
 
