@@ -1,11 +1,15 @@
 #pragma once
 #include "Map.h"
-#define TurnValue 120
+#include "../Setting.h"
+#include "Evaluation.h"
+#define MAX_TURN 120
 
 class TurnManager {
 public :
-	TurnManager *getTurnManager();
-	Map Turn[TurnValue];
+	static TurnManager *getTurnManager();
+	Map map[MAX_TURN];
+	Evaluation eva[MAX_TURN];
+	Setting setting[MAX_TURN];
 private:
-	static TurnManager * InsTurnManager;
+	static TurnManager* InsTurnManager;
 };

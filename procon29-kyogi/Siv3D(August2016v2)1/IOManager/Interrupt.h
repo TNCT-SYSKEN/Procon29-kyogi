@@ -6,11 +6,16 @@
 #include "../GUI.h"
 #include "../Setting.h"
 #include "../Algorithm/AlgorithmManager.h"
+#include "UpdateTurnInfo.h"
+#include "DrawLeft.h"
+#define MASU_SIZE 45
+#define MAX_MAP_SIZE 12
 
 class Interrupt {
 public:
 	Interrupt();
 	GUI m_gui;
+	void inputEnemyMovePos();
 	void interruptManager(void);
 private:
 	void backTurn(void);
@@ -19,9 +24,11 @@ private:
 	void prefetchingInfo(void);
 	//çƒìxíTçıÇ∑ÇÈ
 	void Research(void);
+	void start();
 	void selectAglo();
 	void drawSumScore();
 	void drawTileScore();
 	void drawAreaScore();
 	void drawTurn();
+	void drawInfo();
 };
