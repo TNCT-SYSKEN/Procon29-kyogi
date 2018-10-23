@@ -116,7 +116,9 @@ void AgentManager::decideAgentAct()
 	for (int i = 0; i < AGENTS; i++) {
 		//移動先が被ってない
 		//移動先に相手のタイルがない
-		if (map->agents[i].canMoveNextPos == true && map->agents[i].canMoveTile == false&&map->agents[i].beAgent == false) {
+		if (map->agents[i].canMoveNextPos == true &&
+			map->agents[i].canMoveTile == false&&
+			map->agents[i].beAgent == false) {
 			map->agents[i].actAgent = Agent::move;
 		}
 	}
@@ -148,12 +150,14 @@ void AgentManager::decideAgentAct()
 	*/
 	//停滞かどうか判定
 	for (int i = 0; i < AGENTS;i++) {
-		if (map->agents[0].Status == Agent::move) {
-			if (map->agents[i].position.first == map->agents[i].nextPosition.first &&
-				map->agents[i].position.second == map->agents[i].nextPosition.second) {
-				//停滞：stagnation
-				map->agents[i].actAgent = Agent::stagnation;
-			}
+		if (map->agents[i].position.first == map->agents[i].nextPosition.first &&
+			map->agents[i].position.second == map->agents[i].nextPosition.second||
+			map->agents[i].beAgent == true||
+			map->agents[i].canMoveNextPos == false ||
+			map->agents[i].canMoveTile == true
+			) {
+			//停滞：stagnation
+			map->agents[i].actAgent = Agent::stagnation;
 		}
 	}
 }
