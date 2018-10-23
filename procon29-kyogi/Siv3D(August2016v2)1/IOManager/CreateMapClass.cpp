@@ -14,6 +14,8 @@ void CreateMapClass::init(void)
 			map->board[j][i].Status = Masu::Other;
 		}
 	}
+	//ターン数の初期化
+	map->Turn = 0;
 }
 
 /* ReadQR->data にちゃんと入ってれば true を，そうでなければ false を返す．*/

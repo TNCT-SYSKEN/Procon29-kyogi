@@ -17,4 +17,5 @@ private:
 	void drawAgent(void);
 	void drawTilePoint(void);
 	void drawMovableTile(void);
+	void drawNextPosition(void);
 }; 

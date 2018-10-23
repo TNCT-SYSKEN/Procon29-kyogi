@@ -34,19 +34,19 @@ void DrawLeft::drawMap(void) {
 			
 			//Stateの状態に対して表示するマスの変更
 			switch (map->board[i][j].Status) {
-			case 0 :
+			case Masu::Non:
 				//draw non map
 				Rect(j * pos_sup + 5 , i * pos_sup + 5 ,MASU_SIZE ,MASU_SIZE).draw(Palette::Gray);
 				break;
-			case 1 :
+			case Masu::FriendTile :
 				//draw frined map
 				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Skyblue);
 				break;
-			case 2 :
+			case Masu::EnemyTile :
 				//draw enemy map
 				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Lightpink);
 				break;
-			case 3 :
+			case Masu::Other :
 				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Black);
 				break;
 			default:
@@ -80,17 +80,17 @@ void DrawLeft::drawAgent(void)
 
 	for (int i = 0; i < map->agents.size(); i++) {
 		switch (map->agents[i].Status) {
-		case 0:
+		case Agent::friend1:
 			fri1.draw(map->agents[i].position.second * pos_sup + 5, map->agents[i].position.first * pos_sup + 5);
 			break;
-		case 1:
+		case Agent::friend2:
 			//friend の場合
 			fri2.draw(map->agents[i].position.second * pos_sup + 5 ,map->agents[i].position.first * pos_sup + 5);
 			break;
-		case 3 :
+		case Agent::enemy1 :
 			ene1.draw(map->agents[i].position.second * pos_sup + 5, map->agents[i].position.first * pos_sup + 5);
 			break;
-		case 4 :
+		case Agent::enemy2 :
 			//enemyの場合
 			ene2.draw(map->agents[i].position.second * pos_sup + 5 , map->agents[i].position.first * pos_sup + 5);
 			break;
@@ -112,7 +112,7 @@ void DrawLeft::drawTilePoint(void)
 		for (int j = 0; j < map->Width; j++) {
 			//Map外のタイルじゃないならTrue
 			//Status Other : 3
-			if (map->board[i][j].Status != 3) {
+			if (map->board[i][j].Status != Masu::Other) {
 				//タイルポイントを表示
 				font(map->board[i][j].TilePoint).draw(10 + pos_sup * j, 10 + pos_sup * i, Palette::Yellow);
 			}
@@ -123,4 +123,10 @@ void DrawLeft::drawTilePoint(void)
 void DrawLeft::drawMovableTile(void)
 {
 	//自分のエージェントが移動出来る場所の表示
+}
+
+//エージェントの次の候補地を表示
+void DrawLeft::drawNextPosition(void)
+{
+	
 }
