@@ -120,7 +120,7 @@ void AgentManager::decideAgentAct()
 			map->agents[i].actAgent = Agent::move;
 		}
 	}
-
+	/*
 	//œ‹‚©‚Ç‚¤‚©”»’è
 	int x_pos;
 	int y_pos;
@@ -145,13 +145,15 @@ void AgentManager::decideAgentAct()
 			
 		}
 	}
-
+	*/
 	//’â‘Ø‚©‚Ç‚¤‚©”»’è
 	for (int i = 0; i < AGENTS;i++) {
-		if (map->agents[i].position.first == map->agents[i].nextPosition.first &&
-			map->agents[i].position.second == map->agents[i].nextPosition.second) {
-			//’â‘ØFstagnation
-			map->agents[i].actAgent = Agent::stagnation;
+		if (map->agents[0].Status == Agent::move) {
+			if (map->agents[i].position.first == map->agents[i].nextPosition.first &&
+				map->agents[i].position.second == map->agents[i].nextPosition.second) {
+				//’â‘ØFstagnation
+				map->agents[i].actAgent = Agent::stagnation;
+			}
 		}
 	}
 }
