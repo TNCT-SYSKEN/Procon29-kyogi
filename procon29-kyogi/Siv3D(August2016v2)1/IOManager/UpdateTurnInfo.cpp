@@ -15,7 +15,7 @@ void UpdateTurnInfo::update()
 	Map *now_map;
 	now_map = now_map->getMap();
 	Evaluation *now_eva;
-	now_eva = now_eva->getEvaluation();
+	//now_eva = now_eva->getEvaluation();
 	Setting *now_setting;
 	now_setting = now_setting->getSetting();
 
@@ -23,7 +23,7 @@ void UpdateTurnInfo::update()
 	turnManager = turnManager->getTurnManager();
 
 	//現在の情報をターンマネージャに保存
-	turnManager->eva[now_map->Turn] = *now_eva;
+	//turnManager->eva[now_map->Turn] = *now_eva;
 	turnManager->map[now_map->Turn] = *now_map;
 }
 
@@ -39,7 +39,7 @@ void UpdateTurnInfo::backTurn(void)
 	Map *now_map;
 	now_map = now_map->getMap();
 	Evaluation *now_eva;
-	now_eva = now_eva->getEvaluation();
+	//now_eva = now_eva->getEvaluation();
 	Setting *now_setting;
 	now_setting = now_setting->getSetting();
 
@@ -51,7 +51,7 @@ void UpdateTurnInfo::backTurn(void)
 	if (now_map->Turn > 1) {
 		now_map->Turn--;
 		//1ターン前のデータを代入
-		*now_eva = turnManager->eva[now_map->Turn];
+		//*now_eva = turnManager->eva[now_map->Turn];
 		*now_map = turnManager->map[now_map->Turn];
 		now_setting->turnFlag = false;
 	}
@@ -73,7 +73,7 @@ void UpdateTurnInfo::research(void)
 	Map *now_map;
 	now_map = now_map->getMap();
 	Evaluation *now_eva;
-	now_eva = now_eva->getEvaluation();
+	//now_eva = now_eva->getEvaluation();
 	Setting *now_setting;
 	now_setting = now_setting->getSetting();
 
@@ -85,8 +85,9 @@ void UpdateTurnInfo::research(void)
 	pair <int, int> enemy1 = make_pair(now_map->agents[2].nextPosition.first, now_map->agents[2].nextPosition.second);
 	pair <int, int> enemy2 = make_pair(now_map->agents[3].nextPosition.first, now_map->agents[3].nextPosition.second);
 
+
 	//ターン始めののデータを代入
-	*now_eva = turnManager->eva[now_map->Turn];
+	//*now_eva = turnManager->eva[now_map->Turn];
 	//*now_setting = turnManager->setting[now_map->Turn];
 	*now_map = turnManager->map[now_map->Turn];
 	now_setting->turnFlag = false;

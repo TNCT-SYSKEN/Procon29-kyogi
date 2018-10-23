@@ -116,11 +116,13 @@ void AgentManager::decideAgentAct()
 	for (int i = 0; i < AGENTS; i++) {
 		//移動先が被ってない
 		//移動先に相手のタイルがない
-		if (map->agents[i].canMoveNextPos == true && map->agents[i].canMoveTile == false&&map->agents[i].beAgent == false) {
+		//移動先にエージェントがいない
+		if (map->agents[i].canMoveNextPos == true && map->agents[i].canMoveTile == false&&
+			map->agents[i].beAgent == false) {
 			map->agents[i].actAgent = Agent::move;
 		}
 	}
-
+	/*
 	//除去かどうか判定
 	int x_pos;
 	int y_pos;
@@ -145,13 +147,15 @@ void AgentManager::decideAgentAct()
 			
 		}
 	}
-
+	*/
 	//停滞かどうか判定
 	for (int i = 0; i < AGENTS;i++) {
-		if (map->agents[i].position.first == map->agents[i].nextPosition.first &&
-			map->agents[i].position.second == map->agents[i].nextPosition.second) {
-			//停滞：stagnation
-			map->agents[i].actAgent = Agent::stagnation;
+		if (map->agents[i].Status != Agent::move) {
+			if (map->agents[i].position.first == map->agents[i].nextPosition.first &&
+				map->agents[i].position.second == map->agents[i].nextPosition.second) {
+				//停滞：stagnation
+				map->agents[i].actAgent = Agent::stagnation;
+			}
 		}
 	}
 }
