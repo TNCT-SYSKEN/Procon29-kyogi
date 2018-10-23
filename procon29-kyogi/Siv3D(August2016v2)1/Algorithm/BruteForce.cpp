@@ -8,7 +8,6 @@ int maxAns = 0;
 
 vector<int> BruteForce::bruteForce(int nX, int nY)
 {
-	//残りターン数．現在はダミー
 	int remainingTurn = 3;
 	nowX = nX; nowY = nY;
 
@@ -23,6 +22,7 @@ vector<int> BruteForce::bruteForce(int nX, int nY)
 	return ansVec;
 }
 
+/* TODO: 経路の重複をなくす */
 //経路のパターンを生やす．
 int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 	if (remainingTurn == 0) {
@@ -38,7 +38,7 @@ int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 			vector<int> v(map->Width + 2, 0);
 			visited.push_back(v);
 		}
-		
+
 		vector<pair<Masu, pair<int, int>>> route4C;
 		int nX = nowX; int nY = nowY;
 		for (int i : route) {
@@ -46,17 +46,17 @@ int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 			if (nX < 0 || nX >= map->Width || nY < 0 || nY >= map->Vertical) {
 				return -1;
 			}
-			pair<int, int> po = make_pair(nX+1, nY+1);
+			pair<int, int> po = make_pair(nX + 1, nY + 1);
 			Masu masu;
 			route4C.push_back(make_pair(masu, po));
 		}
 
-		Prefetching::caluculateEncircle(route4C, 0, 0, visited);
+		Prefetching::caluculateEncircle(route4C, 0, 0, visited, Masu::FriendTile);
 
 		int s2 = 0;
 		for (int u = 1; u <= map->Vertical; ++u) {
 			for (int v = 1; v <= map->Width; ++v) {
-				if (!visited[u][v] && !Prefetching::isVisited(route4C , v, u)) {
+				if (!visited[u][v] && !Prefetching::isVisited(route4C, v, u, Masu::FriendTile)) {
 					s2 += abs(map->board[u - 1][v - 1].TilePoint);
 				}
 			}
@@ -76,8 +76,8 @@ int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 
 			vector<pair<Masu, pair<int, int>>> route4Check;
 			int nX = nowX; int nY = nowY;
-			for (int i : route) {
-				nX += dx[i]; nY += dy[i];
+			for (int j : route) {
+				nX += dx[j]; nY += dy[j];
 				pair<int, int> po = make_pair(nX, nY);
 				Masu masu;
 				route4Check.push_back(make_pair(masu, po));
@@ -85,7 +85,7 @@ int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 
 			Map *map;
 			map = map->getMap();
-			if (!Prefetching::isVisited(route4Check, nX + dx[i], nY + dy[i]) && map->board[nY+dy[i]][nX+dx[i]].Status != Masu::FriendTile && map->board[nY + dy[i]][nX + dx[i]].Status != Masu::EnemyTile) {
+			if (!Prefetching::isVisited(route4Check, nX + dx[i], nY + dy[i], Masu::FriendTile) && map->board[nY + dy[i]][nX + dx[i]].Status != Masu::FriendTile && map->board[nY + dy[i]][nX + dx[i]].Status != Masu::EnemyTile) {
 				r1.push_back(i);
 				int s = calcRoute(remainingTurn - 1, r1);
 				if (s > maxScore) {
