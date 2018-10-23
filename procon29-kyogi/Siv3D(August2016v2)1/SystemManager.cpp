@@ -51,7 +51,11 @@ void SystemManager::systemManager(void)
 		agentManager.agentMoveManager(); //エージェントが実際に行動する
 		drawLeft.drawLeftManager();      //行動後の状態を表示
 		System::Update();
+		Println(map->agents[0].nextPosition.first);
+		Println(map->agents[0].nextPosition.second);
 
+		Println(map->agents[1].nextPosition.first);
+		Println(map->agents[1].nextPosition.second);
 		//ここまでの流れが終わったらturnFlagをtrueにする
 		setting->turnFlag = false;
 	}
