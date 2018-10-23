@@ -70,6 +70,10 @@ void AgentManager::checkAgentConflict()
 					map->agents[i].nextPosition.second == map->agents[j].position.second) {
 					map->agents[i].beAgent = true;
 					map->agents[i].beAgentNum =j;
+					break;
+				}
+				else {
+					map->agents[i].beAgent = false;
 				}
 			}
 		}
@@ -112,7 +116,7 @@ void AgentManager::decideAgentAct()
 	for (int i = 0; i < AGENTS; i++) {
 		//移動先が被ってない
 		//移動先に相手のタイルがない
-		if (map->agents[i].canMoveNextPos == true && map->agents[i].canMoveTile == false) {
+		if (map->agents[i].canMoveNextPos == true && map->agents[i].canMoveTile == false&&map->agents[i].beAgent == false) {
 			map->agents[i].actAgent = Agent::move;
 		}
 	}
@@ -172,7 +176,7 @@ void AgentManager::moveAgent(int agentNum)
 	}
 }
 
-//マスの削除
+//マスの除去
 void AgentManager::eraseAgent(int agentNum)
 {
 }
@@ -184,6 +188,6 @@ void AgentManager::stayAgent(int agentNum)
 	map = map->getMap();
 	//停滞処理なので何もしない
 	//次の移動場所に現在の位置を代入
-	map->agents[agentNum].nextPosition.first = map->agents[agentNum].position.first;
-	map->agents[agentNum].nextPosition.second = map->agents[agentNum].position.second;
+	//map->agents[agentNum].nextPosition.first = map->agents[agentNum].position.first;
+	//map->agents[agentNum].nextPosition.second = map->agents[agentNum].position.second;
 }

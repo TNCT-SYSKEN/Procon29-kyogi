@@ -13,6 +13,13 @@ void SystemManager::startSolver(void)
 	rqr->readQR();
 
 	ioManager.init();
+	Map *map;
+	map = map->getMap();
+	map->agents[0].nextPosition.first = 1;
+	map->agents[0].nextPosition.second = 0;
+
+	map->agents[1].nextPosition.first = 1;
+	map->agents[1].nextPosition.second = 2;
 }
 
 void SystemManager::endSolver(void)
@@ -45,8 +52,7 @@ void SystemManager::systemManager(void)
 		agentManager.agentMoveManager(); //エージェントが実際に行動する
 		drawLeft.drawLeftManager();      //行動後の状態を表示
 		System::Update();
-		map->agents[2].nextPosition.first;
-		map->agents[2].nextPosition.second;
+
 		//ここまでの流れが終わったらturnFlagをtrueにする
 		setting->turnFlag = false;
 	}

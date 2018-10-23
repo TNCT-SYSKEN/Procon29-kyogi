@@ -9,7 +9,7 @@ void Main()
 	//背景色の変更
 	Graphics::SetBackground(Color(160, 200, 100));
 	//サイズを変えれるウィンドウに
-	Window::SetStyle(WindowStyle::Sizeable);
+	//Window::SetStyle(WindowStyle::Sizeable);
 	//画面サイズの設定
 	//left screen 605 x 605 y
 	//right screen 595 x 605 y 

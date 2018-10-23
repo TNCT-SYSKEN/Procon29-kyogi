@@ -280,6 +280,7 @@ void Interrupt::inputEnemyMovePos()
 	for (int k = 2; k <= 3; k++) {
 		String text = Format(L"EnemyAgent[", k - 1, L"]‚ÌˆÚ“®æ‚ðƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢");
 		m_gui.textArea(L"Info").setText(text);
+		System::Update();
 		while (System::Update()) {
 			if (Input::MouseL.clicked) {
 				const Point pos = Mouse::Pos();
