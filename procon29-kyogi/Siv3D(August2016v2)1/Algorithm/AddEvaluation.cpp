@@ -17,10 +17,15 @@ pair<int, int> AddEvaluation::addEvaluation(Agent agent)
 		int newY = agent.position.first + dy[i % 8];
 		Map *map;
 		map = map->getMap();
+		evl->SumScore[i] = -1;
+		evl->TileScore[i] = -1;
+		evl->Movable[i] = -1;
 		if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical) {
 			if ((map->board[newY][newX].Status == Masu::EnemyTile && i >= 8) || (map->board[newY][newX].Status == Masu::Non && i < 8)) {
 				vector<int> ret = prefetching.prefetching(newX, newY, i >= 8);
-				evl->SumScore[i] = ret[0]; evl->TileScore[i] = ret[1]; evl->Movable[i] = ret[2];
+				evl->SumScore[i] = ret[0];
+				evl->TileScore[i] = ret[1];
+				evl->Movable[i] = ret[2];
 			}
 		}
 		JudgmentEncircle judgeEncircle;
