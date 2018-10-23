@@ -3,7 +3,7 @@
 void AlgorithmManager::algorithmManager(void)
 {
 	/*
-	‘“–‚½‚è‚©”èæ“Ç‚İ‚©”»’f‚µ‚Ä“Ç‚İo‚·
+	ç·å½“ãŸã‚Šã‹æ•°æ‰‹å…ˆèª­ã¿ã‹åˆ¤æ–­ã—ã¦èª­ã¿å‡ºã™
 	*/
 	Setting *setting;
 	setting = setting->getSetting();

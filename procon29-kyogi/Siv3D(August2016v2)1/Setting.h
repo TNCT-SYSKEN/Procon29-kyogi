@@ -7,9 +7,9 @@ public:
 	//”èæ“Ç‚İF0
 	int bruteForce = 0;
 	int maxStep;
+	//true‚È‚çÀs
+	bool turnFlag;
 	vector< vector<int> > bruteForceResults;
 private:
 	static Setting* InsSetting;
 };
-
-

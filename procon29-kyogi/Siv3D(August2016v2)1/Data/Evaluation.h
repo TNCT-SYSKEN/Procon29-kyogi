@@ -10,4 +10,9 @@ public:
 	int TileScore[AroundEight];
 	//八近傍の移動可能マス
 	int Movable[AroundEight];
+
+	static Evaluation* Evaluation::getEvaluation();
+private:
+	static Evaluation *InsEvaluation;
+
 };
