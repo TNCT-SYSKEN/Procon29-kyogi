@@ -134,22 +134,20 @@ void AgentManager::decideAgentAct()
 			map->agents[i].actAgent = Agent::move;
 		}
 	}
-	/*
+	
 	//除去かどうか判定
-	int x_pos;
-	int y_pos;
 	for (int i = 0; i < AGENTS; i++) {
-		x_pos = map->agents[i].nextPosition.second;
-		y_pos = map->agents[i].nextPosition.first;
 		//移動先が被っていない
 		//移動候補地に敵のタイルがある
-		if (map->agents[i].canMoveNextPos == true && map->agents[i].canMoveTile == true) {
-			//候補地に敵がいる
+		if (map->agents[i].canMoveNextPos == false &&
+			map->agents[i].canMoveTile == true) {
+			//候補地にエージェントがいる
 			if (map->agents[i].beAgent == true) {
-				//その敵の候補地にそのエージェントとは違うタイルがない
-				//その敵が移動できるならばerase
-				if (map->agents[map->agents[i].beAgentNum].canMoveTile == false && 
-					map->agents[map->agents[i].beAgentNum].canMoveNextPos == true) {
+				//その敵が移動するならtrue
+				if (map->agents[map->agents[i].beAgentNum].canMoveNextPos == false &&
+					map->agents[map->agents[i].beAgentNum].canMoveTile == false &&
+					map->agents[map->agents[i].beAgentNum].beAgent == false &&
+					map->agents[map->agents[i].beAgentNum].doStagnation == false) {
 					map->agents[i].actAgent = Agent::erase;
 				}
 			}
@@ -159,19 +157,21 @@ void AgentManager::decideAgentAct()
 			
 		}
 	}
-	*/
+	
 	//停滞かどうか判定
 	for (int i = 0; i < AGENTS;i++) {
-		//移動先が被っている
-		//移動先に相手のタイルがある
-		//移動先にエージェントがいる
-		//停滞意思表示をしている
-		if (map->agents[i].beAgent == true||
-			map->agents[i].canMoveNextPos == true||
-			map->agents[i].canMoveTile == true||
-			map->agents[i].doStagnation == true) {
-			//停滞：stagnation
-			map->agents[i].actAgent = Agent::stagnation;
+		if (map->agents[i].actAgent != Agent::erase&&map->agents[i].actAgent != Agent::move) {
+			//移動先が被っている
+			//移動先に相手のタイルがある
+			//移動先にエージェントがいる
+			//停滞意思表示をしている
+			if (map->agents[i].beAgent == true ||
+				map->agents[i].canMoveNextPos == true ||
+				map->agents[i].canMoveTile == true ||
+				map->agents[i].doStagnation == true) {
+				//停滞：stagnation
+				map->agents[i].actAgent = Agent::stagnation;
+			}
 		}
 	}
 }
@@ -199,6 +199,11 @@ void AgentManager::moveAgent(int agentNum)
 //マスの除去
 void AgentManager::eraseAgent(int agentNum)
 {
+	Map *map;
+	map = map->getMap();
+	
+	//タイルを除去（何も置いてない状態に戻す）
+	map->board[map->agents[agentNum].nextPosition.first][map->agents[agentNum].nextPosition.second].Status = Masu::Non;
 }
 
 //停滞処理
