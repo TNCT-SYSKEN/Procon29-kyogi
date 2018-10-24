@@ -13,13 +13,12 @@ pair<int, int> Judgment::judgment(Evaluation evl)
 	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
 
 	double maxValue = 0; //ç≈ëÂÇÃï]âøíl
-	for (int i = 0; i < 8; ++i) {
+	for (int i = 0; i < 16; ++i) {
 		double value = (evl.SumScore[i] * weight[0]) + (evl.TileScore[i] * weight[1]) + (evl.Movable[i] * weight[2]);
 		if (value > maxValue) {
-			ansPosition = make_pair(dy[i], dx[i]);
+			ansPosition = make_pair(dy[i % 8], dx[i % 8]);
 			maxValue = value;
 		}
 	}
-
 	return ansPosition;
 }
