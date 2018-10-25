@@ -14,6 +14,8 @@ public :
 	//停滞を意思表示している
 	bool doStagnation;
 	int beAgentNum;
+	//移動先の数字
+	int suportNum;
 	//エージェントが除去するタイルの座標
 	pair <int, int> erasePosition;
 	//エージェントの現在位置

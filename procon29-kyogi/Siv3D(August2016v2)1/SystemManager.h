@@ -3,6 +3,7 @@
 #include "IOManager/InputOutputManager.h"
 #include "IOManager/DrawMap.h"
 #include "AgentManager.h"
+#include "Suport.h"
 
 class SystemManager {
 public:
