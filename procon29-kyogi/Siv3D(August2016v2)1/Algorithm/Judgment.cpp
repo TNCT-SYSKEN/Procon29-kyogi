@@ -9,7 +9,7 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority)
 	pair <int, int> ansPositionReserve = make_pair(0, 0); //行き先が1番目と2番目のエージェントでかぶっていたときのための予備
 
 	vector<double> weight; //各評価項目に対する重み
-	weight.push_back(1.0); weight.push_back(1.0); weight.push_back(1.0); //ダミー．動的に変更できるようにしたい．
+	weight.push_back(14.0); weight.push_back(8.0); weight.push_back(13.0); weight.push_back(9);//ダミー．動的に変更できるようにしたい．
 
 	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
 	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
@@ -19,7 +19,7 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority)
 
 	double maxValue = 0; //最大の評価値
 	for (int i = 0; i < 16; ++i) {
-		double value = (evl.SumScore[i] * weight[0]) + (evl.TileScore[i] * weight[1]) + (evl.Movable[i] * weight[2]);
+		double value = (evl.SumScore[i] * weight[0]) + (evl.TileScore[i] * weight[1]) + (evl.Movable[i] * weight[2]) + (i % 8 >= 4 ? weight[3] : 0);
 		if (value > maxValue) {
 			ansPositionReserve = ansPosition;
 			ansPosition = make_pair(dy[i % 8], dx[i % 8]);
