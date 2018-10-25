@@ -1,13 +1,13 @@
 #include "SystemManager.h"
 
-//ã‚¯ãƒ©ã‚¹å‹å¤‰æ•°ã®å®£è¨€
+//ƒNƒ‰ƒXŒ^•Ï”‚ÌéŒ¾
 InputOutputManager ioManager;
 AlgorithmManager algoManager;
 ReadQR readQR;
 
 void SystemManager::startSolver(void)
 {
-	//ã‚·ã‚¹ãƒ†ãƒ ã‚’é–‹å§‹ã™ã‚‹
+	//ƒVƒXƒeƒ€‚ğŠJn‚·‚é
 	ReadQR *rqr;
 	rqr = rqr->getReadQR();
 	rqr->readQR();
@@ -24,15 +24,15 @@ void SystemManager::startSolver(void)
 
 void SystemManager::endSolver(void)
 {
-	//ã‚·ã‚¹ãƒ†ãƒ ã‚’çµ‚äº†ã™ã‚‹æ¡ä»¶
-	//çµ‚ã‚ã‚Šã®ã‚¿ãƒ¼ãƒ³æ•°ã«é”ã—ãŸå ´åˆ
-	//EndãŒæŠ¼ã•ã‚ŒãŸå ´åˆ
+	//ƒVƒXƒeƒ€‚ğI—¹‚·‚éğŒ
+	//I‚í‚è‚Ìƒ^[ƒ“”‚É’B‚µ‚½ê‡
+	//End‚ª‰Ÿ‚³‚ê‚½ê‡
 }
 
 void SystemManager::systemManager(void)
 {
-	//ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã¨ï¼©ï¼¯ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ç®¡ç†
-	//ã‚²ãƒ¼ãƒ ã®æµã‚Œã®ç®¡ç†ã™ã‚‹
+	//ƒAƒ‹ƒSƒŠƒYƒ€‚Æ‚h‚nƒ}ƒl[ƒWƒƒ[‚ğŠÇ—
+	//ƒQ[ƒ€‚Ì—¬‚ê‚ÌŠÇ—‚·‚é
 	UpdateTurnInfo update;
 	Interrupt inter;
 	DrawLeft drawLeft;
@@ -41,20 +41,19 @@ void SystemManager::systemManager(void)
 	map = map->getMap();
 	Setting *setting;
 	setting = setting->getSetting();
-	
+
 	if (setting->turnFlag == true) {
-		update.updateManager(); //ãã®ã‚¿ãƒ¼ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ï¼‹ã‚¿ãƒ¼ãƒ³æ•°ã‚’é€²ã‚ã‚‹
-		algoManager.algorithmManager(); //æœ€å–„æ‰‹ã‚’æ±‚ã‚ã‚‹
-		drawLeft.drawLeftManager();    //æœ€å–„æ‰‹ã«ã‚ˆã£ã¦å‘³æ–¹ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã®ç§»å‹•å…ˆã‚’è¡¨ç¤ºã™ã‚‹
-		inter.inputEnemyMovePos();   //æ•µã®å€™è£œåœ°ã®å…¥åŠ›ã®å—ä»˜
-		agentManager.decideAgentAct();  //æ•µã¨å‘³æ–¹ã®å€™è£œåœ°ã«ã‚ˆã£ã¦æ¬¡ã«è¡Œã†è¡Œå‹•ã®æ±ºå®š
-		agentManager.agentMoveManager(); //ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆãŒå®Ÿéš›ã«è¡Œå‹•ã™ã‚‹
-		drawLeft.drawLeftManager();      //è¡Œå‹•å¾Œã®çŠ¶æ…‹ã‚’è¡¨ç¤º
+		update.updateManager(); //‚»‚Ìƒ^[ƒ“‚Ìƒf[ƒ^‚ğ•Û‘¶{ƒ^[ƒ“”‚ği‚ß‚é
+		algoManager.algorithmManager(); //Å‘Pè‚ğ‹‚ß‚é
+		drawLeft.drawLeftManager();    //Å‘Pè‚É‚æ‚Á‚Ä–¡•ûƒG[ƒWƒFƒ“ƒg‚ÌˆÚ“®æ‚ğ•\¦‚·‚é
+		inter.inputEnemyMovePos();   //“G‚ÌŒó•â’n‚Ì“ü—Í‚Ìó•t
+		agentManager.decideAgentAct();  //“G‚Æ–¡•û‚ÌŒó•â’n‚É‚æ‚Á‚ÄŸ‚És‚¤s“®‚ÌŒˆ’è
+		agentManager.agentMoveManager(); //ƒG[ƒWƒFƒ“ƒg‚ªÀÛ‚És“®‚·‚é
+		drawLeft.drawLeftManager();      //s“®Œã‚Ìó‘Ô‚ğ•\¦
 		System::Update();
 
-		//ã“ã“ã¾ã§ã®æµã‚ŒãŒçµ‚ã‚ã£ãŸã‚‰turnFlagã‚’trueã«ã™ã‚‹
+		//‚±‚±‚Ü‚Å‚Ì—¬‚ê‚ªI‚í‚Á‚½‚çturnFlag‚ğtrue‚É‚·‚é
 		setting->turnFlag = false;
 	}
 	ioManager.inputOuntputManager();
 }
-

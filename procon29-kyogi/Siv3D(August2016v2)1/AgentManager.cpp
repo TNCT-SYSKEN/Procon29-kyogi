@@ -5,7 +5,7 @@ void AgentManager::agentMoveManager()
 	Map *map;
 	map = map->getMap();
 
-	//ŠeƒG[ƒWƒFƒ“ƒg‚Ì“®ì‚Ì“Ç‚İo‚µ
+	//å„ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã®å‹•ä½œã®èª­ã¿å‡ºã—
 	for (int i = 0; i < AGENTS; i++) {
 		switch (map->agents[i].actAgent) {
 		case Agent::move :
@@ -30,13 +30,13 @@ void AgentManager::setAgentPos()
 void AgentManager::setTurnFlag()
 {
 	Setting setting;
-	//1ƒ^[ƒ“‚ªI—¹‚µ‚½‚ç‚Ì•”•ª‚ªtrue‚É’u‚«Š·‚í‚é
+	//1ã‚¿ãƒ¼ãƒ³ãŒçµ‚äº†ã—ãŸã‚‰ã®éƒ¨åˆ†ãŒtrueã«ç½®ãæ›ã‚ã‚‹
 	if (true) {
 		setting.turnFlag = true;
 	}
 }
 
-//“G‚Æ–¡•û‚Ì–³Œøˆ—
+//æ•µã¨å‘³æ–¹ã®ç„¡åŠ¹å‡¦ç†
 void AgentManager::checkAgentConflict()
 {
 	Map *map;
@@ -44,16 +44,16 @@ void AgentManager::checkAgentConflict()
 
 	int count = 0;
 
-	//nextPos‚É‚æ‚Á‚ÄˆÚ“®‚Å‚«‚é‚Ç‚¤‚©”»’fok
+	//nextPosã«ã‚ˆã£ã¦ç§»å‹•ã§ãã‚‹ã©ã†ã‹åˆ¤æ–­ok
 	for (int i = 0; i < AGENTS; i++) {
 		for (int j = 0; j < AGENTS; j++) {
-			//agent“¯m‚ÌnextPos‚ğ”äŠr‚µA“¯‚¶‚È‚çcount++;
+			//agentåŒå£«ã®nextPosã‚’æ¯”è¼ƒã—ã€åŒã˜ãªã‚‰count++;
 			if (map->agents[i].nextPosition.first == map->agents[j].nextPosition.first &&
 				map->agents[i].nextPosition.second == map->agents[j].nextPosition.second) {
 				count++;
 			}
 		}
-		//Å’áˆê‰ñ‚Í©•ª©g‚ÌnextPos‚Æ”äŠr‚·‚é‚½‚ßAcount >=2‚È‚ç‚Îtrue
+		//æœ€ä½ä¸€å›ã¯è‡ªåˆ†è‡ªèº«ã®nextPosã¨æ¯”è¼ƒã™ã‚‹ãŸã‚ã€count >=2ãªã‚‰ã°true
 		if (count >= 2) {
 			map->agents[i].canMoveNextPos = true;
 		}
@@ -63,12 +63,12 @@ void AgentManager::checkAgentConflict()
 		count = 0;
 	}
 
-	//ˆÚ“®æ‚ÉƒG[ƒWƒFƒ“ƒg‚ª‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’èok
+	//ç§»å‹•å…ˆã«ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆãŒã„ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šok
 	for (int i = 0; i < AGENTS; i++) {
 		map->agents[i].beAgent = false;
 		for (int j = 0; j < AGENTS; j++) {
 			if (i != j) {
-				//agent“¯m‚ÌnextPos‚ğ”äŠr‚µA“¯‚¶‚È‚çcount++;
+				//agentåŒå£«ã®nextPosã‚’æ¯”è¼ƒã—ã€åŒã˜ãªã‚‰count++;
 				if (map->agents[i].nextPosition.first == map->agents[j].position.first &&
 					map->agents[i].nextPosition.second == map->agents[j].position.second) {
 					map->agents[i].beAgent = true;
@@ -79,22 +79,22 @@ void AgentManager::checkAgentConflict()
 		}
 	}
 
-	//ƒ^ƒCƒ‹ó‹µ‚É‚æ‚Á‚ÄˆÚ“®‚Å‚«‚é‚©”»’èok
+	//ã‚¿ã‚¤ãƒ«çŠ¶æ³ã«ã‚ˆã£ã¦ç§»å‹•ã§ãã‚‹ã‹åˆ¤å®šok
 	for (int i = 0; i < AGENTS; i++) {
-		//–¡•û‚ÌƒG[ƒWƒFƒ“ƒg‚Ìê‡
+		//å‘³æ–¹ã®ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã®å ´åˆ
 		if (0 == i || 1 == i) {
 			if (map->board[map->agents[i].nextPosition.first][map->agents[i].nextPosition.second].Status == Masu::EnemyTile) {
-				//‚»‚Ìƒ}ƒX‚ÉˆÚ“®‚Å‚«‚È‚¢‚æ‚¤‚É
+				//ãã®ãƒã‚¹ã«ç§»å‹•ã§ããªã„ã‚ˆã†ã«
 				map->agents[i].canMoveTile = true;
 			}
 			else {
 				map->agents[i].canMoveTile = false;
 			}
 		}
-		//“GƒG[ƒWƒFƒ“ƒg‚Ìê‡
+		//æ•µã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã®å ´åˆ
 		if (2 == i || 3 == i) {
 			if (map->board[map->agents[i].nextPosition.first][map->agents[i].nextPosition.second].Status == Masu::FriendTile) {
-				//‚»‚Ìƒ}ƒX‚ÉˆÚ“®‚Å‚«‚È‚¢‚æ‚¤‚É
+				//ãã®ãƒã‚¹ã«ç§»å‹•ã§ããªã„ã‚ˆã†ã«
 				map->agents[i].canMoveTile = true;
 			}
 			else {
@@ -103,7 +103,7 @@ void AgentManager::checkAgentConflict()
 		}
 	}
 
-	//’â‘Ø‚ğˆÓv‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©ok
+	//åœæ»ã‚’æ„æ€ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ok
 	for (int i = 0; i < AGENTS; i++){
 		if (map->agents[i].position.first == map->agents[i].nextPosition.first &&
 			map->agents[i].position.second == map->agents[i].nextPosition.second) {
@@ -115,36 +115,36 @@ void AgentManager::checkAgentConflict()
 	}
 }
 
-//ƒG[ƒWƒFƒ“ƒg‚Ìs‚¤“®‚«‚ğŒˆ’è
+//ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã®è¡Œã†å‹•ãã‚’æ±ºå®š
 void AgentManager::decideAgentAct()
 {
 	Map *map;
 	map = map->getMap();
 
-	//ƒG[ƒWƒFƒ“ƒg‚ÌˆÊ’u‚©‚çŠeX‚Ì”»’è‚ğs‚¤B
+	//ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã®ä½ç½®ã‹ã‚‰å„ã€…ã®åˆ¤å®šã‚’è¡Œã†ã€‚
 	checkAgentConflict();
 
-	//’â‘Ø‚©‚Ç‚¤‚©”»’è
+	//åœæ»ã‹ã©ã†ã‹åˆ¤å®š
 	for (int i = 0; i < AGENTS; i++) {
-		//ˆÚ“®æ‚ª”í‚Á‚Ä‚¢‚é
-		//ˆÚ“®æ‚É‘Šè‚Ìƒ^ƒCƒ‹‚ª‚ ‚é
-		//ˆÚ“®æ‚ÉƒG[ƒWƒFƒ“ƒg‚ª‚¢‚é
-		//’â‘ØˆÓv•\¦‚ğ‚µ‚Ä‚¢‚é
+		//ç§»å‹•å…ˆãŒè¢«ã£ã¦ã„ã‚‹
+		//ç§»å‹•å…ˆã«ç›¸æ‰‹ã®ã‚¿ã‚¤ãƒ«ãŒã‚ã‚‹
+		//ç§»å‹•å…ˆã«ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆãŒã„ã‚‹
+		//åœæ»æ„æ€è¡¨ç¤ºã‚’ã—ã¦ã„ã‚‹
 		if (map->agents[i].beAgent == true ||
 			map->agents[i].canMoveNextPos == true ||
 			map->agents[i].canMoveTile == true ||
 			map->agents[i].doStagnation == true) {
-			//’â‘ØFstagnation
+			//åœæ»ï¼šstagnation
 			map->agents[i].actAgent = Agent::stagnation;
 		}
 	}
 
-	//ˆÚ“®‚©‚Ç‚¤‚©”»’è
+	//ç§»å‹•ã‹ã©ã†ã‹åˆ¤å®š
 	for (int i = 0; i < AGENTS; i++) {
-		//ˆÚ“®æ‚ª”í‚Á‚Ä‚È‚¢
-		//ˆÚ“®æ‚É‘Šè‚Ìƒ^ƒCƒ‹‚ª‚È‚¢
-		//ˆÚ“®æ‚ÉƒG[ƒWƒFƒ“ƒg‚ª‚¢‚È‚¢
-		//’â‘ØˆÓv•\¦‚ğ‚µ‚Ä‚¢‚È‚¢
+		//ç§»å‹•å…ˆãŒè¢«ã£ã¦ãªã„
+		//ç§»å‹•å…ˆã«ç›¸æ‰‹ã®ã‚¿ã‚¤ãƒ«ãŒãªã„
+		//ç§»å‹•å…ˆã«ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆãŒã„ãªã„
+		//åœæ»æ„æ€è¡¨ç¤ºã‚’ã—ã¦ã„ãªã„
 		if (map->agents[i].canMoveNextPos == false &&
 			map->agents[i].canMoveTile == false&&
 			map->agents[i].beAgent == false&&
@@ -153,15 +153,15 @@ void AgentManager::decideAgentAct()
 		}
 	}
 	
-	//œ‹‚©‚Ç‚¤‚©”»’è
+	//é™¤å»ã‹ã©ã†ã‹åˆ¤å®š
 	for (int i = 0; i < AGENTS; i++) {
-		//ˆÚ“®æ‚ª”í‚Á‚Ä‚¢‚È‚¢
-		//ˆÚ“®Œó•â’n‚É“G‚Ìƒ^ƒCƒ‹‚ª‚ ‚é
+		//ç§»å‹•å…ˆãŒè¢«ã£ã¦ã„ãªã„
+		//ç§»å‹•å€™è£œåœ°ã«æ•µã®ã‚¿ã‚¤ãƒ«ãŒã‚ã‚‹
 		if (map->agents[i].canMoveNextPos == false &&
 			map->agents[i].canMoveTile == true) {
-			//Œó•â’n‚ÉƒG[ƒWƒFƒ“ƒg‚ª‚¢‚é
+			//å€™è£œåœ°ã«ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆãŒã„ã‚‹
 			if (map->agents[i].beAgent == true) {
-				//‚»‚Ì“G‚ªˆÚ“®‚·‚é‚È‚çtrue
+				//ãã®æ•µãŒç§»å‹•ã™ã‚‹ãªã‚‰true
 				if (map->agents[map->agents[i].beAgentNum].canMoveNextPos == false &&
 					map->agents[map->agents[i].beAgentNum].canMoveTile == false &&
 					map->agents[map->agents[i].beAgentNum].beAgent == false &&
@@ -177,43 +177,43 @@ void AgentManager::decideAgentAct()
 	}
 }
 
-//ƒG[ƒWƒFƒ“ƒg‚ÌˆÚ“®
+//ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã®ç§»å‹•
 void AgentManager::moveAgent(int agentNum)
 {
 	Map *map;
 	map = map->getMap();
 
-	//Œó•â’n‚ÉˆÚ“®
+	//å€™è£œåœ°ã«ç§»å‹•
 	map->agents[agentNum].position.first = map->agents[agentNum].nextPosition.first;
 	map->agents[agentNum].position.second = map->agents[agentNum].nextPosition.second;
-	//ˆÚ“®æ‚Éƒ^ƒCƒ‹‚ğ©ƒ`[ƒ€‚Ìƒ^ƒCƒ‹‚ğ’u‚­
+	//ç§»å‹•å…ˆã«ã‚¿ã‚¤ãƒ«ã‚’è‡ªãƒãƒ¼ãƒ ã®ã‚¿ã‚¤ãƒ«ã‚’ç½®ã
 	if (agentNum < 2) {
-		//–¡•û
+		//å‘³æ–¹
 		map->board[map->agents[agentNum].position.first][map->agents[agentNum].position.second].Status = Masu::FriendTile;
 	}
 	else {
-		//“G
+		//æ•µ
 		map->board[map->agents[agentNum].position.first][map->agents[agentNum].position.second].Status = Masu::EnemyTile;
 	}
 }
 
-//ƒ}ƒX‚Ìœ‹
+//ãƒã‚¹ã®é™¤å»
 void AgentManager::eraseAgent(int agentNum)
 {
 	Map *map;
 	map = map->getMap();
 	
-	//ƒ^ƒCƒ‹‚ğœ‹i‰½‚à’u‚¢‚Ä‚È‚¢ó‘Ô‚É–ß‚·j
+	//ã‚¿ã‚¤ãƒ«ã‚’é™¤å»ï¼ˆä½•ã‚‚ç½®ã„ã¦ãªã„çŠ¶æ…‹ã«æˆ»ã™ï¼‰
 	map->board[map->agents[agentNum].nextPosition.first][map->agents[agentNum].nextPosition.second].Status = Masu::Non;
 }
 
-//’â‘Øˆ—
+//åœæ»å‡¦ç†
 void AgentManager::stayAgent(int agentNum)
 {
 	Map *map;
 	map = map->getMap();
-	//’â‘Øˆ—‚È‚Ì‚Å‰½‚à‚µ‚È‚¢
-	//Ÿ‚ÌˆÚ“®êŠ‚ÉŒ»İ‚ÌˆÊ’u‚ğ‘ã“ü
+	//åœæ»å‡¦ç†ãªã®ã§ä½•ã‚‚ã—ãªã„
+	//æ¬¡ã®ç§»å‹•å ´æ‰€ã«ç¾åœ¨ã®ä½ç½®ã‚’ä»£å…¥
 	//map->agents[agentNum].nextPosition.first = map->agents[agentNum].position.first;
 	//map->agents[agentNum].nextPosition.second = map->agents[agentNum].position.second;
 }
