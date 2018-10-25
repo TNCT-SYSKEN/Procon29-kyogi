@@ -1,6 +1,7 @@
 #include "DrawLeft.h"
 #define MASU_SIZE 45
 #define MAX_MAP_SIZE 12
+#define AGENTS 4
 
 
 DrawLeft::DrawLeft()
@@ -15,9 +16,17 @@ DrawLeft::DrawLeft()
 
 void DrawLeft::drawLeftManager(void)
 {
+	Setting *setting;
+	setting = setting->getSetting();
+
 	//Mapの表示
 	drawMap();
 	drawTilePoint();
+	if (setting->turnFlag == true) {
+		for (int i = 0; i < AGENTS; i++) {
+			drawBestTile(i);
+		}
+	}
 	drawAgent();
 }
 
@@ -129,4 +138,35 @@ void DrawLeft::drawMovableTile(void)
 void DrawLeft::drawNextPosition(void)
 {
 	
+}
+
+//味方エージェントの最善手を表示する
+void DrawLeft::drawBestTile(int AgentNum)
+{
+	Map *map;
+	map = map->getMap();
+
+	int pos_sup = MASU_SIZE + 5;
+	//picture agent
+	static Texture best_fri1(L"image/best_friend1.png");
+	static Texture best_fri2(L"image/best_friend2.png");
+	static Texture best_ene1(L"image/best_enemy1.png");
+	static Texture best_ene2(L"image/best_enemy2.png");
+
+	switch (AgentNum) {
+	case 0 :
+		best_fri1.draw(map->agents[AgentNum].nextPosition.second * pos_sup + 5, map->agents[AgentNum].nextPosition.first * pos_sup + 5);
+		break;
+	case 1:
+		best_fri2.draw(map->agents[AgentNum].nextPosition.second * pos_sup + 5, map->agents[AgentNum].nextPosition.first * pos_sup + 5);
+		break;
+	case 2:
+		best_ene1.draw(map->agents[AgentNum].nextPosition.second * pos_sup + 5, map->agents[AgentNum].nextPosition.first * pos_sup + 5);
+		break;
+	case 3:
+		best_ene1.draw(map->agents[AgentNum].nextPosition.second * pos_sup + 5, map->agents[AgentNum].nextPosition.first * pos_sup + 5);
+		break;
+	default:
+		break;
+	}
 }
