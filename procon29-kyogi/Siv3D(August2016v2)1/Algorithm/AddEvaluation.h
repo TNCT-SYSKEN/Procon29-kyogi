@@ -7,6 +7,6 @@
 
 class AddEvaluation {
 public:
-	pair<int, int> addEvaluation(Agent agent);
+	pair<int, int> addEvaluation(Agent agent, int agentNum);
 private:
 };
