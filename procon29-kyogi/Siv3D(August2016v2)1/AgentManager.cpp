@@ -214,6 +214,6 @@ void AgentManager::stayAgent(int agentNum)
 	map = map->getMap();
 	//停滞処理なので何もしない
 	//次の移動場所に現在の位置を代入
-	//map->agents[agentNum].nextPosition.first = map->agents[agentNum].position.first;
-	//map->agents[agentNum].nextPosition.second = map->agents[agentNum].position.second;
+	map->agents[agentNum].nextPosition.first = map->agents[agentNum].position.first;
+	map->agents[agentNum].nextPosition.second = map->agents[agentNum].position.second;
 }
