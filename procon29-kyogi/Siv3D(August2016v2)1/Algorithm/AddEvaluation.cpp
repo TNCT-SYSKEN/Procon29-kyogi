@@ -1,22 +1,24 @@
 #include "AddEvaluation.h"
 
-pair<int, int> AddEvaluation::addEvaluation(Agent agent)
+//AgentNum はエージェントの番号．1と2
+pair<int, int> AddEvaluation::addEvaluation(Agent agent, int agentNum)
 {
 	//JudgmentEncircle() , Prefetching()で評価点付けする
 	//Judgmentで最終手を決定しPairで最終的な位置で返す？
 
 	//ここで8近傍の各点について評価点を求め，Evaluationに突っ込む．順番は以下の配列に従う．
-	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1};
+	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
 	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
 	Evaluation *evl;
 	evl = evl->getEvaluation();
+
+	Map *map;
+	map = map->getMap();
 
 	for (int i = 0; i < 16; ++i) {
 		Prefetching prefetching;
 		int newX = agent.position.second + dx[i % 8];
 		int newY = agent.position.first + dy[i % 8];
-		Map *map;
-		map = map->getMap();
 		evl->SumScore[i] = -1;
 		evl->TileScore[i] = -1;
 		evl->Movable[i] = -1;
@@ -34,7 +36,7 @@ pair<int, int> AddEvaluation::addEvaluation(Agent agent)
 
 	//Evaluationを受けて評価し，最適な手を出す．
 	Judgment judge;
-	pair<int, int> ansPosition = judge.judgment(*evl);
+	pair<int, int> ansPosition = judge.judgment(*evl, (agentNum == 2) ? 1 : 0);
 
 	return make_pair(agent.position.first + ansPosition.first , agent.position.second + ansPosition.second);
 }
