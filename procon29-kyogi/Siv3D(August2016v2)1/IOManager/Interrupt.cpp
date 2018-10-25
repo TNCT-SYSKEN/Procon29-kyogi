@@ -78,16 +78,11 @@ Interrupt::Interrupt()
 	m_gui.add(L"text9", GUIText::Create(L"ƒ^[ƒ“”:", 80));
 	m_gui.text(L"text9").style.color = Palette::Black;
 	m_gui.addln(L"Turn", GUITextArea::Create(1, 5));
-
-	//§ŒÀŠÔ‚ğ•\¦
-	m_gui.add(L"text11", GUIText::Create(L"§ŒÀŠÔ:", 80));
-	m_gui.text(L"text11").style.color = Palette::Black;
-	m_gui.addln(L"Turn", GUITextArea::Create(1, 5));
-
+	
 	//Infomation
 	m_gui.add(L"text10", GUIText::Create(L"Information", 80));
 	m_gui.text(L"text10").style.color = Palette::Black;
-	m_gui.addln(L"Info", GUITextArea::Create(4, 15));
+	m_gui.addln(L"Info", GUITextArea::Create(4, 8));
 
 	// ‰¡•‚Ìİ’è
 	m_gui.style.width = 595;
