@@ -5,12 +5,14 @@ class Agent {
 public :
 	//エージェントがそのターンにおいて動くべき最終的な座標
 	pair <int, int> nextPosition;
-	//移動先が他のエージェント被ってない
+	//移動先が他のエージェント被っている
 	bool canMoveNextPos;
 	//移動先にてきのたいるがある
 	bool canMoveTile;
-	//移動先が敵の居るタイルである
+	//移動先がエージェントが居る
 	bool beAgent;
+	//停滞を意思表示している
+	bool doStagnation;
 	int beAgentNum;
 	//エージェントが除去するタイルの座標
 	pair <int, int> erasePosition;
