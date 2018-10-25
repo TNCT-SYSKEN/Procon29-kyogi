@@ -52,6 +52,60 @@ void SystemManager::systemManager(void)
 		drawLeft.drawLeftManager();      //行動後の状態を表示
 		System::Update();
 
+		//得点を計算する
+		map->friendTileScore = 0; map->enemyTileScore = 0; map->friendAreaScore = 0; map->enemyAreaScore = 0;
+		map->friendSumScore = 0; map->enemySumScore = 0;
+
+		//タイル点を計算する
+		for (int i = 0; i < map->Vertical; ++i) {
+			for (int j = 0; j < map->Width; ++j) {
+				Masu masu = map->board[i][j];
+				if (masu.Status == Masu::FriendTile) {
+					map->friendTileScore += masu.TilePoint;
+				}
+				else if (masu.Status == Masu::EnemyTile) {
+					map->enemyTileScore += masu.TilePoint;
+				}
+			}
+		}
+
+		//領域点を計算する
+		vector< vector<int> > Fvisited; //味方の囲み計算
+		for (int i = 0; i <= map->Vertical + 1; ++i) {
+			vector<int> v(map->Width + 2, 0);
+			Fvisited.push_back(v);
+		}
+
+		vector < pair<Masu, pair<int, int> > > route;
+		Prefetching::caluculateEncircle(route, 0, 0, Fvisited, Masu::FriendTile);
+
+		for (int u = 1; u <= map->Vertical; ++u) {
+			for (int v = 1; v <= map->Width; ++v) {
+				if (!Fvisited[u][v] && map->board[u][v].Status != Masu::FriendTile) {
+					map->friendAreaScore += abs(map->board[u][v].TilePoint);
+				}
+			}
+		}
+
+		vector< vector<int> > Evisited; //敵の囲み計算
+		for (int i = 0; i <= map->Vertical + 1; ++i) {
+			vector<int> v(map->Width + 2, 0);
+			Evisited.push_back(v);
+		}
+
+		Prefetching::caluculateEncircle(route, 0, 0, Evisited, Masu::EnemyTile);
+
+		for (int u = 1; u <= map->Vertical; ++u) {
+			for (int v = 1; v <= map->Width; ++v) {
+				if (!Evisited[u][v] && map->board[u][v].Status != Masu::EnemyTile) {
+					map->enemyAreaScore += abs(map->board[u][v].TilePoint);
+				}
+			}
+		}
+
+		map->friendSumScore = map->friendTileScore + map->friendAreaScore;
+		map->enemySumScore = map->enemyTileScore + map->enemyAreaScore;
+
 		//ここまでの流れが終わったらturnFlagをtrueにする
 		setting->turnFlag = false;
 	}
