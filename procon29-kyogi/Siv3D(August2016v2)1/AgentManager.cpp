@@ -17,6 +17,8 @@ void AgentManager::agentMoveManager()
 		case Agent::stagnation : 
 			stayAgent(i);
 			break;
+		default:
+			break;
 		}
 	}
 }
@@ -119,7 +121,23 @@ void AgentManager::decideAgentAct()
 	Map *map;
 	map = map->getMap();
 
+	//エージェントの位置から各々の判定を行う。
 	checkAgentConflict();
+
+	//停滞かどうか判定
+	for (int i = 0; i < AGENTS; i++) {
+		//移動先が被っている
+		//移動先に相手のタイルがある
+		//移動先にエージェントがいる
+		//停滞意思表示をしている
+		if (map->agents[i].beAgent == true ||
+			map->agents[i].canMoveNextPos == true ||
+			map->agents[i].canMoveTile == true ||
+			map->agents[i].doStagnation == true) {
+			//停滞：stagnation
+			map->agents[i].actAgent = Agent::stagnation;
+		}
+	}
 
 	//移動かどうか判定
 	for (int i = 0; i < AGENTS; i++) {
@@ -155,23 +173,6 @@ void AgentManager::decideAgentAct()
 				map->agents[i].actAgent = Agent::erase;
 			}
 			
-		}
-	}
-	
-	//停滞かどうか判定
-	for (int i = 0; i < AGENTS;i++) {
-		if (map->agents[i].actAgent != Agent::erase&&map->agents[i].actAgent != Agent::move) {
-			//移動先が被っている
-			//移動先に相手のタイルがある
-			//移動先にエージェントがいる
-			//停滞意思表示をしている
-			if (map->agents[i].beAgent == true ||
-				map->agents[i].canMoveNextPos == true ||
-				map->agents[i].canMoveTile == true ||
-				map->agents[i].doStagnation == true) {
-				//停滞：stagnation
-				map->agents[i].actAgent = Agent::stagnation;
-			}
 		}
 	}
 }
