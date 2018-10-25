@@ -85,7 +85,7 @@ Interrupt::Interrupt()
 	m_gui.addln(L"Turn", GUITextArea::Create(1, 5));
 
 	//Infomation
-	m_gui.add(L"text10", GUIText::Create(L"Infomation", 80));
+	m_gui.add(L"text10", GUIText::Create(L"Information", 80));
 	m_gui.text(L"text10").style.color = Palette::Black;
 	m_gui.addln(L"Info", GUITextArea::Create(4, 15));
 
