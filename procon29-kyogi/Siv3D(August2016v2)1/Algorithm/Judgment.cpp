@@ -39,9 +39,7 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority)
 		}
 	}
 
-	Println(11);
 	if(priority == 1){
-		Println(22);
 		Agent agent1 = map->agents[0]; Agent agent2 = map->agents[1];
 		pair<int, int> ansPositionOf1 = agent1.nextPosition;
 		pair<int, int> ansPositionOf2 = make_pair(agent2.position.first + ansPosition.first, agent2.position.second + ansPosition.second);
