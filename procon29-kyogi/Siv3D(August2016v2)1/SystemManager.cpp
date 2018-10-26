@@ -94,11 +94,12 @@ void SystemManager::systemManager(void)
 		}
 
 		Prefetching::caluculateEncircle(route, 0, 0, Evisited, Masu::EnemyTile);
+		Prefetching::caluculateEncircle(route, map->Width + 1, map->Vertical + 1, Evisited, Masu::EnemyTile);
 
 		for (int u = 1; u <= map->Vertical; ++u) {
 			for (int v = 1; v <= map->Width; ++v) {
-				if (!Evisited[u][v] && map->board[u][v].Status != Masu::EnemyTile) {
-					map->enemyAreaScore += abs(map->board[u][v].TilePoint);
+				if (!Evisited[u-1][v-1] && map->board[u-1][v-1].Status != Masu::EnemyTile) {
+					map->enemyAreaScore += abs(map->board[u-1][v-1].TilePoint);
 				}
 			}
 		}
