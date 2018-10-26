@@ -175,7 +175,7 @@ void Interrupt::start()
 	Setting *setting;
 	setting = setting->getSetting();
 
-	if (m_gui.button(L"start").pushed) {
+	if (m_gui.button(L"start").pushed||Input::KeyZ.pressed) {
 		setting->turnFlag = true;
 	}
 }
