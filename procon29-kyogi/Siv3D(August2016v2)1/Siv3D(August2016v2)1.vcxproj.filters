@@ -480,6 +480,9 @@
     <ClCompile Include="AgentManager.cpp">
       <Filter>ソース ファイル\IOManager</Filter>
     </ClCompile>
+    <ClCompile Include="Suport.cpp">
+      <Filter>ソース ファイル\Algorithm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm\Prefetching.h">
@@ -553,6 +556,9 @@
     </ClInclude>
     <ClInclude Include="AgentManager.h">
       <Filter>ヘッダー ファイル\IOManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Suport.h">
+      <Filter>ヘッダー ファイル\Algorithm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

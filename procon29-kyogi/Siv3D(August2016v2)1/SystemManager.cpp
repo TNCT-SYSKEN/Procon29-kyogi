@@ -37,14 +37,18 @@ void SystemManager::systemManager(void)
 	Interrupt inter;
 	DrawLeft drawLeft;
 	AgentManager agentManager;
+	Suport suport;
 	Map *map;
 	map = map->getMap();
 	Setting *setting;
 	setting = setting->getSetting();
 
+
 	if (setting->turnFlag == true) {
 		update.updateManager();         //そのターンのデータを保存＋ターン数を進める
 		algoManager.algorithmManager(); //最善手を求める
+		suport.suportOfficer();         //味方エージェントの動きを数字で表現
+		inter.drawSuport();
 		drawLeft.drawLeftManager();     //最善手によって味方エージェントの移動先を表示する
 		inter.inputEnemyMovePos();      //敵の候補地の入力の受付
 		agentManager.decideAgentAct();  //敵と味方の候補地によって次に行う行動の決定
