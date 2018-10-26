@@ -2,15 +2,15 @@
 #include "../gneral.h"
 
 //priorityが1（2番目のエージェント）なら，1番目のエージェントとかぶった場合に手を2番目のやつに変更する
-pair<int, int> Judgment::judgment(Evaluation evl, int priority)
+pair<int, int> Judgment::judgment(Evaluation evl, int priority, Agent agent)
 {
 	//評価点によってどの手を決定するのか決める
 	pair <int, int> ansPosition;
 	pair <int, int> ansPositionReserve = make_pair(0, 0); //行き先が1番目と2番目のエージェントでかぶっていたときのための予備
 
 	vector<double> weight; //各評価項目に対する重み
-	weight.push_back(1.0); weight.push_back(1.0); weight.push_back(1.0); //ダミー．動的に変更できるようにしたい．
-
+	weight.push_back(14.0); weight.push_back(8.0); weight.push_back(8.0); weight.push_back(10); weight.push_back(13);
+	
 	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
 	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
 
@@ -19,13 +19,19 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority)
 
 	double maxValue = 0; //最大の評価値
 	for (int i = 0; i < 16; ++i) {
-		double value = (evl.SumScore[i] * weight[0]) + (evl.TileScore[i] * weight[1]) + (evl.Movable[i] * weight[2]);
+		double value = (evl.SumScore[i] * weight[0]) + (evl.TileScore[i] * weight[1]) + (evl.Movable[i] * weight[2]) + (i % 8 >= 4 ? weight[3] : 0);
+		int toY = agent.position.first + dy[i % 8];
+		int toX = agent.position.second + dx[i % 8];
+		if (toY >= 0 && toY < map->Vertical && toX >= 0 && toX < map->Width){
+			value += map->board[toY][toX].TilePoint * weight[4];
+		}
 		if (value > maxValue) {
 			ansPositionReserve = ansPosition;
 			ansPosition = make_pair(dy[i % 8], dx[i % 8]);
 			maxValue = value;
 		}
 	}
+	Println();
 
 	//初手から最善手を引いてしまった場合はansPositionReserveに2番手が格納されないので再探索
 	maxValue = 0;

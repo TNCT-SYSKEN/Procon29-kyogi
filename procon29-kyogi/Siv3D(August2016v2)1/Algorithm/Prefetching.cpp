@@ -79,6 +79,7 @@ int Prefetching::caluculateSumScore(int nowX, int nowY, int step, vector<pair<Ma
 						visited.push_back(v);
 					}
 					caluculateEncircle(route4C, 0, 0, visited, Masu::FriendTile);
+					caluculateEncircle(route4C, map->Width + 1, map->Vertical + 1, visited, Masu::FriendTile);
 
 					for (int u = 1; u <= map->Vertical; ++u) {
 						for (int v = 1; v <= map->Width; ++v) {
