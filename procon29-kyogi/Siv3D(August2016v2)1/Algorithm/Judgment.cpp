@@ -7,8 +7,8 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority, Agent agent)
 	//評価点によってどの手を決定するのか決める
 	pair <int, int> ansPosition;
 	pair <int, int> ansPositionReserve = make_pair(0, 0); //行き先が1番目と2番目のエージェントでかぶっていたときのための予備
-	//sum , tile ,move , naname , 1ttesakinotairunotokutenn, 囲みを破るやつ
-	vector<double> weight = { 14, 8, 8, 13, 13 , 30}; //各評価項目に対する重み
+	//sum , tile ,move , naname , 1ttesakinotairunotokutenn, 囲みを破るやつ, 外側
+	vector<double> weight = { 14, 8, 8, 13, 13 , 30, 5}; //各評価項目に対する重み
 	
 	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
 	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
@@ -18,9 +18,13 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority, Agent agent)
 
 	double maxValue = 0; //最大の評価値
 	for (int i = 0; i < 16; ++i) {
+
 		double value = (evl.SumScore[i] * weight[0]) + (evl.TileScore[i] * weight[1]) + (evl.Movable[i] * weight[2]) + (i % 8 >= 4 ? weight[3] : 0);
 		int toY = agent.position.first + dy[i % 8];
 		int toX = agent.position.second + dx[i % 8];
+		int centerY = map->Vertical / 2;
+		int centerX = map->Width / 2;
+		value += weight[6] * (abs(toX - centerX) + abs(toY - centerY));
 		if (toY >= 0 && toY < map->Vertical && toX >= 0 && toX < map->Width){
 			value += map->board[toY][toX].TilePoint * weight[4];
 			if (i >= 8 && map->board[toY][toX].Status == Masu::EnemyTile) {
