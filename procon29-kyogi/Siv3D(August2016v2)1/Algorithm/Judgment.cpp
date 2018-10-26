@@ -7,8 +7,8 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority, Agent agent)
 	//•]‰¿“_‚É‚æ‚Á‚Ä‚Ç‚Ìè‚ğŒˆ’è‚·‚é‚Ì‚©Œˆ‚ß‚é
 	pair <int, int> ansPosition;
 	pair <int, int> ansPositionReserve = make_pair(0, 0); //s‚«æ‚ª1”Ô–Ú‚Æ2”Ô–Ú‚ÌƒG[ƒWƒFƒ“ƒg‚Å‚©‚Ô‚Á‚Ä‚¢‚½‚Æ‚«‚Ì‚½‚ß‚Ì—\”õ
-	//sum , tile ,move , naname , 1ttesakinotairunotokutenn
-	vector<double> weight = { 14, 8, 8, 13, 13 }; //Še•]‰¿€–Ú‚É‘Î‚·‚éd‚İ
+	//sum , tile ,move , naname , 1ttesakinotairunotokutenn, ˆÍ‚İ‚ğ”j‚é‚â‚Â
+	vector<double> weight = { 14, 8, 8, 13, 13 , 30}; //Še•]‰¿€–Ú‚É‘Î‚·‚éd‚İ
 	
 	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
 	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };
@@ -23,6 +23,48 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority, Agent agent)
 		int toX = agent.position.second + dx[i % 8];
 		if (toY >= 0 && toY < map->Vertical && toX >= 0 && toX < map->Width){
 			value += map->board[toY][toX].TilePoint * weight[4];
+			if (i >= 8 && map->board[toY][toX].Status == Masu::EnemyTile) {
+				int s = 0, k = 0;
+				vector< vector<int> > Evisited; //“G‚ÌˆÍ‚İŒvZ
+				for (int j = 0; j <= map->Vertical + 1; ++j) {
+					vector<int> v(map->Width + 2, 0);
+					Evisited.push_back(v);
+				}
+
+				vector<pair< Masu, pair<int, int> > > route = {};
+				Prefetching::caluculateEncircle(route, 0, 0, Evisited, Masu::EnemyTile);
+				Prefetching::caluculateEncircle(route, map->Width + 1, map->Vertical + 1, Evisited, Masu::EnemyTile);
+
+				for (int u = 1; u <= map->Vertical; ++u) {
+					for (int v = 1; v <= map->Width; ++v) {
+						if (!Evisited[u - 1][v - 1] && map->board[u - 1][v - 1].Status != Masu::EnemyTile) {
+							s += abs(map->board[u - 1][v - 1].TilePoint);
+						}
+					}
+				}
+
+				Evisited.clear();
+				for (int j = 0; j <= map->Vertical + 1; ++j) {
+					vector<int> v(map->Width + 2, 0);
+					Evisited.push_back(v);
+				}
+				Masu::StateOfMasu m = map->board[toY][toX].Status;
+				map->board[toY][toX].Status = Masu::Non;
+
+				Prefetching::caluculateEncircle(route, 0, 0, Evisited, Masu::EnemyTile);
+				Prefetching::caluculateEncircle(route, map->Width + 1, map->Vertical + 1, Evisited, Masu::EnemyTile);
+
+				for (int u = 1; u <= map->Vertical; ++u) {
+					for (int v = 1; v <= map->Width; ++v) {
+						if (!Evisited[u - 1][v - 1] && map->board[u - 1][v - 1].Status != Masu::EnemyTile) {
+							k += abs(map->board[u - 1][v - 1].TilePoint);
+						}
+					}
+				}
+
+				map->board[toY][toX].Status = m;
+				value += (s-k) * weight[5];
+			}
 		}
 		if (value > maxValue) {
 			ansPositionReserve = ansPosition;
@@ -30,7 +72,6 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority, Agent agent)
 			maxValue = value;
 		}
 	}
-	Println();
 
 	//‰è‚©‚çÅ‘Pè‚ğˆø‚¢‚Ä‚µ‚Ü‚Á‚½ê‡‚ÍansPositionReserve‚É2”Ôè‚ªŠi”[‚³‚ê‚È‚¢‚Ì‚ÅÄ’Tõ
 	maxValue = 0;

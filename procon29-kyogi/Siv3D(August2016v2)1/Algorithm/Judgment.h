@@ -2,6 +2,7 @@
 #include "../Data/Evaluation.h"
 #include "../Data/Map.h"
 #include "../gneral.h"
+#include "Prefetching.h"
 
 class Judgment {
 public:
