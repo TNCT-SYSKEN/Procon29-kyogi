@@ -17,6 +17,7 @@ public:
 	GUI m_gui;
 	void inputEnemyMovePos();
 	void interruptManager(void);
+	void drawSuport();
 private:
 	void backTurn(void);
 	void goTurn(void);
@@ -31,4 +32,5 @@ private:
 	void drawAreaScore();
 	void drawTurn();
 	void drawInfo();
+	void setAgentSide();
 };

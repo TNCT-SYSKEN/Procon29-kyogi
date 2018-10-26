@@ -6,6 +6,6 @@
 class Judgment {
 public:
 	//•Ô‚è’l‚ÍPair?
-	pair<int, int> judgment(Evaluation evl, int priority);
+	pair<int, int> judgment(Evaluation evl, int priority, Agent agent);
 private:
 };

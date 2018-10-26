@@ -9,6 +9,9 @@ public:
 	int maxStep;
 	//true‚È‚çÀs
 	bool turnFlag;
+	//i—ßŠ¯‚ª‚Ç‚¿‚ç‚É‹‚é‚©
+	//true:right false:left
+	bool selectRL;
 	vector< vector<int> > bruteForceResults;
 private:
 	static Setting* InsSetting;
