@@ -47,13 +47,13 @@ void UpdateTurnInfo::backTurn(void)
 	TurnManager *turnManager;
 	turnManager = turnManager->getTurnManager();
 
+	//1ターン前のデータを代入
+	//*now_eva = turnManager->eva[now_map->Turn];
+	*now_map = turnManager->map[now_map->Turn];
+	now_setting->turnFlag = false;
 	//これ以上戻るターンが無い場合は処理を実行しない
 	if (now_map->Turn > 1) {
 		now_map->Turn--;
-		//1ターン前のデータを代入
-		//*now_eva = turnManager->eva[now_map->Turn];
-		*now_map = turnManager->map[now_map->Turn];
-		now_setting->turnFlag = false;
 	}
 }
 

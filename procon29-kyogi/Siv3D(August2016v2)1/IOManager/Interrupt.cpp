@@ -26,7 +26,9 @@ Interrupt::Interrupt()
 	m_gui.addln(L"prefetchingSL", GUISlider::Create(0, 100, 0, 200));
 
 	// 全探索、数手先選択
-	m_gui.add(L"switchAlgo", GUIToggleSwitch::Create(L"全探索", L"数手先読み", false));
+	//司令官の位置を見る
+	m_gui.add(L"switchAlgo", GUIToggleSwitch::Create(L"全探索", L"数手先読み", true));
+	m_gui.add(L"switchRL", GUIToggleSwitch::Create(L"左", L"右",false));
 
 	// 水平線
 	//タイトル：スコア
@@ -78,16 +80,21 @@ Interrupt::Interrupt()
 	m_gui.add(L"text9", GUIText::Create(L"ターン数:", 80));
 	m_gui.text(L"text9").style.color = Palette::Black;
 	m_gui.addln(L"Turn", GUITextArea::Create(1, 5));
-
-	//制限時間を表示
-	m_gui.add(L"text11", GUIText::Create(L"制限時間:", 80));
-	m_gui.text(L"text11").style.color = Palette::Black;
-	m_gui.addln(L"Turn", GUITextArea::Create(1, 5));
-
+	
 	//Infomation
-	m_gui.add(L"text10", GUIText::Create(L"Infomation", 80));
+	m_gui.add(L"text10", GUIText::Create(L"Information", 80));
 	m_gui.text(L"text10").style.color = Palette::Black;
-	m_gui.addln(L"Info", GUITextArea::Create(4, 15));
+	m_gui.add(L"Info", GUITextArea::Create(4, 8));
+	
+	//suport
+	//agent1
+	m_gui.add(L"text11", GUIText::Create(L"Agent1", 80));
+	m_gui.text(L"text11").style.color = Palette::Black;
+	m_gui.add(L"suport1", GUITextArea::Create(4, 2));
+	//agent2
+	m_gui.add(L"text12", GUIText::Create(L"Agent2", 80));
+	m_gui.text(L"text12").style.color = Palette::Black;
+	m_gui.add(L"suport2", GUITextArea::Create(4, 2));
 
 	// 横幅の設定
 	m_gui.style.width = 595;
@@ -107,6 +114,8 @@ void Interrupt::interruptManager(void)
 	drawTileScore();
 	drawAreaScore();
 	drawTurn();
+	drawSuport();
+	setAgentSide();
 }
 
 //1ターン戻る処理
@@ -180,10 +189,10 @@ void Interrupt::selectAglo()
 	//true 数手先読み
 	//false 全探索
 	if (m_gui.toggleSwitch(L"switchAlgo").isRight) {
-		setting->bruteForce = 1;
+		setting->bruteForce = 0;
 	}
 	else{
-		setting->bruteForce = 0;
+		setting->bruteForce = 1;
 	}
 }
 
@@ -263,6 +272,37 @@ void Interrupt::drawTurn()
 void Interrupt::drawInfo()
 {
 	
+}
+
+//右と左のどちらに味方の司令官がいるかどうか選択
+void Interrupt::setAgentSide()
+{
+	Setting *setting;
+	setting = setting->getSetting();
+
+	//true 右
+	//false 左
+	if (m_gui.toggleSwitch(L"switchRL").isRight) {
+		setting->selectRL = true;
+	}
+	else {
+		setting->selectRL = false;
+	}
+}
+
+void Interrupt::drawSuport()
+{
+	Map *map;
+	map = map->getMap();
+
+	String agent1 = Widen(to_string(map->agents[0].suportNum));
+	String agent2 = Widen(to_string(map->agents[1].suportNum));
+
+	m_gui.textArea(L"suport1").setText(agent1);
+	m_gui.textArea(L"suport1").style.font(50);
+
+	m_gui.textArea(L"suport2").setText(agent2);
+	m_gui.textArea(L"suport2").style.font(50);
 }
 
 //敵の移動候補地の入力

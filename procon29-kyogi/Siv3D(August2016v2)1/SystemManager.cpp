@@ -1,13 +1,13 @@
 #include "SystemManager.h"
 
-//ƒNƒ‰ƒXŒ^•Ï”‚ÌéŒ¾
+//ã‚¯ãƒ©ã‚¹å‹å¤‰æ•°ã®å®£è¨€
 InputOutputManager ioManager;
 AlgorithmManager algoManager;
 ReadQR readQR;
 
 void SystemManager::startSolver(void)
 {
-	//ƒVƒXƒeƒ€‚ğŠJn‚·‚é
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚’é–‹å§‹ã™ã‚‹
 	ReadQR *rqr;
 	rqr = rqr->getReadQR();
 	rqr->readQR();
@@ -24,15 +24,15 @@ void SystemManager::startSolver(void)
 
 void SystemManager::endSolver(void)
 {
-	//ƒVƒXƒeƒ€‚ğI—¹‚·‚éğŒ
-	//I‚í‚è‚Ìƒ^[ƒ“”‚É’B‚µ‚½ê‡
-	//End‚ª‰Ÿ‚³‚ê‚½ê‡
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚’çµ‚äº†ã™ã‚‹æ¡ä»¶
+	//çµ‚ã‚ã‚Šã®ã‚¿ãƒ¼ãƒ³æ•°ã«é”ã—ãŸå ´åˆ
+	//EndãŒæŠ¼ã•ã‚ŒãŸå ´åˆ
 }
 
 void SystemManager::systemManager(void)
 {
-	//ƒAƒ‹ƒSƒŠƒYƒ€‚Æ‚h‚nƒ}ƒl[ƒWƒƒ[‚ğŠÇ—
-	//ƒQ[ƒ€‚Ì—¬‚ê‚ÌŠÇ—‚·‚é
+	//ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã¨ï¼©ï¼¯ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ç®¡ç†
+	//ã‚²ãƒ¼ãƒ ã®æµã‚Œã®ç®¡ç†ã™ã‚‹
 	UpdateTurnInfo update;
 	Interrupt inter;
 	DrawLeft drawLeft;
@@ -43,20 +43,20 @@ void SystemManager::systemManager(void)
 	setting = setting->getSetting();
 
 	if (setting->turnFlag == true) {
-		update.updateManager(); //‚»‚Ìƒ^[ƒ“‚Ìƒf[ƒ^‚ğ•Û‘¶{ƒ^[ƒ“”‚ği‚ß‚é
-		algoManager.algorithmManager(); //Å‘Pè‚ğ‹‚ß‚é
-		drawLeft.drawLeftManager();    //Å‘Pè‚É‚æ‚Á‚Ä–¡•ûƒG[ƒWƒFƒ“ƒg‚ÌˆÚ“®æ‚ğ•\¦‚·‚é
-		inter.inputEnemyMovePos();   //“G‚ÌŒó•â’n‚Ì“ü—Í‚Ìó•t
-		agentManager.decideAgentAct();  //“G‚Æ–¡•û‚ÌŒó•â’n‚É‚æ‚Á‚ÄŸ‚És‚¤s“®‚ÌŒˆ’è
-		agentManager.agentMoveManager(); //ƒG[ƒWƒFƒ“ƒg‚ªÀÛ‚És“®‚·‚é
-		drawLeft.drawLeftManager();      //s“®Œã‚Ìó‘Ô‚ğ•\¦
+		update.updateManager(); //ãã®ã‚¿ãƒ¼ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ï¼‹ã‚¿ãƒ¼ãƒ³æ•°ã‚’é€²ã‚ã‚‹
+		algoManager.algorithmManager(); //æœ€å–„æ‰‹ã‚’æ±‚ã‚ã‚‹
+		drawLeft.drawLeftManager();    //æœ€å–„æ‰‹ã«ã‚ˆã£ã¦å‘³æ–¹ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã®ç§»å‹•å…ˆã‚’è¡¨ç¤ºã™ã‚‹
+		inter.inputEnemyMovePos();   //æ•µã®å€™è£œåœ°ã®å…¥åŠ›ã®å—ä»˜
+		agentManager.decideAgentAct();  //æ•µã¨å‘³æ–¹ã®å€™è£œåœ°ã«ã‚ˆã£ã¦æ¬¡ã«è¡Œã†è¡Œå‹•ã®æ±ºå®š
+		agentManager.agentMoveManager(); //ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆãŒå®Ÿéš›ã«è¡Œå‹•ã™ã‚‹
+		drawLeft.drawLeftManager();      //è¡Œå‹•å¾Œã®çŠ¶æ…‹ã‚’è¡¨ç¤º
 		System::Update();
 
-		//“¾“_‚ğŒvZ‚·‚é
+		//å¾—ç‚¹ã‚’è¨ˆç®—ã™ã‚‹
 		map->friendTileScore = 0; map->enemyTileScore = 0; map->friendAreaScore = 0; map->enemyAreaScore = 0;
 		map->friendSumScore = 0; map->enemySumScore = 0;
 
-		//ƒ^ƒCƒ‹“_‚ğŒvZ‚·‚é
+		//ã‚¿ã‚¤ãƒ«ç‚¹ã‚’è¨ˆç®—ã™ã‚‹
 		for (int i = 0; i < map->Vertical; ++i) {
 			for (int j = 0; j < map->Width; ++j) {
 				Masu masu = map->board[i][j];
@@ -69,8 +69,8 @@ void SystemManager::systemManager(void)
 			}
 		}
 
-		//—Ìˆæ“_‚ğŒvZ‚·‚é
-		vector< vector<int> > Fvisited; //–¡•û‚ÌˆÍ‚İŒvZ
+		//é ˜åŸŸç‚¹ã‚’è¨ˆç®—ã™ã‚‹
+		vector< vector<int> > Fvisited; //å‘³æ–¹ã®å›²ã¿è¨ˆç®—
 		for (int i = 0; i <= map->Vertical + 1; ++i) {
 			vector<int> v(map->Width + 2, 0);
 			Fvisited.push_back(v);
@@ -88,7 +88,7 @@ void SystemManager::systemManager(void)
 			}
 		}
 
-		vector< vector<int> > Evisited; //“G‚ÌˆÍ‚İŒvZ
+		vector< vector<int> > Evisited; //æ•µã®å›²ã¿è¨ˆç®—
 		for (int i = 0; i <= map->Vertical + 1; ++i) {
 			vector<int> v(map->Width + 2, 0);
 			Evisited.push_back(v);
@@ -108,8 +108,15 @@ void SystemManager::systemManager(void)
 		map->friendSumScore = map->friendTileScore + map->friendAreaScore;
 		map->enemySumScore = map->enemyTileScore + map->enemyAreaScore;
 
-		//‚±‚±‚Ü‚Å‚Ì—¬‚ê‚ªI‚í‚Á‚½‚çturnFlag‚ğtrue‚É‚·‚é
+		//ã“ã“ã¾ã§ã®æµã‚ŒãŒçµ‚ã‚ã£ãŸã‚‰turnFlagã‚’trueã«ã™ã‚‹
 		setting->turnFlag = false;
 	}
-	ioManager.inputOuntputManager();
+	ioManager.inputOuntputManager()
+}
+
+void SystemManager::endSolver(void)
+{
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚’çµ‚äº†ã™ã‚‹æ¡ä»¶
+	//çµ‚ã‚ã‚Šã®ã‚¿ãƒ¼ãƒ³æ•°ã«é”ã—ãŸå ´åˆ
+	//EndãŒæŠ¼ã•ã‚ŒãŸå ´åˆ
 }
