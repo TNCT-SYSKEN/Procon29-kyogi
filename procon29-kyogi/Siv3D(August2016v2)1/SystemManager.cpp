@@ -78,6 +78,7 @@ void SystemManager::systemManager(void)
 
 		vector < pair<Masu, pair<int, int> > > route;
 		Prefetching::caluculateEncircle(route, 0, 0, Fvisited, Masu::FriendTile);
+		Prefetching::caluculateEncircle(route, map->Width + 1, map->Vertical + 1, Fvisited, Masu::FriendTile);
 
 		for (int u = 1; u <= map->Vertical; ++u) {
 			for (int v = 1; v <= map->Width; ++v) {
