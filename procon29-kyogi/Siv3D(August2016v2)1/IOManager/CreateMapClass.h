@@ -4,6 +4,7 @@
 #include "../Data/Masu.h"
 #include "string"
 #include "../gneral.h"
+#include "../Setting.h"
 
 class CreateMapClass {
 public:

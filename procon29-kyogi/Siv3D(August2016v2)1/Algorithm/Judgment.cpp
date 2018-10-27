@@ -8,7 +8,7 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority, Agent agent)
 	pair <int, int> ansPosition;
 	pair <int, int> ansPositionReserve = make_pair(0, 0); //行き先が1番目と2番目のエージェントでかぶっていたときのための予備
 	//sum , tile ,move , naname , 1ttesakinotairunotokutenn, 囲みを破るやつ, 外側
-	vector<double> weight = { 14, 8, 8, 13, 13 , 30, 5}; //各評価項目に対する重み
+	vector<double> weight = { 14, 8, 5, 13, 40 , 30, 30}; //各評価項目に対する重み
 	
 	int dy[] = { 1, 0, -1, 0 , 1, 1, -1, -1 };
 	int dx[] = { 0, 1, 0, -1 , 1, -1, 1, -1 };

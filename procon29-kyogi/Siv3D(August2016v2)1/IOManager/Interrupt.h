@@ -33,4 +33,5 @@ private:
 	void drawTurn();
 	void drawInfo();
 	void setAgentSide();
+	void setMaxStep();
 };

@@ -116,6 +116,7 @@ void Interrupt::interruptManager(void)
 	drawTurn();
 	drawSuport();
 	setAgentSide();
+	setMaxStep();
 }
 
 //1ƒ^[ƒ“–ß‚éˆ—
@@ -288,6 +289,16 @@ void Interrupt::setAgentSide()
 	else {
 		setting->selectRL = false;
 	}
+}
+
+void Interrupt::setMaxStep()
+{
+	Setting *setting;
+	setting = setting->getSetting();
+
+	String pre = Widen(to_string(setting->maxStep));
+
+	m_gui.textField(L"prefetchingTF").setText(pre);
 }
 
 void Interrupt::drawSuport()

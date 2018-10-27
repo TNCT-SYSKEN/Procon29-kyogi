@@ -16,6 +16,9 @@ void CreateMapClass::init(void)
 	}
 	//ターン数の初期化
 	map->Turn = 0;
+	Setting *setting;
+	setting = setting->getSetting();
+	setting->maxStep = 2;
 }
 
 /* ReadQR->data にちゃんと入ってれば true を，そうでなければ false を返す．*/
