@@ -39,6 +39,8 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority, Agent agent)
 				vector<pair< Masu, pair<int, int> > > route = {};
 				Prefetching::caluculateEncircle(route, 0, 0, Evisited, Masu::EnemyTile);
 				Prefetching::caluculateEncircle(route, map->Width + 1, map->Vertical + 1, Evisited, Masu::EnemyTile);
+				Prefetching::caluculateEncircle(route, map->Width + 1, 0, Evisited, Masu::EnemyTile);
+				Prefetching::caluculateEncircle(route, 0, map->Vertical + 1, Evisited, Masu::EnemyTile);
 
 				for (int u = 1; u <= map->Vertical; ++u) {
 					for (int v = 1; v <= map->Width; ++v) {
@@ -58,6 +60,8 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority, Agent agent)
 
 				Prefetching::caluculateEncircle(route, 0, 0, Evisited, Masu::EnemyTile);
 				Prefetching::caluculateEncircle(route, map->Width + 1, map->Vertical + 1, Evisited, Masu::EnemyTile);
+				Prefetching::caluculateEncircle(route, map->Width + 1, 0, Evisited, Masu::EnemyTile);
+				Prefetching::caluculateEncircle(route, 0, map->Vertical + 1, Evisited, Masu::EnemyTile);
 
 				for (int u = 1; u <= map->Vertical; ++u) {
 					for (int v = 1; v <= map->Width; ++v) {
