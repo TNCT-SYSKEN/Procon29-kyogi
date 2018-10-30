@@ -5,79 +5,79 @@ Interrupt::Interrupt()
 {
 	m_gui.setPos(605, 0);
 
-	// …•½ü
+	// æ°´å¹³ç·š
 	// Title Input
-	// …•½ü
+	// æ°´å¹³ç·š
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
 	m_gui.add(GUIText::Create(L"Input"));
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
 
-	// ƒ{ƒ^ƒ“
-	m_gui.add(L"goTurn", GUIButton::Create(L"ˆêèi‚Ş"));
-	m_gui.add(L"backTurn", GUIButton::Create(L"ˆêè–ß‚é"));
-	m_gui.add(L"research", GUIButton::Create(L"Ä’Tõ"));
-	m_gui.addln(L"start", GUIButton::Create(L"ƒ^[ƒ“‚ÌŠJn"));
+	// ãƒœã‚¿ãƒ³
+	m_gui.add(L"goTurn", GUIButton::Create(L"ä¸€æ‰‹é€²ã‚€"));
+	m_gui.add(L"backTurn", GUIButton::Create(L"ä¸€æ‰‹æˆ»ã‚‹"));
+	m_gui.add(L"research", GUIButton::Create(L"å†æ¢ç´¢"));
+	m_gui.addln(L"start", GUIButton::Create(L"ã‚¿ãƒ¼ãƒ³ã®é–‹å§‹"));
 
-	// æ“Ç‚İ[“x“Ç‚İæ‚è
-	m_gui.add(L"text0", GUIText::Create(L"æ“Ç‚İ[“x"));
+	// å…ˆèª­ã¿æ·±åº¦èª­ã¿å–ã‚Š
+	m_gui.add(L"text0", GUIText::Create(L"å…ˆèª­ã¿æ·±åº¦"));
 	m_gui.add(L"prefetchingTF", GUITextField::Create(3));
 	m_gui.addln(L"prefetchingSL", GUISlider::Create(0, 100, 0, 200));
 
-	// ‘S’TõA”èæ‘I‘ğ
-	//i—ßŠ¯‚ÌˆÊ’u‚ğŒ©‚é
-	m_gui.add(L"switchAlgo", GUIToggleSwitch::Create(L"‘S’Tõ", L"”èæ“Ç‚İ", true));
-	m_gui.add(L"switchRL", GUIToggleSwitch::Create(L"¶", L"‰E",false));
+	// å…¨æ¢ç´¢ã€æ•°æ‰‹å…ˆé¸æŠ
+	//å¸ä»¤å®˜ã®ä½ç½®ã‚’è¦‹ã‚‹
+	m_gui.add(L"switchAlgo", GUIToggleSwitch::Create(L"å…¨æ¢ç´¢", L"æ•°æ‰‹å…ˆèª­ã¿", true));
+	m_gui.add(L"switchRL", GUIToggleSwitch::Create(L"å·¦", L"å³",false));
 
-	// …•½ü
-	//ƒ^ƒCƒgƒ‹FƒXƒRƒA
-	// …•½ü
+	// æ°´å¹³ç·š
+	//ã‚¿ã‚¤ãƒˆãƒ«ï¼šã‚¹ã‚³ã‚¢
+	// æ°´å¹³ç·š
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
 	m_gui.add(GUIText::Create(L"Score"));
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
 
-	// ƒXƒRƒA•\¦
-	//Ôƒ`[ƒ€‡ŒvƒXƒRƒA
-	m_gui.add(L"text1", GUIText::Create(L"Ô“¾“_@:",80));
+	// ã‚¹ã‚³ã‚¢è¡¨ç¤º
+	//èµ¤ãƒãƒ¼ãƒ åˆè¨ˆã‚¹ã‚³ã‚¢
+	m_gui.add(L"text1", GUIText::Create(L"èµ¤å¾—ç‚¹ã€€:",80));
 	m_gui.text(L"text1").style.color = Palette::Red;
 	m_gui.add(L"enemySumScore", GUITextArea::Create(1, 5));
-	//Âƒ`[ƒ€‡ŒvƒXƒRƒA
-	m_gui.add(L"text2", GUIText::Create(L"Â“¾“_@:", 80));
+	//é’ãƒãƒ¼ãƒ åˆè¨ˆã‚¹ã‚³ã‚¢
+	m_gui.add(L"text2", GUIText::Create(L"é’å¾—ç‚¹ã€€:", 80));
 	m_gui.text(L"text2").style.color = Palette::Blue;
 	m_gui.addln(L"friendSumScore", GUITextArea::Create(1, 5));
 
-	//Ôƒ`[ƒ€ƒ^ƒCƒ‹ƒXƒRƒA
-	m_gui.add(L"text3", GUIText::Create(L"Ôƒ^ƒCƒ‹:", 80));
+	//èµ¤ãƒãƒ¼ãƒ ã‚¿ã‚¤ãƒ«ã‚¹ã‚³ã‚¢
+	m_gui.add(L"text3", GUIText::Create(L"èµ¤ã‚¿ã‚¤ãƒ«:", 80));
 	m_gui.text(L"text3").style.color = Palette::Red;
 	m_gui.add(L"enemyTileScore", GUITextArea::Create(1, 5));
-	//Âƒ`[ƒ€ƒ^ƒCƒ‹
-	m_gui.add(L"text4", GUIText::Create(L"Âƒ^ƒCƒ‹:",80));
+	//é’ãƒãƒ¼ãƒ ã‚¿ã‚¤ãƒ«
+	m_gui.add(L"text4", GUIText::Create(L"é’ã‚¿ã‚¤ãƒ«:",80));
 	m_gui.text(L"text4").style.color = Palette::Blue;
 	m_gui.addln(L"friendTileScore", GUITextArea::Create(1, 5));
 
-	//Ôƒ`[ƒ€—ÌˆæƒXƒRƒA
-	m_gui.add(L"text5", GUIText::Create(L"ÔƒGƒŠƒA:", 80));
+	//èµ¤ãƒãƒ¼ãƒ é ˜åŸŸã‚¹ã‚³ã‚¢
+	m_gui.add(L"text5", GUIText::Create(L"èµ¤ã‚¨ãƒªã‚¢:", 80));
 	m_gui.text(L"text5").style.color = Palette::Red;
 	m_gui.add(L"enemyAreaScore", GUITextArea::Create(1, 5));
-	//Âƒ`[ƒ€—ÌˆæƒXƒRƒA
-	m_gui.add(L"text6", GUIText::Create(L"ÂƒGƒŠƒA:", 80));
+	//é’ãƒãƒ¼ãƒ é ˜åŸŸã‚¹ã‚³ã‚¢
+	m_gui.add(L"text6", GUIText::Create(L"é’ã‚¨ãƒªã‚¢:", 80));
 	m_gui.text(L"text6").style.color = Palette::Blue;
 	m_gui.addln(L"friendAreaScore", GUITextArea::Create(1, 5));
 
-	// …•½ü
-	//Other•\¦
-	// …•½ü
+	// æ°´å¹³ç·š
+	//Otherè¡¨ç¤º
+	// æ°´å¹³ç·š
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
 	m_gui.add(GUIText::Create(L"Other"));
 	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
 	m_gui.horizontalLine(L"hr").style.color = Color(127);
 	
-	//ƒ^[ƒ“”‚ğ•\¦
-	m_gui.add(L"text9", GUIText::Create(L"ƒ^[ƒ“”:", 80));
+	//ã‚¿ãƒ¼ãƒ³æ•°ã‚’è¡¨ç¤º
+	m_gui.add(L"text9", GUIText::Create(L"ã‚¿ãƒ¼ãƒ³æ•°:", 80));
 	m_gui.text(L"text9").style.color = Palette::Black;
 	m_gui.addln(L"Turn", GUITextArea::Create(1, 5));
 	
@@ -96,10 +96,9 @@ Interrupt::Interrupt()
 	m_gui.text(L"text12").style.color = Palette::Black;
 	m_gui.add(L"suport2", GUITextArea::Create(4, 2));
 
-	// ‰¡•‚Ìİ’è
+	// æ¨ªå¹…ã®è¨­å®š
 	m_gui.style.width = 595;
 	m_gui.style.showTitle = true;
-
 }
 
 void Interrupt::interruptManager(void)
@@ -119,17 +118,17 @@ void Interrupt::interruptManager(void)
 	setMaxStep();
 }
 
-//1ƒ^[ƒ“–ß‚éˆ—
+//1ã‚¿ãƒ¼ãƒ³æˆ»ã‚‹å‡¦ç†
 void Interrupt::backTurn(void)
 {
 	UpdateTurnInfo update;
-	//ƒ^[ƒ“‚ğŠÇ—‚µ‚Ä‚¢‚é•Ï”‚Ì’l‚ğŒ¸‚ç‚·EEH
+	//ã‚¿ãƒ¼ãƒ³ã‚’ç®¡ç†ã—ã¦ã„ã‚‹å¤‰æ•°ã®å€¤ã‚’æ¸›ã‚‰ã™ãƒ»ãƒ»ï¼Ÿ
 	if (m_gui.button(L"backTurn").pushed) {
 		update.backTurn();
 	}
 }
 
-//1ƒ^[ƒ“i‚Ş
+//1ã‚¿ãƒ¼ãƒ³é€²ã‚€
 void Interrupt::goTurn(void)
 {
 	if (m_gui.button(L"goTurn").pushed) {
@@ -137,31 +136,31 @@ void Interrupt::goTurn(void)
 	}
 }
 
-//‚Ç‚±‚Ü‚Åæ“Ç‚Ş‚©‚Ì”‚ğ“Ç‚İ‚İ
+//ã©ã“ã¾ã§å…ˆèª­ã‚€ã‹ã®æ•°ã‚’èª­ã¿è¾¼ã¿
 void Interrupt::prefetchingInfo(void)
 {
-	//MapƒNƒ‰ƒX‚Ì’†‚ğ‘‚«Š·‚¦EEEH
+	//Mapã‚¯ãƒ©ã‚¹ã®ä¸­ã‚’æ›¸ãæ›ãˆãƒ»ãƒ»ãƒ»ï¼Ÿ
 	Setting *setting;
 	setting = setting->getSetting();
 	
-	// ƒXƒ‰ƒCƒ_[‚ª•Ï‰»‚µ‚½‚çA”’l‚ğ•ÏX‚·‚é
+	// ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ãŒå¤‰åŒ–ã—ãŸã‚‰ã€æ•°å€¤ã‚’å¤‰æ›´ã™ã‚‹
 	if (m_gui.slider(L"prefetchingSL").hasChanged)
 	{
 		m_gui.textField(L"prefetchingTF").setText(Format(m_gui.slider(L"prefetchingSL").value));
 	}
-	// ”’l‚ª•Ï‰»‚µ‚½‚çAƒXƒ‰ƒCƒ_[‚ğ•ÏX‚·‚é
+	// æ•°å€¤ãŒå¤‰åŒ–ã—ãŸã‚‰ã€ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 	if (m_gui.textField(L"prefetchingTF").hasChanged)
 	{
 		m_gui.slider(L"prefetchingSL").setValue(Parse<double>(m_gui.textField(L"prefetchingTF").text));
 	}
 
-	//[“x‚Ì[‚³‚ğó‚¯•t‚¯
+	//æ·±åº¦ã®æ·±ã•ã‚’å—ã‘ä»˜ã‘
 	if (m_gui.textField(L"prefetchingTF").hasChanged) {
 		setting->maxStep = Parse<int>(m_gui.textField(L"prefetchingTF").text);
 	}
 }
 
-//“¯‚¶ƒ^[ƒ“‚É‚¨‚¢‚Ä’TõƒAƒ‹ƒSƒŠƒYƒ€‚ğÄ“x“®‚©‚·
+//åŒã˜ã‚¿ãƒ¼ãƒ³ã«ãŠã„ã¦æ¢ç´¢ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã‚’å†åº¦å‹•ã‹ã™
 void Interrupt::Research(void)
 {
 	UpdateTurnInfo update;
@@ -181,14 +180,14 @@ void Interrupt::start()
 	}
 }
 
-//‘S’Tõ‚Æ”èæ“Ç‚İ‚Ì‚Ç‚¿‚ç‚ğs‚¤‚©‚Ì‘I‘ğ
+//å…¨æ¢ç´¢ã¨æ•°æ‰‹å…ˆèª­ã¿ã®ã©ã¡ã‚‰ã‚’è¡Œã†ã‹ã®é¸æŠ
 void Interrupt::selectAglo()
 {
 	Setting *setting;
 	setting = setting->getSetting();
 
-	//true ”èæ“Ç‚İ
-	//false ‘S’Tõ
+	//true æ•°æ‰‹å…ˆèª­ã¿
+	//false å…¨æ¢ç´¢
 	if (m_gui.toggleSwitch(L"switchAlgo").isRight) {
 		setting->bruteForce = 0;
 	}
@@ -197,17 +196,17 @@ void Interrupt::selectAglo()
 	}
 }
 
-//ƒXƒRƒA‡Œv‚ğ•\¦
+//ã‚¹ã‚³ã‚¢åˆè¨ˆã‚’è¡¨ç¤º
 void Interrupt::drawSumScore()
 {
 	Map *map;
 	map = map->getMap();
 
-	//siv3d::String‚ÌéŒ¾
+	//siv3d::Stringã®å®£è¨€
 	String friendSumScore;
 	String enemySumScore;
 
-	//int -> std::string -> siv3d::String‚É•ÏŠ·
+	//int -> std::string -> siv3d::Stringã«å¤‰æ›
 	friendSumScore = Widen(to_string(map->friendSumScore));
 	enemySumScore = Widen(to_string(map->enemySumScore));
 
@@ -216,17 +215,17 @@ void Interrupt::drawSumScore()
 	m_gui.textArea(L"enemySumScore").setText(enemySumScore);
 }
 
-//ƒ^ƒCƒ‹ƒXƒRƒA‚Ì•\¦
+//ã‚¿ã‚¤ãƒ«ã‚¹ã‚³ã‚¢ã®è¡¨ç¤º
 void Interrupt::drawTileScore()
 {
 	Map *map;
 	map = map->getMap();
 
-	//siv3d::String‚ÌéŒ¾
+	//siv3d::Stringã®å®£è¨€
 	String friendTileScore;
 	String enemyTileScore;
 
-	//int -> std::string -> siv3d::String‚É•ÏŠ·
+	//int -> std::string -> siv3d::Stringã«å¤‰æ›
 	friendTileScore = Widen(to_string(map->friendTileScore));
 	enemyTileScore = Widen(to_string(map->enemyTileScore));
 
@@ -235,17 +234,17 @@ void Interrupt::drawTileScore()
 	m_gui.textArea(L"enemyTileScore").setText(enemyTileScore);
 }
 
-//—ÌˆæƒXƒRƒA‚Ì•\¦
+//é ˜åŸŸã‚¹ã‚³ã‚¢ã®è¡¨ç¤º
 void Interrupt::drawAreaScore()
 {
 	Map *map;
 	map = map->getMap();
 
-	//siv3d::String‚ÌéŒ¾
+	//siv3d::Stringã®å®£è¨€
 	String friendAreaScore;
 	String enemyAreaScore;
 
-	//int -> std::string -> siv3d::String‚É•ÏŠ·
+	//int -> std::string -> siv3d::Stringã«å¤‰æ›
 	friendAreaScore = Widen(to_string(map->friendAreaScore));
 	enemyAreaScore = Widen(to_string(map->enemyAreaScore));
 
@@ -254,35 +253,35 @@ void Interrupt::drawAreaScore()
 	m_gui.textArea(L"enemyAreaScore").setText(enemyAreaScore);
 }
 
-//ƒ^[ƒ“”‚ğ•\¦
+//ã‚¿ãƒ¼ãƒ³æ•°ã‚’è¡¨ç¤º
 void Interrupt::drawTurn()
 {
 	Map *map;
 	map = map->getMap();
 
-	//siv3d::String‚ÌéŒ¾
+	//siv3d::Stringã®å®£è¨€
 	String Turn;
 
-	//int -> std::string -> siv3d::String‚É•ÏŠ·
+	//int -> std::string -> siv3d::Stringã«å¤‰æ›
 	Turn = Widen(to_string(map->Turn));
 
 	m_gui.textArea(L"Turn").setText(Turn);
 }
 
-//î•ñ‚ğ•\¦
+//æƒ…å ±ã‚’è¡¨ç¤º
 void Interrupt::drawInfo()
 {
 	
 }
 
-//‰E‚Æ¶‚Ì‚Ç‚¿‚ç‚É–¡•û‚Ìi—ßŠ¯‚ª‚¢‚é‚©‚Ç‚¤‚©‘I‘ğ
+//å³ã¨å·¦ã®ã©ã¡ã‚‰ã«å‘³æ–¹ã®å¸ä»¤å®˜ãŒã„ã‚‹ã‹ã©ã†ã‹é¸æŠ
 void Interrupt::setAgentSide()
 {
 	Setting *setting;
 	setting = setting->getSetting();
 
-	//true ‰E
-	//false ¶
+	//true å³
+	//false å·¦
 	if (m_gui.toggleSwitch(L"switchRL").isRight) {
 		setting->selectRL = true;
 	}
@@ -316,7 +315,7 @@ void Interrupt::drawSuport()
 	m_gui.textArea(L"suport2").style.font(50);
 }
 
-//“G‚ÌˆÚ“®Œó•â’n‚Ì“ü—Í
+//æ•µã®ç§»å‹•å€™è£œåœ°ã®å…¥åŠ›
 void Interrupt::inputEnemyMovePos()
 {
 	Map *map;
@@ -324,12 +323,12 @@ void Interrupt::inputEnemyMovePos()
 	DrawLeft drawLeft;
 
 	bool roopBreak = false;
-	//ƒ}ƒX‚Ì•\¦À•W‚Ì•â•
+	//ãƒã‚¹ã®è¡¨ç¤ºåº§æ¨™ã®è£œåŠ©
 	const int pos_sup = MASU_SIZE + 5;
 	
-	//“GƒG[ƒWƒFƒ“ƒg‚¾‚¯QÆ
+	//æ•µã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã ã‘å‚ç…§
 	for (int k = 2; k <= 3; k++) {
-		String text = Format(L"EnemyAgent[", k - 1, L"]‚ÌˆÚ“®æ‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢");
+		String text = Format(L"EnemyAgent[", k - 1, L"]ã®ç§»å‹•å…ˆã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ãã ã•ã„");
 		m_gui.textArea(L"Info").setText(text);
 		System::Update();
 		while (System::Update()) {
@@ -337,18 +336,18 @@ void Interrupt::inputEnemyMovePos()
 				const Point pos = Mouse::Pos();
 				int count = 0;
 				for (int i = 0; i < 12;i++) {
-					//x²‚ªˆÊ’u‚Å‚¢‚¤‚Æ‚Ç‚±‚È‚Ì‚©
+					//xè»¸ãŒä½ç½®ã§ã„ã†ã¨ã©ã“ãªã®ã‹
 					if (5 + pos_sup * i < pos.x&&pos.x < pos_sup * (i + 1)) {
 						map->agents[k].nextPosition.second = i;
 						count++;
 					}
-					//y²‚ªˆÊ’u‚ÅŒ¾‚¤‚Æ‚Ç‚±‚È‚Ì‚©
+					//yè»¸ãŒä½ç½®ã§è¨€ã†ã¨ã©ã“ãªã®ã‹
 					if (5 + pos_sup * i < pos.y&&pos.y < pos_sup * (i + 1)) {
 						map->agents[k].nextPosition.first = i;
 						count++;
 					}
 				}
-				//x , y—¼•ûnextPos‚ª‘ã“ü‚³‚ê‚½‚©Šm”F
+				//x , yä¸¡æ–¹nextPosãŒä»£å…¥ã•ã‚ŒãŸã‹ç¢ºèª
 				if (count == 2) {
 					roopBreak = true;
 				}
@@ -362,6 +361,6 @@ void Interrupt::inputEnemyMovePos()
 		roopBreak = false;
 	}
 
-	m_gui.textArea(L"Info").setText(L"“GƒG[ƒWƒFƒ“ƒg‚ÌˆÊ’u“ü—Í‚ªŠ®—¹‚µ‚Ü‚µ‚½B");
+	m_gui.textArea(L"Info").setText(L"æ•µã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã®ä½ç½®å…¥åŠ›ãŒå®Œäº†ã—ã¾ã—ãŸã€‚");
 	System::Update();
 }

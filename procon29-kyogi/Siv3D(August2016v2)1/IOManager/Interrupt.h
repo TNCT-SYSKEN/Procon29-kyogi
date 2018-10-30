@@ -19,11 +19,12 @@ public:
 	void interruptManager(void);
 	void drawSuport();
 private:
+	static Interrupt *InsInterrupt;
 	void backTurn(void);
 	void goTurn(void);
-	//æ“Ç‚İ‚Ì”ÍˆÍ‚ğXV
+	//å…ˆèª­ã¿ã®ç¯„å›²ã‚’æ›´æ–°
 	void prefetchingInfo(void);
-	//Ä“x’Tõ‚·‚é
+	//å†åº¦æ¢ç´¢ã™ã‚‹
 	void Research(void);
 	void start();
 	void selectAglo();
