@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <Siv3D.hpp>
+#include "../gneral.h"
+
 #define ReadVERTICAL 20
 #define ReadWIDTH 20
 
@@ -8,7 +10,7 @@ class ReadQR {
 public:
 	static ReadQR* getReadQR();
 	void readQR(void);
-	std::string data = "nothing";
+	string data = "nothing";
 private:
 	char MapData[ReadVERTICAL][ReadWIDTH];
 	int TilePoint[ReadVERTICAL][ReadWIDTH];

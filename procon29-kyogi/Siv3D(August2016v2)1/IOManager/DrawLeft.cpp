@@ -1,6 +1,7 @@
 #include "DrawLeft.h"
 #define MASU_SIZE 45
 #define MAX_MAP_SIZE 12
+#define AGENTS 4
 
 
 DrawLeft::DrawLeft()
@@ -15,9 +16,17 @@ DrawLeft::DrawLeft()
 
 void DrawLeft::drawLeftManager(void)
 {
+	Setting *setting;
+	setting = setting->getSetting();
+
 	//Mapの表示
 	drawMap();
 	drawTilePoint();
+	if (setting->turnFlag == true) {
+		for (int i = 0; i < AGENTS; i++) {
+			drawBestTile(i);
+		}
+	}
 	drawAgent();
 }
 
@@ -28,27 +37,25 @@ void DrawLeft::drawMap(void) {
 	//マスの表示座標の補助
 	const int pos_sup = MASU_SIZE + 5;
 
-	map->Vertical = 12;
-	map->Width = 12;
 	//マップのタイルを表示（二重ループで縦横を管理）
-	for (int i = 0; i < map->Vertical;i++) {
-		for (int j = 0; j < map->Width; j++) {
+	for (int i = 0; i < 12;i++) {
+		for (int j = 0; j < 12; j++) {
 			
 			//Stateの状態に対して表示するマスの変更
 			switch (map->board[i][j].Status) {
-			case 0 :
+			case Masu::Non:
 				//draw non map
 				Rect(j * pos_sup + 5 , i * pos_sup + 5 ,MASU_SIZE ,MASU_SIZE).draw(Palette::Gray);
 				break;
-			case 1 :
+			case Masu::FriendTile :
 				//draw frined map
 				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Skyblue);
 				break;
-			case 2 :
+			case Masu::EnemyTile :
 				//draw enemy map
 				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Lightpink);
 				break;
-			case 3 :
+			case Masu::Other :
 				Rect(j * pos_sup + 5, i * pos_sup + 5, MASU_SIZE, MASU_SIZE).draw(Palette::Black);
 				break;
 			default:
@@ -82,17 +89,17 @@ void DrawLeft::drawAgent(void)
 
 	for (int i = 0; i < map->agents.size(); i++) {
 		switch (map->agents[i].Status) {
-		case 0:
+		case Agent::friend1:
 			fri1.draw(map->agents[i].position.second * pos_sup + 5, map->agents[i].position.first * pos_sup + 5);
 			break;
-		case 1:
+		case Agent::friend2:
 			//friend の場合
 			fri2.draw(map->agents[i].position.second * pos_sup + 5 ,map->agents[i].position.first * pos_sup + 5);
 			break;
-		case 3 :
+		case Agent::enemy1 :
 			ene1.draw(map->agents[i].position.second * pos_sup + 5, map->agents[i].position.first * pos_sup + 5);
 			break;
-		case 4 :
+		case Agent::enemy2 :
 			//enemyの場合
 			ene2.draw(map->agents[i].position.second * pos_sup + 5 , map->agents[i].position.first * pos_sup + 5);
 			break;
@@ -114,7 +121,7 @@ void DrawLeft::drawTilePoint(void)
 		for (int j = 0; j < map->Width; j++) {
 			//Map外のタイルじゃないならTrue
 			//Status Other : 3
-			if (map->board[i][j].Status != 3) {
+			if (map->board[i][j].Status != Masu::Other) {
 				//タイルポイントを表示
 				font(map->board[i][j].TilePoint).draw(10 + pos_sup * j, 10 + pos_sup * i, Palette::Yellow);
 			}
@@ -125,4 +132,41 @@ void DrawLeft::drawTilePoint(void)
 void DrawLeft::drawMovableTile(void)
 {
 	//自分のエージェントが移動出来る場所の表示
+}
+
+//エージェントの次の候補地を表示
+void DrawLeft::drawNextPosition(void)
+{
+	
+}
+
+//味方エージェントの最善手を表示する
+void DrawLeft::drawBestTile(int AgentNum)
+{
+	Map *map;
+	map = map->getMap();
+
+	int pos_sup = MASU_SIZE + 5;
+	//picture agent
+	static Texture best_fri1(L"image/best_friend1.png");
+	static Texture best_fri2(L"image/best_friend2.png");
+	static Texture best_ene1(L"image/best_enemy1.png");
+	static Texture best_ene2(L"image/best_enemy2.png");
+
+	switch (AgentNum) {
+	case 0 :
+		best_fri1.draw(map->agents[AgentNum].nextPosition.second * pos_sup + 5, map->agents[AgentNum].nextPosition.first * pos_sup + 5);
+		break;
+	case 1:
+		best_fri2.draw(map->agents[AgentNum].nextPosition.second * pos_sup + 5, map->agents[AgentNum].nextPosition.first * pos_sup + 5);
+		break;
+	case 2:
+		best_ene1.draw(map->agents[AgentNum].nextPosition.second * pos_sup + 5, map->agents[AgentNum].nextPosition.first * pos_sup + 5);
+		break;
+	case 3:
+		best_ene1.draw(map->agents[AgentNum].nextPosition.second * pos_sup + 5, map->agents[AgentNum].nextPosition.first * pos_sup + 5);
+		break;
+	default:
+		break;
+	}
 }

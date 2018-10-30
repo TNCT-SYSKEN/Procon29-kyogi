@@ -1,6 +1,9 @@
 #pragma once
 #include "Algorithm/AlgorithmManager.h"
 #include "IOManager/InputOutputManager.h"
+#include "IOManager/DrawMap.h"
+#include "AgentManager.h"
+#include "Suport.h"
 
 class SystemManager {
 public:

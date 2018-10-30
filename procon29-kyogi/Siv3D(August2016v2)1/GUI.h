@@ -4,7 +4,7 @@
 class GuI {
 public:
 	static GuI *getGuI();
+	GUI gui;
 private:
-	GUI inter_gui;
 	static GuI *InsGUI;
 };

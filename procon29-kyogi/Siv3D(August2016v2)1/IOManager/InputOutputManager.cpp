@@ -4,7 +4,7 @@
 CreateMapClass createMap;
 DrawMap drawMap;
 UpdateTurnInfo updateTurn;
-Interrupt interrupt;
+Interrupt *interrupt;
 
 void InputOutputManager::init(void)
 {
@@ -18,8 +18,11 @@ void InputOutputManager::init(void)
 void InputOutputManager::inputOuntputManager(void)
 {
 	//DrawMap ,Interrupt,UpdateTurnInfo‚Ì§Œä
+	//interrupt = interrupt->getInterrupt();
+
 	drawMap.drawManager();
-	interrupt.interruptManager();
-	updateTurn.updateManager();
+	//“ü—Í
+	//interrupt->interruptManager();
+	//updateTurn.updateManager();
 
 }

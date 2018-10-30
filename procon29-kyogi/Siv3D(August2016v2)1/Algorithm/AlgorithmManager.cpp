@@ -3,16 +3,32 @@
 void AlgorithmManager::algorithmManager(void)
 {
 	/*
-	‘“–‚½‚è‚©”Žèæ“Ç‚Ý‚©”»’f‚µ‚Ä“Ç‚Ýo‚·
+	ç·å½“ãŸã‚Šã‹æ•°æ‰‹å…ˆèª­ã¿ã‹åˆ¤æ–­ã—ã¦èª­ã¿å‡ºã™
 	*/
+	Setting *setting;
+	setting = setting->getSetting();
 
-	/*
-	if (1) { // ”»’è—p‚Ìƒtƒ‰ƒO‚ð‚ ‚Æ‚Å“Ë‚Áž‚Þ
+	if (setting->bruteForce) {
+		Map *map;
+		map = map->getMap();
+
 		BruteForce bruteForce;
-		bruteForce.bruteForce();
+
+		Agent agent1 = map->agents[0];
+		setting->bruteForceResults.push_back(bruteForce.bruteForce(agent1.position.second, agent1.position.first));
+
+		Agent agent2 = map->agents[1];
+		setting->bruteForceResults.push_back(bruteForce.bruteForce(agent2.position.second, agent2.position.first));
 	} else {
+		Map *map;
+		map = map->getMap();
+
 		AddEvaluation addEvaluation;
-		addEvaluation.addEvaluation();
+
+		Agent agent1 = map->agents[0];
+		map->agents[0].nextPosition = addEvaluation.addEvaluation(agent1, 1);
+
+		Agent agent2 = map->agents[1];
+		map->agents[1].nextPosition = addEvaluation.addEvaluation(agent2, 2);
 	}
-	*/
 }

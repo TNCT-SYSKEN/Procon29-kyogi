@@ -1,5 +1,4 @@
 #include "Evaluation.h"
-
 Evaluation* Evaluation::InsEvaluation = nullptr;
 Evaluation* Evaluation::getEvaluation()
 {

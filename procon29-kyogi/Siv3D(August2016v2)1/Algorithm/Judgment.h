@@ -1,7 +1,12 @@
 #pragma once
+#include "../Data/Evaluation.h"
+#include "../Data/Map.h"
+#include "../gneral.h"
+#include "Prefetching.h"
+
 class Judgment {
 public:
 	//•Ô‚è’l‚ÍPair?
-	void judgment(void);
+	pair<int, int> judgment(Evaluation evl, int priority, Agent agent);
 private:
 };
