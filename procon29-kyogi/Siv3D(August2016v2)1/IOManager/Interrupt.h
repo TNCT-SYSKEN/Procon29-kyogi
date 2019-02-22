@@ -22,9 +22,9 @@ private:
 	static Interrupt *InsInterrupt;
 	void backTurn(void);
 	void goTurn(void);
-	//å…ˆèª­ã¿ã®ç¯„å›²ã‚’æ›´æ–°
+	//æ“Ç‚İ‚Ì”ÍˆÍ‚ğXV
 	void prefetchingInfo(void);
-	//å†åº¦æ¢ç´¢ã™ã‚‹
+	//Ä“x’Tõ‚·‚é
 	void Research(void);
 	void start();
 	void selectAglo();

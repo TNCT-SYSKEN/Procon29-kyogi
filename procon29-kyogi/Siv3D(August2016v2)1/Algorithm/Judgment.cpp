@@ -4,6 +4,7 @@
 //priorityが1（2番目のエージェント）なら，1番目のエージェントとかぶった場合に手を2番目のやつに変更する
 pair<int, int> Judgment::judgment(Evaluation evl, int priority, Agent agent)
 {
+	/*
 	//評価点によってどの手を決定するのか決める
 	pair <int, int> ansPosition;
 	pair <int, int> ansPositionReserve = make_pair(0, 0); //行き先が1番目と2番目のエージェントでかぶっていたときのための予備
@@ -102,5 +103,9 @@ pair<int, int> Judgment::judgment(Evaluation evl, int priority, Agent agent)
 			ansPosition = ansPositionReserve; //予備のポジションに変更する
 		}
 	}
+	return ansPosition;
+	*/
+
+	pair<int, int> ansPosition;
 	return ansPosition;
 }

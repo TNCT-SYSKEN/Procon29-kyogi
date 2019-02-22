@@ -435,17 +435,11 @@
     <ClCompile Include="IOManager\InputOutputManager.cpp">
       <Filter>ソース ファイル\IOManager</Filter>
     </ClCompile>
-    <ClCompile Include="IOManager\Interrupt.cpp">
-      <Filter>ソース ファイル\IOManager</Filter>
-    </ClCompile>
     <ClCompile Include="IOManager\ReadQR.cpp">
       <Filter>ソース ファイル\IOManager</Filter>
     </ClCompile>
     <ClCompile Include="IOManager\UpdateTurnInfo.cpp">
       <Filter>ソース ファイル\IOManager</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemManager.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
@@ -483,6 +477,15 @@
     <ClCompile Include="Suport.cpp">
       <Filter>ソース ファイル\Algorithm</Filter>
     </ClCompile>
+    <ClCompile Include="SystemManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="IOManager\Interrupt.cpp">
+      <Filter>ソース ファイル\IOManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Algorithm\Candidate.cpp">
+      <Filter>ソース ファイル\Algorithm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm\Prefetching.h">
@@ -510,9 +513,6 @@
       <Filter>ヘッダー ファイル\IOManager</Filter>
     </ClInclude>
     <ClInclude Include="IOManager\InputOutputManager.h">
-      <Filter>ヘッダー ファイル\IOManager</Filter>
-    </ClInclude>
-    <ClInclude Include="IOManager\Interrupt.h">
       <Filter>ヘッダー ファイル\IOManager</Filter>
     </ClInclude>
     <ClInclude Include="IOManager\ReadQR.h">
@@ -558,6 +558,12 @@
       <Filter>ヘッダー ファイル\IOManager</Filter>
     </ClInclude>
     <ClInclude Include="Suport.h">
+      <Filter>ヘッダー ファイル\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="IOManager\Interrupt.h">
+      <Filter>ヘッダー ファイル\IOManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\Candidate.h">
       <Filter>ヘッダー ファイル\Algorithm</Filter>
     </ClInclude>
   </ItemGroup>

@@ -278,6 +278,7 @@
     <ClCompile Include="Algorithm\AddEvaluation.cpp" />
     <ClCompile Include="Algorithm\AlgorithmManager.cpp" />
     <ClCompile Include="Algorithm\BruteForce.cpp" />
+    <ClCompile Include="Algorithm\Candidate.cpp" />
     <ClCompile Include="Algorithm\Judgment.cpp" />
     <ClCompile Include="Algorithm\JudgmentEncircle.cpp" />
     <ClCompile Include="Algorithm\Prefetching.cpp" />
@@ -304,6 +305,7 @@
     <ClInclude Include="Algorithm\AddEvaluation.h" />
     <ClInclude Include="Algorithm\AlgorithmManager.h" />
     <ClInclude Include="Algorithm\BruteForce.h" />
+    <ClInclude Include="Algorithm\Candidate.h" />
     <ClInclude Include="Algorithm\Judgment.h" />
     <ClInclude Include="Algorithm\JudgmentEncircle.h" />
     <ClInclude Include="Algorithm\Prefetching.h" />
@@ -315,13 +317,13 @@
     <ClInclude Include="gneral.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="AgentManager.h" />
+    <ClInclude Include="IOManager\Interrupt.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="IOManager\CreateMapClass.h" />
     <ClInclude Include="IOManager\DrawLeft.h" />
     <ClInclude Include="IOManager\DrawMap.h" />
     <ClInclude Include="IOManager\DrawRight.h" />
     <ClInclude Include="IOManager\InputOutputManager.h" />
-    <ClInclude Include="IOManager\Interrupt.h" />
     <ClInclude Include="IOManager\ReadQR.h" />
     <ClInclude Include="IOManager\UpdateTurnInfo.h" />
     <ClInclude Include="Suport.h" />
