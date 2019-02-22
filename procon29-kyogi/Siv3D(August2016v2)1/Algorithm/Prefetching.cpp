@@ -36,6 +36,7 @@ pair<int, int> Prefetching::prefetching(Agent agent)
 						if (newEvl > bestEvl) {
 							best = *nextCand;
 							bestEvl = newEvl;
+							Println(bestEvl);
 						}
 					}
 				}
@@ -43,7 +44,7 @@ pair<int, int> Prefetching::prefetching(Agent agent)
 		}
 	}
 
-	if (best.before == nullptr) {
+	if (best.step <= 0) {
 		return make_pair(agent.position.first, agent.position.second);
 	}
 
@@ -58,10 +59,13 @@ int Prefetching::evl(Candidate c) {
 	int point = 0;
 	Map *map;
 	map = map->getMap();
+	bool isOccupied[VERTICAL][WIDTH] = { false };
 
-	// TODO: Šl“¾Ï‚Ýƒ^ƒCƒ‹‚ðŒvŽZ‚ÉŠÜ‚ß‚È‚¢
 	while (c.before != nullptr) {
-		point += map->board[c.pos.second][c.pos.first].TilePoint;
+		if (!isOccupied[c.pos.second][c.pos.first] & map->board[c.pos.second][c.pos.first].Status == Masu::Non) {
+			point += map->board[c.pos.second][c.pos.first].TilePoint;
+			isOccupied[c.pos.second][c.pos.first] = true;
+		}
 		c = *(c.before);
 	}
 	
