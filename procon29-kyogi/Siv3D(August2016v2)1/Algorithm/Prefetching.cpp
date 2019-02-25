@@ -62,12 +62,49 @@ int Prefetching::evl(Candidate c) {
 	bool isOccupied[VERTICAL][WIDTH] = { false };
 
 	while (c.before != nullptr) {
-		if (!isOccupied[c.pos.second][c.pos.first] & map->board[c.pos.second][c.pos.first].Status == Masu::Non) {
+		if (!isOccupied[c.pos.second][c.pos.first] && map->board[c.pos.second][c.pos.first].Status == Masu::Non) {
 			point += map->board[c.pos.second][c.pos.first].TilePoint;
 			isOccupied[c.pos.second][c.pos.first] = true;
 		}
 		c = *(c.before);
 	}
+
+	int sx, sy;
+
+	for (int i = 0; i < map->Vertical; ++i) {
+		for (int j = 0; j < map->Width; ++j) {
+			if (!isOccupied[i][j] && map->board[i][j].Status != Masu::FriendTile) {
+				sx = i % map->Width;
+				sy = i / map->Width;
+			}
+		}
+	}
+
+	bool visited[VERTICAL][WIDTH] = { false };
+	queue< pair<int, int> > q;
+	q.push(make_pair(sx, sy));
+
+	while (!q.empty()) {
+		pair<int, int> now = q.front(); q.pop();
+		int dx[] = { 0, 1, 0, -1 };
+		int dy[] = { 1, 0, -1, 0 };
+		visited[now.second][now.first] = true;
+		for (int i = 0; i < 4; ++i) {
+			int newX = now.first + dx[i];
+			int newY = now.second + dy[i];
+			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !visited[newY][newX] && !isOccupied[newY][newX]) {
+				q.push(make_pair(newX, newY));
+			}
+		}
+	}
+
+	for (int i = 0; i < map->Vertical; ++i) {
+		for (int j = 0; j < map->Width; ++j) {
+			Print(visited[i][j] ? 1 : 0); Print(Format(L" "));
+		}
+		Println();
+	}
+	Println();
 	
 	return point;
 }
