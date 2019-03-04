@@ -7,5 +7,5 @@ pair<int, int> AddEvaluation::addEvaluation(Agent agent, int agentNum)
 	map = map->getMap();
 
 	Prefetching pref;
-	return pref.prefetching(agent);
+	return pref.prefetching(agent, agentNum);
 }

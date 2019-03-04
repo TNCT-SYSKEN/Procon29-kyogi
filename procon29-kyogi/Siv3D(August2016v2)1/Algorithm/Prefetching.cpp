@@ -1,6 +1,6 @@
 #include "Prefetching.h"
 
-pair<int, int> Prefetching::prefetching(Agent agent)
+pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 {
 	Map *map;
 	map = map->getMap();
@@ -25,6 +25,9 @@ pair<int, int> Prefetching::prefetching(Agent agent)
 		c = *(candidates.front()); Candidate* c_pt = candidates.front(); candidates.pop();
 		for (int i = 0; i < 8; ++i) {
 			pair<int, int> pos = make_pair(c.pos.first + dx[i], c.pos.second + dy[i]);
+			if (c.step == 0 && agentNum == 2) {
+				if (pos == map->agents[0].nextPosition) continue;
+			}
 			if (pos.first >= 0 && pos.first < map->Width) {
 				if (pos.second >= 0 && pos.second < map->Vertical) {
 					Candidate* nextCand = new Candidate();

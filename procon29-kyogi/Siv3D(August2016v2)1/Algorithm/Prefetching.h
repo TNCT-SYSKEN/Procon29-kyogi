@@ -10,7 +10,7 @@
 
 class Prefetching {
 public:
-	pair<int, int> prefetching(Agent);
+	pair<int, int> prefetching(Agent, int);
 	int evl(Candidate);
 	static void caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, int nowX, int nowY, vector< vector<int> >& visited, Masu::StateOfMasu);
 	static bool isVisited(vector<pair<Masu, pair<int, int>>> route, int newX, int newY, Masu::StateOfMasu st) {
