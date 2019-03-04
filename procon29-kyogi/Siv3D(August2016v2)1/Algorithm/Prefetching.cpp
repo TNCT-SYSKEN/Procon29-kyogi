@@ -88,16 +88,17 @@ int Prefetching::evl(Candidate c) {
 		pair<int, int> now = q.front(); q.pop();
 		int dx[] = { 0, 1, 0, -1 };
 		int dy[] = { 1, 0, -1, 0 };
-		visited[now.second][now.first] = true;
 		for (int i = 0; i < 4; ++i) {
 			int newX = now.first + dx[i];
 			int newY = now.second + dy[i];
 			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !visited[newY][newX] && !isOccupied[newY][newX]) {
 				q.push(make_pair(newX, newY));
+				visited[newY][newX] = true;
 			}
 		}
 	}
 
+	/*
 	for (int i = 0; i < map->Vertical; ++i) {
 		for (int j = 0; j < map->Width; ++j) {
 			Print(visited[i][j] ? 1 : 0); Print(Format(L" "));
@@ -105,6 +106,7 @@ int Prefetching::evl(Candidate c) {
 		Println();
 	}
 	Println();
+	*/
 	
 	return point;
 }
