@@ -24,11 +24,11 @@ void AlgorithmManager::algorithmManager(void)
 		map = map->getMap();
 
 		AddEvaluation addEvaluation;
-
+		Agent agent2 = map->agents[1];
+		map->agents[1].nextPosition = addEvaluation.addEvaluation(agent2, 2);
 		Agent agent1 = map->agents[0];
 		map->agents[0].nextPosition = addEvaluation.addEvaluation(agent1, 1);
 
-		Agent agent2 = map->agents[1];
-		map->agents[1].nextPosition = addEvaluation.addEvaluation(agent2, 2);
+
 	}
 }

@@ -21,6 +21,28 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 
 	// TODO: (x, y)順序バラバラ問題の最終的解決
 
+	bool enemy_visited[VERTICAL][WIDTH] = { false };
+
+	queue< pair<int, int> > q;
+	q.push(make_pair(-1, -1));
+	q.push(make_pair(map->Vertical, -1));
+	q.push(make_pair(-1, map->Width));
+	q.push(make_pair(map->Vertical, map->Width));
+
+	while (!q.empty()) {
+		pair<int, int> now = q.front(); q.pop();
+		int dx[] = { 0, 1, 0, -1 };
+		int dy[] = { 1, 0, -1, 0 };
+		for (int i = 0; i < 4; ++i) {
+			int newX = now.first + dx[i];
+			int newY = now.second + dy[i];
+			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !enemy_visited[newY][newX] && map->board[newY][newX].Status != Masu::EnemyTile) {
+				q.push(make_pair(newX, newY));
+				enemy_visited[newY][newX] = true;
+			}
+		}
+	}
+
 	while (!candidates.empty()) {
 		c = *(candidates.front()); Candidate* c_pt = candidates.front(); candidates.pop();
 		for (int i = 0; i < 8; ++i) {
@@ -37,7 +59,9 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 					int newEvl = -INF;
 
 					if (c.step < setting->maxStep) {
-						newEvl = evl(*nextCand);
+						bool enemy_visited_copy[VERTICAL][WIDTH];
+						memcpy(enemy_visited_copy, enemy_visited, sizeof(enemy_visited));
+						newEvl = evl(*nextCand, enemy_visited_copy);
 						candidates.push(nextCand);
 						if (newEvl > bestEvl) {
 							best = *nextCand;
@@ -60,26 +84,44 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 	return make_pair(best.pos.second, best.pos.first);
 }
 
-int Prefetching::evl(Candidate c) {
+int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH]) {
 	int point = 0;
 	Map *map;
 	map = map->getMap();
 	bool isOccupied[VERTICAL][WIDTH] = { false };
+	bool EisOccupied[VERTICAL][WIDTH] = { false };
+
+	queue< pair<int, int> > eq;
+
+	isOccupied[map->agents[0].position.second][map->agents[0].position.first] = true;
+	isOccupied[map->agents[1].position.second][map->agents[1].position.first] = true;
 
 	while (c.before != nullptr) {
 		if (!isOccupied[c.pos.second][c.pos.first] && map->board[c.pos.second][c.pos.first].Status != Masu::FriendTile) {
 			point += map->board[c.pos.second][c.pos.first].TilePoint;
-			isOccupied[c.pos.second][c.pos.first] = true;
+			if (map->board[c.pos.second][c.pos.first].Status == Masu::EnemyTile) {
+				eq.push(make_pair(c.pos.second, c.pos.first));
+			}
+			else {
+				isOccupied[c.pos.second][c.pos.first] = true;
+			}
 		}
 		c = *(c.before);
 	}
 
+	for (int i = 0; i < map->Vertical; ++i) {
+		for (int j = 0; j < map->Width; ++j) {
+			if (map->board[i][j].Status == Masu::FriendTile) isOccupied[i][j] = true;
+			if (map->board[i][j].Status == Masu::EnemyTile) EisOccupied[i][j] = true;
+		}
+	}
+
 	bool visited[VERTICAL][WIDTH] = { false };
 	queue< pair<int, int> > q;
-	q.push(make_pair(-1, -1));
-	q.push(make_pair(map->Vertical, -1));
-	q.push(make_pair(-1, map->Width));
-	q.push(make_pair(map->Vertical, map->Width));
+	q.push(make_pair(-1, 0));
+	q.push(make_pair(0, map->Vertical));
+	q.push(make_pair(map->Width, 0));
+	q.push(make_pair(map->Width - 1, map->Vertical));
 
 	while (!q.empty()) {
 		pair<int, int> now = q.front(); q.pop();
@@ -97,8 +139,27 @@ int Prefetching::evl(Candidate c) {
 
 	for (int i = 0; i < map->Vertical; ++i) {
 		for (int j = 0; j < map->Width; ++j) {
-			if (!visited[i][j]) {
+			if (!visited[i][j] && !isOccupied[i][j]) {
 				point += 2 * abs(map->board[i][j].TilePoint);
+				//Println(i, L" ", j, L" ", map->board[i][j].TilePoint);
+			}
+		}
+	}
+
+
+
+	while (!eq.empty()) {
+		pair<int, int> now = eq.front(); eq.pop();
+		int dx[] = { 0, 1, 0, -1 };
+		int dy[] = { 1, 0, -1, 0 };
+		for (int i = 0; i < 4; ++i) {
+			int newX = now.first + dx[i];
+			int newY = now.second + dy[i];
+			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !enemy_visited[newY][newX] && !EisOccupied[newY][newX]) {
+				q.push(make_pair(newX, newY));
+				enemy_visited[newY][newX] = true;
+				Println(map->board[newY][newX].TilePoint);
+				point += map->board[newY][newX].TilePoint;
 			}
 		}
 	}
