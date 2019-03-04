@@ -14,6 +14,9 @@ pair<int, int> Prefetching::prefetching(Agent agent)
 	int dy[8] = { -1, 0, 1, -1, 1, -1, 0, 1 };
 	Candidate c;
 
+	Setting *setting;
+	setting = setting->getSetting();
+
 	int bestEvl = -INF;
 
 	// TODO: (x, y)順序バラバラ問題の最終的解決
@@ -30,13 +33,12 @@ pair<int, int> Prefetching::prefetching(Agent agent)
 					nextCand->before = c_pt;
 					int newEvl = -INF;
 
-					if (c.step < SEARCH_DEPTH) {
+					if (c.step < setting->maxStep) {
 						newEvl = evl(*nextCand);
 						candidates.push(nextCand);
 						if (newEvl > bestEvl) {
 							best = *nextCand;
 							bestEvl = newEvl;
-							Println(bestEvl);
 						}
 					}
 				}
@@ -62,27 +64,19 @@ int Prefetching::evl(Candidate c) {
 	bool isOccupied[VERTICAL][WIDTH] = { false };
 
 	while (c.before != nullptr) {
-		if (!isOccupied[c.pos.second][c.pos.first] && map->board[c.pos.second][c.pos.first].Status == Masu::Non) {
+		if (!isOccupied[c.pos.second][c.pos.first] && map->board[c.pos.second][c.pos.first].Status != Masu::FriendTile) {
 			point += map->board[c.pos.second][c.pos.first].TilePoint;
 			isOccupied[c.pos.second][c.pos.first] = true;
 		}
 		c = *(c.before);
 	}
 
-	int sx, sy;
-
-	for (int i = 0; i < map->Vertical; ++i) {
-		for (int j = 0; j < map->Width; ++j) {
-			if (!isOccupied[i][j] && map->board[i][j].Status != Masu::FriendTile) {
-				sx = i % map->Width;
-				sy = i / map->Width;
-			}
-		}
-	}
-
 	bool visited[VERTICAL][WIDTH] = { false };
 	queue< pair<int, int> > q;
-	q.push(make_pair(sx, sy));
+	q.push(make_pair(-1, -1));
+	q.push(make_pair(map->Vertical, -1));
+	q.push(make_pair(-1, map->Width));
+	q.push(make_pair(map->Vertical, map->Width));
 
 	while (!q.empty()) {
 		pair<int, int> now = q.front(); q.pop();
@@ -98,15 +92,13 @@ int Prefetching::evl(Candidate c) {
 		}
 	}
 
-	/*
 	for (int i = 0; i < map->Vertical; ++i) {
 		for (int j = 0; j < map->Width; ++j) {
-			Print(visited[i][j] ? 1 : 0); Print(Format(L" "));
+			if (!visited[i][j]) {
+				point += 2 * abs(map->board[i][j].TilePoint);
+			}
 		}
-		Println();
 	}
-	Println();
-	*/
 	
 	return point;
 }

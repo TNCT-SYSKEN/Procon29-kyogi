@@ -7,7 +7,6 @@
 #include <vector>
 #include <queue>
 #define INF 1e09
-#define SEARCH_DEPTH 2
 
 class Prefetching {
 public:
