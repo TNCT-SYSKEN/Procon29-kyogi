@@ -81,9 +81,9 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 		return make_pair(agent.position.first, agent.position.second);
 	}
 
-	do{
+	while (best.step > 1) {
 		best = *(best.before);
-	} while (best.step > 1); //TODO: ‚±‚±‚Å Segmentation Fault ‚ª”­¶‚·‚é‚±‚Æ‚ª‚Ü‚ê‚É‚ ‚é
+	}//TODO: ‚±‚±‚Å Segmentation Fault ‚ª”­¶‚·‚é‚±‚Æ‚ª‚Ü‚ê‚É‚ ‚é
 
 	return make_pair(best.pos.second, best.pos.first);
 }
