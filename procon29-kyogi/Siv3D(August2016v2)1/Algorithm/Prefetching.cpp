@@ -24,10 +24,10 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 	bool enemy_visited[VERTICAL][WIDTH] = { false };
 
 	queue< pair<int, int> > q;
-	q.push(make_pair(-1, -1));
-	q.push(make_pair(map->Vertical, -1));
-	q.push(make_pair(-1, map->Width));
-	q.push(make_pair(map->Vertical, map->Width));
+	q.push(make_pair(-1, 0));
+	q.push(make_pair(0, map->Vertical));
+	q.push(make_pair(map->Width, 0));
+	q.push(make_pair(map->Width - 1, map->Vertical));
 
 	while (!q.empty()) {
 		pair<int, int> now = q.front(); q.pop();
@@ -89,7 +89,6 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH]) {
 	Map *map;
 	map = map->getMap();
 	bool isOccupied[VERTICAL][WIDTH] = { false };
-	bool EisOccupied[VERTICAL][WIDTH] = { false };
 
 	queue< pair<int, int> > eq;
 
@@ -100,7 +99,7 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH]) {
 		if (!isOccupied[c.pos.second][c.pos.first] && map->board[c.pos.second][c.pos.first].Status != Masu::FriendTile) {
 			point += map->board[c.pos.second][c.pos.first].TilePoint;
 			if (map->board[c.pos.second][c.pos.first].Status == Masu::EnemyTile) {
-				eq.push(make_pair(c.pos.second, c.pos.first));
+				eq.push(make_pair(c.pos.first, c.pos.second));
 			}
 			else {
 				isOccupied[c.pos.second][c.pos.first] = true;
@@ -112,7 +111,6 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH]) {
 	for (int i = 0; i < map->Vertical; ++i) {
 		for (int j = 0; j < map->Width; ++j) {
 			if (map->board[i][j].Status == Masu::FriendTile) isOccupied[i][j] = true;
-			if (map->board[i][j].Status == Masu::EnemyTile) EisOccupied[i][j] = true;
 		}
 	}
 
@@ -146,8 +144,6 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH]) {
 		}
 	}
 
-
-
 	while (!eq.empty()) {
 		pair<int, int> now = eq.front(); eq.pop();
 		int dx[] = { 0, 1, 0, -1 };
@@ -155,11 +151,11 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH]) {
 		for (int i = 0; i < 4; ++i) {
 			int newX = now.first + dx[i];
 			int newY = now.second + dy[i];
-			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !enemy_visited[newY][newX] && !EisOccupied[newY][newX]) {
+			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !enemy_visited[newY][newX] && map->board[newY][newX].Status != Masu::EnemyTile) {
 				q.push(make_pair(newX, newY));
 				enemy_visited[newY][newX] = true;
-				Println(map->board[newY][newX].TilePoint);
-				point += map->board[newY][newX].TilePoint;
+				//Println(newX, L" ", newY, L" ", map->board[newY][newX].TilePoint);
+				point += abs(map->board[newY][newX].TilePoint);
 			}
 		}
 	}
