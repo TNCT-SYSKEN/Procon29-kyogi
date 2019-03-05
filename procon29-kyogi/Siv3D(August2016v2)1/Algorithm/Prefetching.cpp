@@ -47,10 +47,7 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 		c = *(candidates.front()); Candidate* c_pt = candidates.front(); candidates.pop();
 		for (int i = 0; i < 8; ++i) {
 			pair<int, int> pos = make_pair(c.pos.first + dx[i], c.pos.second + dy[i]);
-			if (c.step == 0 && agentNum == 2) {
-				if (pos == map->agents[0].nextPosition) continue;
-			}
-			if (pos.first >= 0 && pos.first < map->Width) {
+			if (pos.first >= 0 && pos.first < map->Width && !(c.step == 0 && agentNum == 2 && pos == map->agents[0].nextPosition)) {
 				if (pos.second >= 0 && pos.second < map->Vertical) {
 					Candidate* nextCand = new Candidate();
 					nextCand->pos = pos;
@@ -73,13 +70,13 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 		}
 	}
 
-	if (best.step <= 0) {
+	if (best.before == nullptr) {
 		return make_pair(agent.position.first, agent.position.second);
 	}
 
 	do{
 		best = *(best.before);
-	} while (best.before->step > 0);
+	} while (best.step > 1); //TODO: ‚±‚±‚Å Segmentation Fault ‚ª”­¶‚·‚é‚±‚Æ‚ª‚Ü‚ê‚É‚ ‚é
 
 	return make_pair(best.pos.second, best.pos.first);
 }
