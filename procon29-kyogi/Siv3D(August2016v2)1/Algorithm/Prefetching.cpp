@@ -64,15 +64,6 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 		c = *(candidates.front()); Candidate* c_pt = candidates.front(); candidates.pop();
 		for (int i = 0; i < 8; ++i) {
 			pair<int, int> pos = make_pair(c.pos.first + dx[i], c.pos.second + dy[i]);
-			if (agentNum > 2 && c.step == 0 && pos.first == map->agents[0].nextPosition.second && pos.second == map->agents[0].nextPosition.first) {
-				continue;
-			}
-			else if (agentNum > 2 && c.step == 0 && pos.first == map->agents[1].nextPosition.second && pos.second == map->agents[1].nextPosition.first) {
-				continue;
-			}
-			if (c.step == 0 && agentNum == 4 && pos.first == map->agents[2].nextPosition.second && pos.second == map->agents[2].nextPosition.first) {
-				continue;
-			}
 			if (pos.first >= 0 && pos.first < map->Width && !(c.step == 0 && agentNum == 2 && pos.first == map->agents[0].nextPosition.second && pos.second == map->agents[0].nextPosition.first)) {
 				if (pos.second >= 0 && pos.second < map->Vertical) {
 					Candidate* nextCand = new Candidate();

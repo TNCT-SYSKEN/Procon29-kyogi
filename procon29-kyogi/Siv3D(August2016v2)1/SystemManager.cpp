@@ -49,6 +49,8 @@ void SystemManager::systemManager(void)
 	static int ewin;
 	static int best = 0;
 	static int bestprms[5] = { 4, 4, 4, 4, 3 };
+	int a1x = 0; int a1y = 0;
+	int a2x = 0; int a2y = 0;
 	if (setting->turnFlag == true) {
 		//update.updateManager(); //そのターンのデータを保存＋ターン数を進める
 		map->Turn += 1;
@@ -57,6 +59,31 @@ void SystemManager::systemManager(void)
 		inter.drawSuport();
 		drawLeft.drawLeftManager();    //最善手によって味方エージェントの移動先を表示する
 		//inter.inputEnemyMovePos();   //敵の候補地の入力の受付
+
+		int x1 = map->agents[2].nextPosition.first;
+		int y1 = map->agents[2].nextPosition.second;
+		int x2 = map->agents[3].nextPosition.first;
+		int y2 = map->agents[3].nextPosition.second;
+
+		std::random_device rnd;
+		std::mt19937 mt(rnd());
+		std::uniform_int_distribution<int> unr(-1, 1);
+
+		if (a1x == x1 && a1y == y1) {
+			map->agents[2].nextPosition.first += unr(mt);
+			map->agents[2].nextPosition.second += unr(mt);
+		}
+
+		if (a2x == x2 && a2y == y2) {
+			map->agents[3].nextPosition.first += unr(mt);
+			map->agents[3].nextPosition.second += unr(mt);
+		}
+		
+		a1x = x1;
+		a1y = y1;
+		a2x = x2;
+		a2y = y2;
+
 		agentManager.decideAgentAct();  //敵と味方の候補地によって次に行う行動の決定
 		agentManager.agentMoveManager(); //エージェントが実際に行動する
 		drawLeft.drawLeftManager();      //行動後の状態を表示
