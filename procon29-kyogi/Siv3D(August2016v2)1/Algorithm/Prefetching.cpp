@@ -96,7 +96,7 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agent
 
 	queue< pair<int, int> > eq;
 
-	int evl_params[5] = { 4, 4, 4, 4, 3}; //重み．順に，領域点，自チームの囲み，相手チームの囲み，エージェント間距離，自由度
+	int evl_params[5] = { 3, 8, 8, 7, 4}; //重み．順に，領域点，自チームの囲み，相手チームの囲み，エージェント間距離，自由度
 
 	isOccupied[map->agents[0].position.second][map->agents[0].position.first] = true;
 	isOccupied[map->agents[1].position.second][map->agents[1].position.first] = true;
