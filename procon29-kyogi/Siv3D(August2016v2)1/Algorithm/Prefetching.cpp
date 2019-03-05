@@ -179,7 +179,7 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agent
 		dist = abs(map->agents[1].position.first - c.pos.second) + abs(map->agents[1].position.second - c.pos.first);
 	}
 	else {
-		dist = abs(map->agents[1].nextPosition.first - c.pos.second) + abs(map->agents[1].nextPosition.second - c.pos.first);
+		dist = abs(map->agents[0].nextPosition.first - c.pos.second) + abs(map->agents[0].nextPosition.second - c.pos.first);
 	}
 
 	point += evl_params[3] * dist;
