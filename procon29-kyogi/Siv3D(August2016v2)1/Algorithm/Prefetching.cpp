@@ -2,6 +2,16 @@
 
 pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 {
+	Masu::StateOfMasu fr;
+	Masu::StateOfMasu en;
+	if (agentNum <= 2) {
+		fr = Masu::FriendTile;
+		en = Masu::EnemyTile;
+	}
+	else {
+		fr = Masu::EnemyTile;
+		en = Masu::FriendTile;
+	}
 	Map *map;
 	map = map->getMap();
 	pair<int, int> ans;
@@ -43,7 +53,7 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 		for (int i = 0; i < 4; ++i) {
 			int newX = now.first + dx[i];
 			int newY = now.second + dy[i];
-			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !enemy_visited[newY][newX] && map->board[newY][newX].Status != Masu::EnemyTile) {
+			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !enemy_visited[newY][newX] && map->board[newY][newX].Status != en) {
 				q.push(make_pair(newX, newY));
 				enemy_visited[newY][newX] = true;
 			}
@@ -54,6 +64,15 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 		c = *(candidates.front()); Candidate* c_pt = candidates.front(); candidates.pop();
 		for (int i = 0; i < 8; ++i) {
 			pair<int, int> pos = make_pair(c.pos.first + dx[i], c.pos.second + dy[i]);
+			if (agentNum > 2 && c.step == 0 && pos.first == map->agents[0].nextPosition.second && pos.second == map->agents[0].nextPosition.first) {
+				continue;
+			}
+			else if (agentNum > 2 && c.step == 0 && pos.first == map->agents[1].nextPosition.second && pos.second == map->agents[1].nextPosition.first) {
+				continue;
+			}
+			if (c.step == 0 && agentNum == 4 && pos.first == map->agents[2].nextPosition.second && pos.second == map->agents[2].nextPosition.first) {
+				continue;
+			}
 			if (pos.first >= 0 && pos.first < map->Width && !(c.step == 0 && agentNum == 2 && pos.first == map->agents[0].nextPosition.second && pos.second == map->agents[0].nextPosition.first)) {
 				if (pos.second >= 0 && pos.second < map->Vertical) {
 					Candidate* nextCand = new Candidate();
@@ -89,6 +108,16 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 }
 
 int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agentNum) {
+	Masu::StateOfMasu fr;
+	Masu::StateOfMasu en;
+	if (agentNum <= 2) {
+		fr = Masu::FriendTile;
+		en = Masu::EnemyTile;
+	}
+	else {
+		fr = Masu::EnemyTile;
+		en = Masu::FriendTile;
+	}
 	int point = 0;
 	Map *map;
 	map = map->getMap();
@@ -96,15 +125,13 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agent
 
 	queue< pair<int, int> > eq;
 
-	int evl_params[5] = { 4, 4, 4, 4, 3}; //重み．順に，領域点，自チームの囲み，相手チームの囲み，エージェント間距離，自由度
-
 	isOccupied[map->agents[0].position.second][map->agents[0].position.first] = true;
 	isOccupied[map->agents[1].position.second][map->agents[1].position.first] = true;
 
 	while (c.before != nullptr) {
-		if (!isOccupied[c.pos.second][c.pos.first] && map->board[c.pos.second][c.pos.first].Status != Masu::FriendTile) {
+		if (!isOccupied[c.pos.second][c.pos.first] && map->board[c.pos.second][c.pos.first].Status != fr) {
 			point += evl_params[0] * map->board[c.pos.second][c.pos.first].TilePoint;
-			if (map->board[c.pos.second][c.pos.first].Status == Masu::EnemyTile) {
+			if (map->board[c.pos.second][c.pos.first].Status == en) {
 				eq.push(make_pair(c.pos.first, c.pos.second));
 			}
 			else {
@@ -116,7 +143,7 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agent
 
 	for (int i = 0; i < map->Vertical; ++i) {
 		for (int j = 0; j < map->Width; ++j) {
-			if (map->board[i][j].Status == Masu::FriendTile) isOccupied[i][j] = true;
+			if (map->board[i][j].Status == fr) isOccupied[i][j] = true;
 		}
 	}
 
@@ -163,7 +190,7 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agent
 		for (int i = 0; i < 4; ++i) {
 			int newX = now.first + dx[i];
 			int newY = now.second + dy[i];
-			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !enemy_visited[newY][newX] && map->board[newY][newX].Status != Masu::EnemyTile) {
+			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !enemy_visited[newY][newX] && map->board[newY][newX].Status != en) {
 				q.push(make_pair(newX, newY));
 				enemy_visited[newY][newX] = true;
 				//Println(newX, L" ", newY, L" ", map->board[newY][newX].TilePoint);

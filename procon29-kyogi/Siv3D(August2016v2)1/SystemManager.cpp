@@ -43,13 +43,20 @@ void SystemManager::systemManager(void)
 	Setting *setting;
 	setting = setting->getSetting();
 
+	static int prms1[5] = { 4, 4, 4, 4, 3 };
+	static int prms2[5] = { 3, 3, 2, 1, 2 };
+	static int fwin;
+	static int ewin;
+	static int best = 0;
+	static int bestprms[5] = { 4, 4, 4, 4, 3 };
 	if (setting->turnFlag == true) {
-		update.updateManager(); //そのターンのデータを保存＋ターン数を進める
-		algoManager.algorithmManager(); //最善手を求める
+		//update.updateManager(); //そのターンのデータを保存＋ターン数を進める
+		map->Turn += 1;
+		algoManager.algorithmManager(prms1, prms2); //最善手を求める
 		suport.suportOfficer();         //味方エージェントの動きを数字で表現
 		inter.drawSuport();
 		drawLeft.drawLeftManager();    //最善手によって味方エージェントの移動先を表示する
-		inter.inputEnemyMovePos();   //敵の候補地の入力の受付
+		//inter.inputEnemyMovePos();   //敵の候補地の入力の受付
 		agentManager.decideAgentAct();  //敵と味方の候補地によって次に行う行動の決定
 		agentManager.agentMoveManager(); //エージェントが実際に行動する
 		drawLeft.drawLeftManager();      //行動後の状態を表示
@@ -81,7 +88,58 @@ void SystemManager::systemManager(void)
 		map->enemySumScore = map->enemyTileScore + map->enemyAreaScore;
 
 		//ここまでの流れが終わったらturnFlagをtrueにする
-		setting->turnFlag = false;
+		//setting->turnFlag = false;
+		if (map->Turn == 40) {
+			std::random_device rnd;
+			std::mt19937 mt(rnd());
+			std::uniform_int_distribution<int> unr(1, 10);
+			int d = map->friendSumScore - map->enemySumScore;
+			//Println(d);
+			if (d > 0) {
+				prms2[0] = unr(mt);
+				prms2[1] = unr(mt);
+				prms2[2] = unr(mt);
+				prms2[3] = unr(mt);
+				prms2[4] = unr(mt);
+				++fwin;
+				if (fwin > best) {
+					best = fwin;
+					bestprms[0] = prms1[0];
+					bestprms[1] = prms1[1];
+					bestprms[2] = prms1[2];
+					bestprms[3] = prms1[3];
+					bestprms[4] = prms1[4];
+				}
+				ewin = 0;
+			}
+			else {
+				prms1[0] = unr(mt);
+				prms1[1] = unr(mt);
+				prms1[2] = unr(mt);
+				prms1[3] = unr(mt);
+				prms1[4] = unr(mt);
+				++ewin;
+				if (ewin > best) {
+					best = ewin;
+					bestprms[0] = prms2[0];
+					bestprms[1] = prms2[1];
+					bestprms[2] = prms2[2];
+					bestprms[3] = prms2[3];
+					bestprms[4] = prms2[4];
+				}
+				fwin = 0;
+			}
+			ofstream file;
+			file.open("logs.txt", ios::app);
+			file << fwin << " " << ewin << " "<< d << " " << best << endl;
+			file << prms1[0] << " " << prms1[1] << " " << prms1[2] << " " << prms1[3] << " " << prms1[4] << endl;
+			file << prms2[0] << " " << prms2[1] << " " << prms2[2] << " " << prms2[3] << " " << prms2[4] << endl;
+			file << bestprms[0] << " " << bestprms[1] << " " << bestprms[2] << " " << bestprms[3] << " " << bestprms[4] << endl << endl;
+			file.close();
+			//Println(d, L" ", fwin, L" ", ewin, L" ");
+			map->agents.clear();
+			ioManager.init();
+		}
 	}
 	ioManager.inputOuntputManager();
 }

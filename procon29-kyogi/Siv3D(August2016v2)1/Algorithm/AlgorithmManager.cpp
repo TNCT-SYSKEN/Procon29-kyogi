@@ -1,6 +1,6 @@
 #include "AlgorithmManager.h"
 
-void AlgorithmManager::algorithmManager(void)
+void AlgorithmManager::algorithmManager(int prms1[5], int prms2[5])
 {
 	/*
 	総当たりか数手先読みか判断して読み出す
@@ -26,9 +26,15 @@ void AlgorithmManager::algorithmManager(void)
 		AddEvaluation addEvaluation;
 
 		Agent agent1 = map->agents[0];
-		map->agents[0].nextPosition = addEvaluation.addEvaluation(agent1, 1);
+		map->agents[0].nextPosition = addEvaluation.addEvaluation(agent1, 1, prms1);
 
 		Agent agent2 = map->agents[1];
-		map->agents[1].nextPosition = addEvaluation.addEvaluation(agent2, 2);
+		map->agents[1].nextPosition = addEvaluation.addEvaluation(agent2, 2, prms1);
+
+		Agent agent3 = map->agents[2];
+		map->agents[2].nextPosition = addEvaluation.addEvaluation(agent3, 3, prms2);
+
+		Agent agent4 = map->agents[3];
+		map->agents[3].nextPosition = addEvaluation.addEvaluation(agent4, 4, prms2);
 	}
 }

@@ -92,5 +92,5 @@ void UpdateTurnInfo::research(void)
 	*now_map = turnManager->map[now_map->Turn];
 	now_setting->turnFlag = false;
 	//ƒAƒ‹ƒSƒŠƒYƒ€‚ğ“®‚©‚·
-	algo.algorithmManager();
+	//algo.algorithmManager();
 }
