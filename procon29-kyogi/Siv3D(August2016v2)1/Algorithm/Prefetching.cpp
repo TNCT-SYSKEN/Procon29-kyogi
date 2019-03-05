@@ -10,8 +10,13 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 	unordered_map<string, Candidate> visited;
 	Candidate best = initialCand;
 	candidates.push(&initialCand);
+	/*
 	int dx[8] = { -1, -1, -1, 0, 0, 1, 1, 1 };
 	int dy[8] = { -1, 0, 1, -1, 1, -1, 0, 1 };
+	*/
+
+	int dx[8] = { 1, -1, 0, 0 , 1, 1, -1, -1};
+	int dy[8] = { 0, 0, 1, -1 , 1, -1, 1, -1};
 	Candidate c;
 
 	Setting *setting;
@@ -24,15 +29,17 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 	bool enemy_visited[VERTICAL][WIDTH] = { false };
 
 	queue< pair<int, int> > q;
-	q.push(make_pair(-1, 0));
-	q.push(make_pair(0, map->Vertical));
-	q.push(make_pair(map->Width, 0));
-	q.push(make_pair(map->Width - 1, map->Vertical));
+	for (int i = 0; i < map->Vertical; ++i) {
+		q.push(make_pair(-1, i));
+		q.push(make_pair(map->Width, i));
+	}
+	for (int i = 0; i < map->Width; ++i) {
+		q.push(make_pair(i, -1));
+		q.push(make_pair(i, map->Vertical));
+	}
 
 	while (!q.empty()) {
 		pair<int, int> now = q.front(); q.pop();
-		int dx[] = { 0, 1, 0, -1 };
-		int dy[] = { 1, 0, -1, 0 };
 		for (int i = 0; i < 4; ++i) {
 			int newX = now.first + dx[i];
 			int newY = now.second + dy[i];
@@ -113,10 +120,15 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH]) {
 
 	bool visited[VERTICAL][WIDTH] = { false };
 	queue< pair<int, int> > q;
-	q.push(make_pair(-1, 0));
-	q.push(make_pair(0, map->Vertical));
-	q.push(make_pair(map->Width, 0));
-	q.push(make_pair(map->Width - 1, map->Vertical));
+
+	for (int i = 0; i < map->Vertical; ++i) {
+		q.push(make_pair(-1, i));
+		q.push(make_pair(map->Width, i));
+	}
+	for (int i = 0; i < map->Width; ++i) {
+		q.push(make_pair(i, -1));
+		q.push(make_pair(i, map->Vertical));
+	}
 
 	while (!q.empty()) {
 		pair<int, int> now = q.front(); q.pop();
@@ -141,10 +153,11 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH]) {
 		}
 	}
 
+	int dx[] = { 0, 1, 0, -1 };
+	int dy[] = { 1, 0, -1, 0 };
+
 	while (!eq.empty()) {
 		pair<int, int> now = eq.front(); eq.pop();
-		int dx[] = { 0, 1, 0, -1 };
-		int dy[] = { 1, 0, -1, 0 };
 		for (int i = 0; i < 4; ++i) {
 			int newX = now.first + dx[i];
 			int newY = now.second + dy[i];
@@ -160,12 +173,14 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH]) {
 	return point;
 }
 
-void Prefetching::caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, int nowX, int nowY, vector< vector<int> >& visited, Masu::StateOfMasu st)
+int Prefetching::caluculateAreaScore(Masu::StateOfMasu st)
 {
+	//st チームの領域点を計算する．
+	/*
 	int dy[] = { 1, 0, -1, 0 };
 	int dx[] = { 0, 1, 0, -1 };
 
-	//経路 route をとったときの，stチームによる囲み判定をする
+	
 	Map map = *(Map::getMap());
 
 	//水を4近傍にドバーッと流す
@@ -180,4 +195,46 @@ void Prefetching::caluculateEncircle(vector<pair<Masu, pair<int, int>>> route, i
 			}
 		}
 	}
+	*/
+
+	Map *map;
+	map = map->getMap();
+	int dx[] = { 0, 1, 0, -1 };
+	int dy[] = { 1, 0, -1, 0 };
+
+	bool visited[VERTICAL][WIDTH] = { false };
+	queue< pair<int, int> > q;
+	for (int i = 0; i < map->Vertical; ++i) {
+		q.push(make_pair(-1, i));
+		q.push(make_pair(map->Width, i));
+	}
+	for (int i = 0; i < map->Width; ++i) {
+		q.push(make_pair(i, -1));
+		q.push(make_pair(i, map->Vertical));
+	}
+
+	while (!q.empty()) {
+		pair<int, int> now = q.front(); q.pop();
+		for (int i = 0; i < 4; ++i) {
+			int newX = now.first + dx[i];
+			int newY = now.second + dy[i];
+			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !visited[newY][newX] && map->board[newY][newX].Status != st) {
+				q.push(make_pair(newX, newY));
+				visited[newY][newX] = true;
+			}
+		}
+	}
+
+	int score = 0;
+
+	for (int i = 0; i < map->Vertical; ++i) {
+		for (int j = 0; j < map->Width; ++j) {
+			if (!visited[i][j] && map->board[i][j].Status != st) {
+				score += abs(map->board[i][j].TilePoint);
+				//Println(i, L" ", j, L" ", map->board[i][j].TilePoint);
+			}
+		}
+	}
+
+	return score;
 }

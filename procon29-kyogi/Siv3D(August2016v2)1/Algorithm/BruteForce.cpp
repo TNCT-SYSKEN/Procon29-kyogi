@@ -50,8 +50,9 @@ int BruteForce::calcRoute(int remainingTurn, vector<int> route) {
 			Masu masu;
 			route4C.push_back(make_pair(masu, po));
 		}
-
-		Prefetching::caluculateEncircle(route4C, 0, 0, visited, Masu::FriendTile);
+		
+		//‚È‚ñ‚©‚æ‚­‚í‚©‚ç‚ñ‚¯‚Ç‚Æ‚è‚ ‚¦‚¸ŒÄ‚ñ‚Å‚Ý‚½
+		Prefetching::caluculateAreaScore(Masu::FriendTile);
 
 		int s2 = 0;
 		for (int u = 1; u <= map->Vertical; ++u) {

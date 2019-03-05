@@ -73,40 +73,9 @@ void SystemManager::systemManager(void)
 		}
 
 		//—Ìˆæ“_‚ðŒvŽZ‚·‚é
-		vector< vector<int> > Fvisited; //–¡•û‚ÌˆÍ‚ÝŒvŽZ
-		for (int i = 0; i <= map->Vertical + 1; ++i) {
-			vector<int> v(map->Width + 2, 0);
-			Fvisited.push_back(v);
-		}
+		map->friendAreaScore += Prefetching::caluculateAreaScore(Masu::FriendTile);
 
-		vector < pair<Masu, pair<int, int> > > route;
-		Prefetching::caluculateEncircle(route, 0, 0, Fvisited, Masu::FriendTile);
-		Prefetching::caluculateEncircle(route, map->Width + 1, map->Vertical + 1, Fvisited, Masu::FriendTile);
-
-		for (int u = 1; u <= map->Vertical; ++u) {
-			for (int v = 1; v <= map->Width; ++v) {
-				if (!Fvisited[u][v] && map->board[u][v].Status != Masu::FriendTile) {
-					map->friendAreaScore += abs(map->board[u][v].TilePoint);
-				}
-			}
-		}
-
-		vector< vector<int> > Evisited; //“G‚ÌˆÍ‚ÝŒvŽZ
-		for (int i = 0; i <= map->Vertical + 1; ++i) {
-			vector<int> v(map->Width + 2, 0);
-			Evisited.push_back(v);
-		}
-
-		Prefetching::caluculateEncircle(route, 0, 0, Evisited, Masu::EnemyTile);
-		Prefetching::caluculateEncircle(route, map->Width + 1, map->Vertical + 1, Evisited, Masu::EnemyTile);
-
-		for (int u = 1; u <= map->Vertical; ++u) {
-			for (int v = 1; v <= map->Width; ++v) {
-				if (!Evisited[u - 1][v - 1] && map->board[u - 1][v - 1].Status != Masu::EnemyTile) {
-					map->enemyAreaScore += abs(map->board[u - 1][v - 1].TilePoint);
-				}
-			}
-		}
+		map->enemyAreaScore += Prefetching::caluculateAreaScore(Masu::EnemyTile);
 
 		map->friendSumScore = map->friendTileScore + map->friendAreaScore;
 		map->enemySumScore = map->enemyTileScore + map->enemyAreaScore;
