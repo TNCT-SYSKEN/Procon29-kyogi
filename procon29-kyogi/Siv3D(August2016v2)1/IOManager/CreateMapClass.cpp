@@ -18,7 +18,7 @@ void CreateMapClass::init(void)
 	map->Turn = 0;
 	Setting *setting;
 	setting = setting->getSetting();
-	setting->maxStep = 2;
+	setting->maxStep = 4;
 }
 
 /* ReadQR->data ‚É‚¿‚á‚ñ‚Æ“ü‚Á‚Ä‚ê‚Î true ‚ğC‚»‚¤‚Å‚È‚¯‚ê‚Î false ‚ğ•Ô‚·D*/

@@ -28,7 +28,14 @@ void AlgorithmManager::algorithmManager(void)
 		Agent agent1 = map->agents[0];
 		map->agents[0].nextPosition = addEvaluation.addEvaluation(agent1, 1);
 
+		Println();
+
 		Agent agent2 = map->agents[1];
 		map->agents[1].nextPosition = addEvaluation.addEvaluation(agent2, 2);
+
+		Println();
+
+		//Println(map->agents[0].nextPosition.first, L" ", map->agents[0].nextPosition.second);
+		//Println(map->agents[1].nextPosition.first, L" ", map->agents[1].nextPosition.second);
 	}
 }
