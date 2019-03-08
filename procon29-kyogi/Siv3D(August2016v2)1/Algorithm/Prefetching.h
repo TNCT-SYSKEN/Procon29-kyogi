@@ -7,6 +7,7 @@
 #include <vector>
 #include <queue>
 #define INF 1e09
+#define MAX_TURN 40
 
 class Prefetching {
 public:
