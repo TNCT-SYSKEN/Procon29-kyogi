@@ -7,7 +7,7 @@
 #include <vector>
 #include <queue>
 #define INF 1e09
-#define MAX_TURN 40
+#define MTURN 40
 
 class Prefetching {
 public:
@@ -20,7 +20,7 @@ public:
 		}
 		return false;
 	}
-	int evl_params[5] = { 4, 4, 5, 3, 2}; //重み．順に，領域点，自チームの囲み，相手チームの囲み，エージェント間距離，自由度
+	int evl_params[5] = { 5, 3, 4, 3, 2}; //重み．順に，領域点，自チームの囲み，相手チームの囲み，エージェント間距離，自由度
 private:
 
 };

@@ -158,7 +158,7 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agent
 	for (int i = 0; i < map->Vertical; ++i) {
 		for (int j = 0; j < map->Width; ++j) {
 			if (!visited[i][j] && !isOccupied[i][j]) {
-				point += ((map->Turn >= (MAX_TURN - 2)) ? 2 : 1) * evl_params[1] * abs(map->board[i][j].TilePoint);
+				point += ((map->Turn >= (MTURN - 2)) ? 2 : 1) * evl_params[1] * abs(map->board[i][j].TilePoint);
 				//Println(i, L" ", j, L" ", map->board[i][j].TilePoint);
 			}
 		}
@@ -176,7 +176,7 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agent
 				q.push(make_pair(newX, newY));
 				enemy_visited[newY][newX] = true;
 				//Println(newX, L" ", newY, L" ", map->board[newY][newX].TilePoint);
-				point += ((map->Turn >= (3 * MAX_TURN / 4)) ? 2 : 1 ) * evl_params[2] * abs(map->board[newY][newX].TilePoint);
+				point += ((map->Turn >= (3 * MTURN / 4)) ? 2 : 1 ) * evl_params[2] * abs(map->board[newY][newX].TilePoint);
 			}
 		}
 	}
