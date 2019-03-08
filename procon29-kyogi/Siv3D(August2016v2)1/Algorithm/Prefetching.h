@@ -12,7 +12,6 @@ class Prefetching {
 public:
 	pair<int, int> prefetching(Agent, int);
 	int evl(Candidate, bool enemy_visited[VERTICAL][WIDTH], int);
-	int evl_print(Candidate, bool enemy_visited[VERTICAL][WIDTH], int);
 	static int caluculateAreaScore(Masu::StateOfMasu);
 	static bool isVisited(vector<pair<Masu, pair<int, int>>> route, int newX, int newY, Masu::StateOfMasu st) {
 		for (pair<Masu, pair<int, int>> p : route) {
@@ -20,7 +19,7 @@ public:
 		}
 		return false;
 	}
-	int evl_params[5] = { 7, 8, 8, 7, 4 }; //重み．順に，領域点，自チームの囲み，相手チームの囲み，エージェント間距離，自由度
+	int evl_params[5] = { 4, 4, 5, 3, 2}; //重み．順に，領域点，自チームの囲み，相手チームの囲み，エージェント間距離，自由度
 private:
 
 };

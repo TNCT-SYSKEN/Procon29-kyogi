@@ -86,8 +86,6 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 		}
 	}
 
-	evl_print(best, enemy_visited, agentNum);
-
 	if (best.before == nullptr) {
 		return make_pair(agent.position.first, agent.position.second);
 	}
@@ -109,6 +107,8 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agent
 
 	isOccupied[map->agents[0].position.second][map->agents[0].position.first] = true;
 	isOccupied[map->agents[1].position.second][map->agents[1].position.first] = true;
+
+	Candidate c_copy = c;
 
 	while (c.before != nullptr) {
 		if (!isOccupied[c.pos.second][c.pos.first] && map->board[c.pos.second][c.pos.first].Status != Masu::FriendTile) {
@@ -182,14 +182,11 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agent
 	}
 
 	//エージェント間距離を計算
-	
+
 	int dist;
-	if (agentNum == 1) {
-		dist = abs(map->agents[1].position.first - c.pos.second) + abs(map->agents[1].position.second - c.pos.first);
-	}
-	else {
-		dist = abs(map->agents[0].nextPosition.first - c.pos.second) + abs(map->agents[0].nextPosition.second - c.pos.first);
-	}
+	dist = abs(map->agents[-(agentNum - 2)].position.first - c_copy.pos.second) + abs(map->agents[-(agentNum - 2)].position.second - c_copy.pos.first);
+
+	dist -= 1;
 
 	point += evl_params[3] * dist;
 
@@ -197,129 +194,14 @@ int Prefetching::evl(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agent
 
 	//自由度を計算
 	for (int i = 0; i < 8; ++i) {
-		int newX = c.pos.first + dx[i];
-		int newY = c.pos.second + dy[i];
+		int newX = c_copy.pos.first + dx[i];
+		int newY = c_copy.pos.second + dy[i];
 		if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !isOccupied[newY][newX]) {
 			freedom += 1;
 		}
 	}
 
 	point += evl_params[4] * freedom;
-
-	return point;
-}
-
-int Prefetching::evl_print(Candidate c, bool enemy_visited[VERTICAL][WIDTH], int agentNum) {
-	int point = 0;
-	Map *map;
-	map = map->getMap();
-	bool isOccupied[VERTICAL][WIDTH] = { false };
-
-	queue< pair<int, int> > eq;
-
-	isOccupied[map->agents[0].position.second][map->agents[0].position.first] = true;
-	isOccupied[map->agents[1].position.second][map->agents[1].position.first] = true;
-
-	while (c.before != nullptr) {
-		if (!isOccupied[c.pos.second][c.pos.first] && map->board[c.pos.second][c.pos.first].Status != Masu::FriendTile) {
-			point += evl_params[0] * map->board[c.pos.second][c.pos.first].TilePoint;
-			if (map->board[c.pos.second][c.pos.first].Status == Masu::EnemyTile) {
-				eq.push(make_pair(c.pos.first, c.pos.second));
-			}
-			else {
-				isOccupied[c.pos.second][c.pos.first] = true;
-			}
-		}
-		c = *(c.before);
-	}
-	Println(point);
-
-	for (int i = 0; i < map->Vertical; ++i) {
-		for (int j = 0; j < map->Width; ++j) {
-			if (map->board[i][j].Status == Masu::FriendTile) isOccupied[i][j] = true;
-		}
-	}
-
-	bool visited[VERTICAL][WIDTH] = { false };
-	queue< pair<int, int> > q;
-
-	for (int i = 0; i < map->Vertical; ++i) {
-		q.push(make_pair(-1, i));
-		q.push(make_pair(map->Width, i));
-	}
-	for (int i = 0; i < map->Width; ++i) {
-		q.push(make_pair(i, -1));
-		q.push(make_pair(i, map->Vertical));
-	}
-
-	while (!q.empty()) {
-		pair<int, int> now = q.front(); q.pop();
-		int dx[] = { 0, 1, 0, -1 };
-		int dy[] = { 1, 0, -1, 0 };
-		for (int i = 0; i < 4; ++i) {
-			int newX = now.first + dx[i];
-			int newY = now.second + dy[i];
-			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !visited[newY][newX] && !isOccupied[newY][newX]) {
-				q.push(make_pair(newX, newY));
-				visited[newY][newX] = true;
-			}
-		}
-	}
-
-	for (int i = 0; i < map->Vertical; ++i) {
-		for (int j = 0; j < map->Width; ++j) {
-			if (!visited[i][j] && !isOccupied[i][j]) {
-				point += evl_params[1] * abs(map->board[i][j].TilePoint);
-				//Println(i, L" ", j, L" ", map->board[i][j].TilePoint);
-			}
-		}
-	}
-	Println(point);
-
-	int dx[8] = { 1, -1, 0, 0 , 1, 1, -1, -1 };
-	int dy[8] = { 0, 0, 1, -1 , 1, -1, 1, -1 };
-
-	while (!eq.empty()) {
-		pair<int, int> now = eq.front(); eq.pop();
-		for (int i = 0; i < 4; ++i) {
-			int newX = now.first + dx[i];
-			int newY = now.second + dy[i];
-			if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !enemy_visited[newY][newX] && map->board[newY][newX].Status != Masu::EnemyTile) {
-				q.push(make_pair(newX, newY));
-				enemy_visited[newY][newX] = true;
-				//Println(newX, L" ", newY, L" ", map->board[newY][newX].TilePoint);
-				point += ((map->Turn > 30) ? 2 : 1) * evl_params[2] * abs(map->board[newY][newX].TilePoint);
-			}
-		}
-	}
-	Println(point);
-
-	//エージェント間距離を計算
-
-	int dist;
-	if (agentNum == 1) {
-		dist = abs(map->agents[1].position.first - c.pos.second) + abs(map->agents[1].position.second - c.pos.first);
-	}
-	else {
-		dist = abs(map->agents[0].nextPosition.first - c.pos.second) + abs(map->agents[0].nextPosition.second - c.pos.first);
-	}
-
-	point += evl_params[3] * dist;
-	Println(point);
-
-	int freedom = 0;
-
-	//自由度を計算
-	for (int i = 0; i < 8; ++i) {
-		int newX = c.pos.first + dx[i];
-		int newY = c.pos.second + dy[i];
-		if (newX >= 0 && newX < map->Width && newY >= 0 && newY < map->Vertical && !isOccupied[newY][newX]) {
-			freedom += 1;
-		}
-	}
-
-	point += evl_params[4] * freedom;
-	Println(point);
 
 	return point;
 }
