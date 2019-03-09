@@ -65,6 +65,35 @@ bool CreateMapClass::createMapClass(void)
 	createMasuClass();
 	createAgent();
 
+	double avg = 0;
+	double sum = 0;
+
+	for(int i = 0;i < map->Vertical;++i){
+		for(int j = 0;j < map->Width;++j){
+			int score = map->board[i][j].TilePoint;
+			sum += score;
+		}
+	}
+	avg = ((double) sum) / (map->Vertical * map->Width);
+
+	int di;
+	int s = 0;
+	for (int i = 0; i < map->Vertical; ++i) {
+		for (int j = 0; j < map->Width; ++j) {
+			int score = map->board[i][j].TilePoint;
+			di = (score - avg)*(score - avg);
+			s += di;
+		}
+	}
+	double ss = sqrt(s) / (map->Vertical * map->Width);
+
+	Setting *setting;
+	setting = setting->getSetting();
+
+	if (ss > 0.3) setting->params[0] = setting->params[0] * 2;
+	setting->params[3] = round(1.5 * avg);
+	setting->params[4] = round(1 * avg);
+
 	return true;
 }
 

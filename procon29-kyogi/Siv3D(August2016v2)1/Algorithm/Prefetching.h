@@ -20,7 +20,7 @@ public:
 		}
 		return false;
 	}
-	int evl_params[5]; //重み．順に，領域点，自チームの囲み，相手チームの囲み，エージェント間距離，自由度
+	int evl_params[5];
 private:
 
 };

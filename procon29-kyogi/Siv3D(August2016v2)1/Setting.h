@@ -13,7 +13,7 @@ public:
 	//true:right false:left
 	bool selectRL;
 	vector< vector<int> > bruteForceResults;
-	int params[5] = { 7, 4, 3, 3, 2 };
+	int params[5] = { 7, 4, 3, 3, 2 };//重み．順に，領域点，自チームの囲み，相手チームの囲み，エージェント間距離，自由度
 private:
 	static Setting* InsSetting;
 };
