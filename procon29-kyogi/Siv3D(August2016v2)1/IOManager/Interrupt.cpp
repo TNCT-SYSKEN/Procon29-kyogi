@@ -84,7 +84,7 @@ Interrupt::Interrupt()
 	//Infomation
 	m_gui.add(L"text10", GUIText::Create(L"Information", 80));
 	m_gui.text(L"text10").style.color = Palette::Black;
-	m_gui.add(L"Info", GUITextArea::Create(4, 8));
+	m_gui.add(L"Info", GUITextArea::Create(4, 4));
 
 	//suport
 	//agent1
@@ -95,6 +95,30 @@ Interrupt::Interrupt()
 	m_gui.add(L"text12", GUIText::Create(L"Agent2", 80));
 	m_gui.text(L"text12").style.color = Palette::Black;
 	m_gui.add(L"suport2", GUITextArea::Create(4, 2));
+
+	m_gui.add(L"hr", GUIHorizontalLine::Create(1));
+	m_gui.add(L"text13", GUIText::Create(L"new1", 80));
+	m_gui.text(L"text13").style.color = Palette::Black;
+	m_gui.add(L"new", GUITextArea::Create(1, 1));
+
+	m_gui.add(L"new1", GUITextArea::Create(1, 1));
+
+	m_gui.add(L"new2", GUITextArea::Create(1, 1));
+
+	m_gui.add(L"new3", GUITextArea::Create(1, 1));
+
+	m_gui.add(L"new4", GUITextArea::Create(1, 1));
+
+	Setting *setting;
+	setting = setting->getSetting();
+	m_gui.textArea(L"new").setText(Format(setting->params[0]));
+	m_gui.textArea(L"new1").setText(Format(setting->params[1]));
+	m_gui.textArea(L"new2").setText(Format(setting->params[2]));
+	m_gui.textArea(L"new3").setText(Format(setting->params[3]));
+	m_gui.textArea(L"new4").setText(Format(setting->params[4]));
+
+	//hoge]
+	
 
 	// 横幅の設定
 	m_gui.style.width = 595;
@@ -116,6 +140,40 @@ void Interrupt::interruptManager(void)
 	drawSuport();
 	setAgentSide();
 	setMaxStep();
+
+	Setting* setting;
+	setting = setting->getSetting();
+	// 数値が変化したら、スライダーを変更する
+	if (m_gui.textArea(L"new").hasChanged)
+	{
+		double hoge;
+		hoge = Parse<double>(m_gui.textArea(L"new").text);
+		setting->params[0] = (int)hoge;
+	}
+	if (m_gui.textArea(L"new1").hasChanged)
+	{
+		double hoge;
+		hoge = Parse<double>(m_gui.textArea(L"new1").text);
+		setting->params[1] = (int)hoge;
+	}
+	if (m_gui.textArea(L"new2").hasChanged)
+	{
+		double hoge;
+		hoge = Parse<double>(m_gui.textArea(L"new2").text);
+		setting->params[2] = (int)hoge;
+	}
+	if (m_gui.textArea(L"new3").hasChanged)
+	{
+		double hoge;
+		hoge = Parse<double>(m_gui.textArea(L"new3").text);
+		setting->params[3] = (int)hoge;
+	}
+	if (m_gui.textArea(L"new4").hasChanged)
+	{
+		double hoge;
+		hoge = Parse<double>(m_gui.textArea(L"new4").text);
+		setting->params[4] = (int)hoge;
+	}
 }
 
 //1ターン戻る処理

@@ -13,6 +13,7 @@ public:
 	//true:right false:left
 	bool selectRL;
 	vector< vector<int> > bruteForceResults;
+	int params[5] = { 7, 4, 3, 3, 2 };
 private:
 	static Setting* InsSetting;
 };

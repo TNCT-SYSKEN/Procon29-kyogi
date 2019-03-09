@@ -21,6 +21,11 @@ pair<int, int> Prefetching::prefetching(Agent agent, int agentNum)
 
 	Setting *setting;
 	setting = setting->getSetting();
+	evl_params[0] = setting->params[0];
+	evl_params[1] = setting->params[1];
+	evl_params[2] = setting->params[2];
+	evl_params[3] = setting->params[3];
+	evl_params[4] = setting->params[4];
 
 	int bestEvl = -INF;
 
